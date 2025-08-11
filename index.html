@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JSON & XML Viewer Web App</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; background: #f0f0f0; }
+  textarea { width: 100%; height: 150px; margin-bottom: 10px; }
+  button { margin: 5px 0; }
+  pre, #xml-output { background: white; padding: 10px; border: 1px solid #ccc; max-height: 300px; overflow: auto; white-space: pre-wrap; }
+  .xml-node { margin-left: 1em; }
+</style>
+</head>
+<body>
+
+<h2>JSON Beautifier</h2>
+<textarea id="json-input" placeholder="Paste JSON here"></textarea>
+<br />
+<button onclick="beautifyJSON()">Beautify JSON</button>
+<pre id="json-output"></pre>
+
+<h2>XML Tree Viewer</h2>
+<textarea id="xml-input" placeholder="Paste XML here"></textarea>
+<br />
+<button onclick="viewXML()">View XML Tree</button>
+<div id="xml-output"></div>
+
+<script>
+function beautifyJSON() {
+  const input = document.getElementById('json-input').value;
+  const output = document.getElementById('json-output');
+  try {
+    const obj = JSON.parse(input);
+    output.textContent = JSON.stringify(obj, null, 2);
+  } catch (e) {
+    output.textContent = `Invalid JSON: ${e.message}`;
+  }
+}
+
+function viewXML() {
+  const input = document.getElementById('xml-input').value;
+  const output = document.getElementById('xml-output');
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(input, 'text/xml');
+  if (xmlDoc.querySelector('parsererror')) {
+    output.textContent = 'Invalid XML';
+    return;
+  }
+
+  function createTree(node) {
+    if (node.nodeType === 3) { // Text node
+      if (node.nodeValue.trim() === '') return null;
+      return document.createTextNode(node.nodeValue.trim());
+    }
+    const el = document.createElement('div');
+    el.classList.add('xml-node');
+    let tag = document.createElement('b');
+    tag.textContent = `<${node.nodeName}>`;
+    el.appendChild(tag);
+    Array.from(node.attributes || []).forEach(attr => {
+      const attrSpan = document.createElement('span');
+      attrSpan.textContent = ` ${attr.name}="${attr.value}"`;
+      el.appendChild(attrSpan);
+    });
+    Array.from(node.childNodes).forEach(child => {
+      const childEl = createTree(child);
+      if (childEl) el.appendChild(childEl);
+    });
+    let endTag = document.createElement('b');
+    endTag.textContent = `</${node.nodeName}>`;
+    el.appendChild(endTag);
+    return el;
+  }
+
+  output.innerHTML = '';
+  output.appendChild(createTree(xmlDoc.documentElement));
+}
+</script>
+
+</body>
+</html>
