@@ -1,45 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>JSON & XML Viewer Web App</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JSON & XML Viewer</title>
 <style>
-  body { font-family: Arial, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; background: #f0f0f0; }
+  body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+  .toolbar { background: #333; color: #fff; padding: 10px; display: flex; gap: 10px; }
+  .toolbar button { background: #555; color: white; border: none; padding: 8px; cursor: pointer; }
+  .toolbar button.active { background: #2196f3; }
+  .container { display: flex; flex-direction: column; padding: 10px; }
+  .panel { display: none; flex: 1; flex-direction: column; }
+  .panel.active { display: flex; }
   textarea { width: 100%; height: 150px; margin-bottom: 10px; }
-  button { margin: 5px 0; }
-  pre, #xml-output { background: white; padding: 10px; border: 1px solid #ccc; max-height: 300px; overflow: auto; white-space: pre-wrap; }
-  .xml-node { margin-left: 1em; }
+  .output { background: white; padding: 10px; border: 1px solid #ccc; overflow: auto; flex: 1; }
+  .full-screen { position: fixed !important; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; }
+  .tree ul { list-style: none; padding-left: 16px; margin: 0; }
+  .tree li { line-height: 1.4em; cursor: pointer; }
+  .tree li span { font-weight: bold; }
+  .collapse::before { content: "▼ "; }
+  .collapsed::before { content: "▶ "; }
+  .collapsed > ul { display: none; }
 </style>
 </head>
 <body>
 
-<h2>JSON Beautifier</h2>
-<textarea id="json-input" placeholder="Paste JSON here"></textarea>
-<br />
-<button onclick="beautifyJSON()">Beautify JSON</button>
-<pre id="json-output"></pre>
+<div class="toolbar">
+  <button id="btn-json" class="active" onclick="showPanel('json')">JSON</button>
+  <button id="btn-xml" onclick="showPanel('xml')">XML</button>
+</div>
 
-<h2>XML Tree Viewer</h2>
-<textarea id="xml-input" placeholder="Paste XML here"></textarea>
-<br />
-<button onclick="viewXML()">View XML Tree</button>
-<div id="xml-output"></div>
+<div class="container">
+
+  <!-- JSON Panel -->
+  <div id="panel-json" class="panel active">
+    <textarea id="json-input" placeholder="Paste JSON here"></textarea>
+    <div>
+      <button onclick="beautifyJSON()">Beautify JSON</button>
+      <button onclick="toggleFullScreen('json-output')">Full Screen</button>
+    </div>
+    <div id="json-output" class="output tree"></div>
+  </div>
+
+  <!-- XML Panel -->
+  <div id="panel-xml" class="panel">
+    <textarea id="xml-input" placeholder="Paste XML here"></textarea>
+    <div>
+      <button onclick="viewXML()">View XML</button>
+      <button onclick="toggleFullScreen('xml-output')">Full Screen</button>
+    </div>
+    <div id="xml-output" class="output tree"></div>
+  </div>
+
+</div>
 
 <script>
+function showPanel(type) {
+  document.getElementById('panel-json').classList.remove('active');
+  document.getElementById('panel-xml').classList.remove('active');
+  document.getElementById('btn-json').classList.remove('active');
+  document.getElementById('btn-xml').classList.remove('active');
+
+  document.getElementById('panel-' + type).classList.add('active');
+  document.getElementById('btn-' + type).classList.add('active');
+}
+
+function toggleFullScreen(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('full-screen');
+}
+
 function beautifyJSON() {
   const input = document.getElementById('json-input').value;
   const output = document.getElementById('json-output');
   try {
     const obj = JSON.parse(input);
-    output.textContent = JSON.stringify(obj, null, 2);
+    output.innerHTML = jsonToTree(obj);
+    makeCollapsible(output);
   } catch (e) {
-    output.textContent = `Invalid JSON: ${e.message}`;
+    output.textContent = 'Invalid JSON: ' + e.message;
   }
 }
 
 function viewXML() {
-  const input = document.getElementById('xml-input').value;
+  const input = document.getElementById('xml-input').value.trim();
   const output = document.getElementById('xml-output');
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(input, 'text/xml');
@@ -47,36 +91,56 @@ function viewXML() {
     output.textContent = 'Invalid XML';
     return;
   }
+  output.innerHTML = xmlToTree(xmlDoc.documentElement);
+  makeCollapsible(output);
+}
 
-  function createTree(node) {
-    if (node.nodeType === 3) { // Text node
-      if (node.nodeValue.trim() === '') return null;
-      return document.createTextNode(node.nodeValue.trim());
+// JSON to collapsible tree
+function jsonToTree(obj) {
+  if (typeof obj !== 'object' || obj === null) return `<span>${obj}</span>`;
+  let html = '<ul>';
+  for (let key in obj) {
+    if (typeof obj[key] === 'object') {
+      html += `<li class="collapse"><span>${key}</span>${jsonToTree(obj[key])}</li>`;
+    } else {
+      html += `<li><span>${key}:</span> ${obj[key]}</li>`;
     }
-    const el = document.createElement('div');
-    el.classList.add('xml-node');
-    let tag = document.createElement('b');
-    tag.textContent = `<${node.nodeName}>`;
-    el.appendChild(tag);
-    Array.from(node.attributes || []).forEach(attr => {
-      const attrSpan = document.createElement('span');
-      attrSpan.textContent = ` ${attr.name}="${attr.value}"`;
-      el.appendChild(attrSpan);
-    });
-    Array.from(node.childNodes).forEach(child => {
-      const childEl = createTree(child);
-      if (childEl) el.appendChild(childEl);
-    });
-    let endTag = document.createElement('b');
-    endTag.textContent = `</${node.nodeName}>`;
-    el.appendChild(endTag);
-    return el;
   }
+  html += '</ul>';
+  return html;
+}
 
-  output.innerHTML = '';
-  output.appendChild(createTree(xmlDoc.documentElement));
+// XML to collapsible tree
+function xmlToTree(node) {
+  let html = '<ul>';
+  html += `<li class="collapse"><span>${node.nodeName}</span>`;
+  if (node.attributes && node.attributes.length) {
+    html += ' [';
+    for (let attr of node.attributes) {
+      html += `${attr.name}="${attr.value}" `;
+    }
+    html += ']';
+  }
+  if (node.childNodes.length) {
+    for (let child of node.childNodes) {
+      if (child.nodeType === 1) html += xmlToTree(child);
+      else if (child.nodeType === 3 && child.nodeValue.trim()) html += `<ul><li>${child.nodeValue.trim()}</li></ul>`;
+    }
+  }
+  html += '</li></ul>';
+  return html;
+}
+
+// Add collapsible behavior
+function makeCollapsible(container) {
+  container.querySelectorAll('.collapse').forEach(function(el) {
+    el.classList.add('collapsed');
+    el.addEventListener('click', function(e) {
+      e.stopPropagation();
+      el.classList.toggle('collapsed');
+    });
+  });
 }
 </script>
-
 </body>
 </html>
