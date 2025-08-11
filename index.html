@@ -3,21 +3,26 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JSON & XML Viewer</title>
+<title>Enhanced JSON & XML Viewer</title>
 <style>
-  body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-  .toolbar { background: #333; color: #fff; padding: 10px; display: flex; gap: 10px; }
-  .toolbar button { background: #555; color: white; border: none; padding: 8px; cursor: pointer; }
+  body { font-family: Arial, sans-serif; margin: 0; background: #1e1e1e; color: #d4d4d4; }
+  .toolbar { background: #252526; color: #fff; padding: 10px; display: flex; gap: 10px; }
+  .toolbar button { background: #333; color: white; border: none; padding: 8px 14px; cursor: pointer; border-radius: 4px; }
   .toolbar button.active { background: #2196f3; }
-  .container { display: flex; flex-direction: column; padding: 10px; }
-  .panel { display: none; flex: 1; flex-direction: column; }
-  .panel.active { display: flex; }
-  textarea { width: 100%; height: 150px; margin-bottom: 10px; }
-  .output { background: white; padding: 10px; border: 1px solid #ccc; overflow: auto; flex: 1; }
-  .full-screen { position: fixed !important; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 9999; }
+  .container { display: flex; gap: 10px; height: calc(100vh - 50px); padding: 10px; }
+  .panel { display: flex; flex-direction: column; flex: 1; background: #252526; border-radius: 4px; }
+  .hidden { display: none !important; }
+  textarea { width: 100%; height: 150px; margin-bottom: 8px; background: #1e1e1e; color: #d4d4d4; border: 1px solid #555; }
+  .actions { padding: 5px; background: #2d2d2d; display: flex; justify-content: space-between; }
+  .output { background: #1e1e1e; padding: 10px; border: 1px solid #555; overflow: auto; flex: 1; font-family: Consolas, monospace; font-size: 14px; }
+  .full-screen { position: fixed !important; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; border-radius: 0; }
   .tree ul { list-style: none; padding-left: 16px; margin: 0; }
   .tree li { line-height: 1.4em; cursor: pointer; }
-  .tree li span { font-weight: bold; }
+  .tree li span.key { color: #9cdcfe; }
+  .tree li span.string { color: #ce9178; }
+  .tree li span.number { color: #b5cea8; }
+  .tree li span.tag { color: #569cd6; }
+  .tree li span.attr { color: #dcdcaa; }
   .collapse::before { content: "▼ "; }
   .collapsed::before { content: "▶ "; }
   .collapsed > ul { display: none; }
@@ -26,16 +31,16 @@
 <body>
 
 <div class="toolbar">
-  <button id="btn-json" class="active" onclick="showPanel('json')">JSON</button>
-  <button id="btn-xml" onclick="showPanel('xml')">XML</button>
+  <button id="btn-json" class="active" onclick="togglePanel('json')">Toggle JSON</button>
+  <button id="btn-xml" class="active" onclick="togglePanel('xml')">Toggle XML</button>
 </div>
 
 <div class="container">
 
   <!-- JSON Panel -->
-  <div id="panel-json" class="panel active">
+  <div id="panel-json" class="panel">
     <textarea id="json-input" placeholder="Paste JSON here"></textarea>
-    <div>
+    <div class="actions">
       <button onclick="beautifyJSON()">Beautify JSON</button>
       <button onclick="toggleFullScreen('json-output')">Full Screen</button>
     </div>
@@ -45,7 +50,7 @@
   <!-- XML Panel -->
   <div id="panel-xml" class="panel">
     <textarea id="xml-input" placeholder="Paste XML here"></textarea>
-    <div>
+    <div class="actions">
       <button onclick="viewXML()">View XML</button>
       <button onclick="toggleFullScreen('xml-output')">Full Screen</button>
     </div>
@@ -55,21 +60,19 @@
 </div>
 
 <script>
-function showPanel(type) {
-  document.getElementById('panel-json').classList.remove('active');
-  document.getElementById('panel-xml').classList.remove('active');
-  document.getElementById('btn-json').classList.remove('active');
-  document.getElementById('btn-xml').classList.remove('active');
-
-  document.getElementById('panel-' + type).classList.add('active');
-  document.getElementById('btn-' + type).classList.add('active');
+// Toggle panel visibility
+function togglePanel(type) {
+  const panel = document.getElementById('panel-' + type);
+  const btn = document.getElementById('btn-' + type);
+  panel.classList.toggle('hidden');
+  btn.classList.toggle('active');
 }
 
 function toggleFullScreen(id) {
-  const el = document.getElementById(id);
-  el.classList.toggle('full-screen');
+  document.getElementById(id).classList.toggle('full-screen');
 }
 
+// Beautify JSON and render as collapsible tree
 function beautifyJSON() {
   const input = document.getElementById('json-input').value;
   const output = document.getElementById('json-output');
@@ -82,6 +85,7 @@ function beautifyJSON() {
   }
 }
 
+// View XML as collapsible tree
 function viewXML() {
   const input = document.getElementById('xml-input').value.trim();
   const output = document.getElementById('xml-output');
@@ -95,43 +99,47 @@ function viewXML() {
   makeCollapsible(output);
 }
 
-// JSON to collapsible tree
+// JSON to tree with colors
 function jsonToTree(obj) {
-  if (typeof obj !== 'object' || obj === null) return `<span>${obj}</span>`;
+  if (typeof obj !== 'object' || obj === null) {
+    let type = typeof obj;
+    let cls = type === 'string' ? 'string' : 'number';
+    return `<span class="${cls}">${JSON.stringify(obj)}</span>`;
+  }
   let html = '<ul>';
   for (let key in obj) {
     if (typeof obj[key] === 'object') {
-      html += `<li class="collapse"><span>${key}</span>${jsonToTree(obj[key])}</li>`;
+      html += `<li class="collapse"><span class="key">"${key}"</span>: ${jsonToTree(obj[key])}</li>`;
     } else {
-      html += `<li><span>${key}:</span> ${obj[key]}</li>`;
+      let type = typeof obj[key];
+      let cls = type === 'string' ? 'string' : 'number';
+      html += `<li><span class="key">"${key}"</span>: <span class="${cls}">${JSON.stringify(obj[key])}</span></li>`;
     }
   }
   html += '</ul>';
   return html;
 }
 
-// XML to collapsible tree
+// XML to tree with colors
 function xmlToTree(node) {
   let html = '<ul>';
-  html += `<li class="collapse"><span>${node.nodeName}</span>`;
+  html += `<li class="collapse"><span class="tag">&lt;${node.nodeName}</span>`;
   if (node.attributes && node.attributes.length) {
-    html += ' [';
     for (let attr of node.attributes) {
-      html += `${attr.name}="${attr.value}" `;
-    }
-    html += ']';
-  }
-  if (node.childNodes.length) {
-    for (let child of node.childNodes) {
-      if (child.nodeType === 1) html += xmlToTree(child);
-      else if (child.nodeType === 3 && child.nodeValue.trim()) html += `<ul><li>${child.nodeValue.trim()}</li></ul>`;
+      html += ` <span class="attr">${attr.name}="${attr.value}"</span>`;
     }
   }
-  html += '</li></ul>';
+  html += '<span class="tag">&gt;</span>';
+  Array.from(node.childNodes).forEach(child => {
+    if (child.nodeType === 1) html += xmlToTree(child);
+    else if (child.nodeType === 3 && child.nodeValue.trim())
+      html += `<ul><li><span class="string">${child.nodeValue.trim()}</span></li></ul>`;
+  });
+  html += `<span class="tag">&lt;/${node.nodeName}&gt;</span></li></ul>`;
   return html;
 }
 
-// Add collapsible behavior
+// Make collapsible
 function makeCollapsible(container) {
   container.querySelectorAll('.collapse').forEach(function(el) {
     el.classList.add('collapsed');
