@@ -157,9 +157,9 @@ html, body {
       <!-- Left side: XML input -->
       <div class="io-input">
         <div class="btn-group">
-          <button onclick="copyInput('xml-input')">📋 Copy</button>
-          <button onclick="pasteInput('xml-input')">📥 Paste</button>
-          <button onclick="clearInput('xml-input')">🗑 Clear</button>
+          <button onclick="copyInput('xml-input')"><i class="fa-solid fa-copy" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Copy</button>
+          <button onclick="pasteInput('xml-input')"><i class="fa-solid fa-paste" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Paste</button>
+          <button onclick="clearInput('xml-input')"><i class="fa-solid fa-trash" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Clear</button>
         </div>
         <textarea id="xml-input" placeholder="Paste XML here"></textarea>
       </div>
@@ -167,10 +167,10 @@ html, body {
       <!-- Right side: XML output -->
       <div class="io-output">
         <div class="actions">
-          <button class="action-btn" onclick="viewXML()">📂 View & Validate XML</button>
-          <button class="action-btn" onclick="toggleFullScreen('xml-output')">🖥 Full Screen</button>
-          <button class="action-btn" onclick="collapseAllXML()">➖ Collapse All</button>
-          <button class="action-btn" onclick="expandAllXML()">➕ Expand All</button>
+          <button class="action-btn" onclick="viewXML()"><i class="fa-solid fa-clipboard-check" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> View & Validate XML</button>
+          <button class="action-btn" onclick="toggleFullScreen('xml-output')"><i class="fa-solid fa-display" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Full Screen</button>
+          <button class="action-btn" onclick="collapseAllXML()"><i class="fa-solid fa-up-right-and-down-left-from-center" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Collapse All</button>
+          <button class="action-btn" onclick="expandAllXML()"><i class="fa-solid fa-down-left-and-up-right-to-center" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Expand All</button>
 
         </div>
         <div id="xml-output" class="output tree"></div>
