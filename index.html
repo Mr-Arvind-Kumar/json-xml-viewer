@@ -4,42 +4,20 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>JSON & XML Viewer</title>
-<style>
-  body { font-family: Arial, sans-serif; margin: 0; background: #1e1e1e; color: #d4d4d4; }
-  .toolbar { background: #252526; color: #fff; padding: 10px; display: flex; gap: 10px; }
-  .toolbar button { background: #333; color: white; border: none; padding: 8px 14px; cursor: pointer; border-radius: 4px; transition: background 0.2s; }
-  .toolbar button:hover { background: #444; }
-  .toolbar button.active { background: #2196f3; }
-  .container { display: flex; gap: 10px; height: calc(100vh - 50px); padding: 10px; }
-  .panel { display: flex; flex-direction: column; flex: 1; background: #252526; border-radius: 4px; }
-  .hidden { display: none !important; }
-  textarea { width: 100%; height: 150px; margin-bottom: 8px; background: #1e1e1e; color: #d4d4d4; border: 1px solid #555; border-radius: 4px; padding: 5px; }
-  .actions { padding: 6px; background: #2d2d2d; display: flex; flex-wrap: wrap; gap: 5px; }
-  .action-btn { background: #007acc; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 14px; display: flex; align-items: center; gap: 6px; }
-  .action-btn:hover { background: #1f88d9; }
-  .output { background: #1e1e1e; padding: 10px; border: 1px solid #555; overflow: auto; flex: 1; font-family: Consolas, monospace; font-size: 14px; border-radius: 4px; }
-  .full-screen { position: fixed !important; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; border-radius: 0; background: #1e1e1e; }
-  .tree ul { list-style: none; padding-left: 16px; margin: 0; }
-  .tree li { line-height: 1.4em; cursor: pointer; }
-  .tree li span.key { color: #9cdcfe; }
-  .tree li span.string { color: #ce9178; }
-  .tree li span.number { color: #b5cea8; }
-  .tree li span.tag { color: #569cd6; }
-  .tree li span.attr { color: #dcdcaa; }
-  .collapse::before { content: "▼ "; }
-  .collapsed::before { content: "▶ "; }
-  .collapsed > ul { display: none; }
-  
-  /* Modal styling */
-  .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); }
-  .modal-content { background-color: #1e1e1e; margin: 5% auto; padding: 20px; border: 1px solid #555; width: 80%; max-height: 85vh; overflow-y: auto; color: #d4d4d4; border-radius: 8px; }
-  .modal-close { color: #aaa; float: right; font-size: 22px; font-weight: bold; cursor: pointer; }
-  .modal-close:hover { color: white; }
-  pre { white-space: pre-wrap; word-wrap: break-word; }
-</style>
+<link rel="stylesheet" href="styles.css"/>
 </head>
-<body>
+<body class="dark">
 
+<!-- HEADER -->
+<header>
+  <div class="header-content">
+    <img src="assets/logo.png" alt="Logo" class="logo"/>
+    <h1>JSON & XML Viewer</h1>
+    <button id="themeToggle" class="theme-btn">🌙 Dark Mode</button>
+  </div>
+</header>
+
+<!-- Toolbar -->
 <div class="toolbar">
   <button id="btn-json" class="active" onclick="showOnly('json')">JSON</button>
   <button id="btn-xml" onclick="showOnly('xml')">XML</button>
@@ -47,22 +25,38 @@
 
 <div class="container">
 
-  <!-- JSON Panel -->
+  <!-- JSON PANEL -->
   <div id="panel-json" class="panel">
-    <textarea id="json-input" placeholder="Paste JSON here"></textarea>
+    <div class="input-actions">
+      <textarea id="json-input" placeholder="Paste JSON here"></textarea>
+      <div class="btn-group">
+        <button onclick="copyInput('json-input')">📋 Copy</button>
+        <button onclick="pasteInput('json-input')">📥 Paste</button>
+        <button onclick="clearInput('json-input')">🗑 Clear</button>
+      </div>
+    </div>
+
     <div class="actions">
-      <button class="action-btn" onclick="beautifyJSON()">📂 Tree View JSON</button>
+      <button class="action-btn" onclick="beautifyJSON()">📂 Tree View</button>
       <button class="action-btn" onclick="openFullJSONModal()">📄 Full JSON</button>
       <button class="action-btn" onclick="toggleFullScreen('json-output')">🖥 Full Screen</button>
     </div>
     <div id="json-output" class="output tree"></div>
   </div>
 
-  <!-- XML Panel -->
+  <!-- XML PANEL -->
   <div id="panel-xml" class="panel hidden">
-    <textarea id="xml-input" placeholder="Paste XML here"></textarea>
+    <div class="input-actions">
+      <textarea id="xml-input" placeholder="Paste XML here"></textarea>
+      <div class="btn-group">
+        <button onclick="copyInput('xml-input')">📋 Copy</button>
+        <button onclick="pasteInput('xml-input')">📥 Paste</button>
+        <button onclick="clearInput('xml-input')">🗑 Clear</button>
+      </div>
+    </div>
+
     <div class="actions">
-      <button class="action-btn" onclick="viewXML()">📂 View XML</button>
+      <button class="action-btn" onclick="viewXML()">📂 Tree View</button>
       <button class="action-btn" onclick="toggleFullScreen('xml-output')">🖥 Full Screen</button>
     </div>
     <div id="xml-output" class="output tree"></div>
@@ -70,7 +64,12 @@
 
 </div>
 
-<!-- Modal for full JSON -->
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 JSON/XML Viewer Tool | Built with ❤️ by You</p>
+</footer>
+
+<!-- FULL JSON MODAL -->
 <div id="jsonModal" class="modal">
   <div class="modal-content">
     <span class="modal-close" onclick="closeFullJSONModal()">&times;</span>
@@ -79,130 +78,11 @@
   </div>
 </div>
 
+<script src="script.js"></script>
+<script src="json.js"></script>
+<script src="xml.js"></script>
 <script>
-// Show only one panel at a time
-function showOnly(type) {
-  document.getElementById('panel-json').classList.add('hidden');
-  document.getElementById('panel-xml').classList.add('hidden');
-  document.getElementById('btn-json').classList.remove('active');
-  document.getElementById('btn-xml').classList.remove('active');
-  document.getElementById('panel-' + type).classList.remove('hidden');
-  document.getElementById('btn-' + type).classList.add('active');
-}
-
-// Full screen toggle
-function toggleFullScreen(id) {
-  document.getElementById(id).classList.toggle('full-screen');
-}
-
-// Beautify JSON tree
-function beautifyJSON() {
-  const input = document.getElementById('json-input').value;
-  const output = document.getElementById('json-output');
-  try {
-    const obj = JSON.parse(input);
-    output.innerHTML = jsonToTree(obj);
-    makeCollapsible(output);
-  } catch (e) {
-    output.textContent = 'Invalid JSON: ' + e.message;
-  }
-}
-
-// Open Modal with full JSON
-function openFullJSONModal() {
-  const input = document.getElementById('json-input').value;
-  const modal = document.getElementById('jsonModal');
-  const content = document.getElementById('json-modal-content');
-  try {
-    const obj = JSON.parse(input);
-    content.textContent = JSON.stringify(obj, null, 2);
-    modal.style.display = 'block';
-  } catch (e) {
-    content.textContent = 'Invalid JSON: ' + e.message;
-    modal.style.display = 'block';
-  }
-}
-
-// Close modal
-function closeFullJSONModal() {
-  document.getElementById('jsonModal').style.display = 'none';
-}
-
-// Close modal on Esc or outside click
-window.addEventListener('keydown', function(e) {
-  if (e.key === "Escape") closeFullJSONModal();
-});
-window.addEventListener('click', function(e) {
-  if (e.target.id === 'jsonModal') closeFullJSONModal();
-});
-
-// XML Viewer
-function viewXML() {
-  const input = document.getElementById('xml-input').value.trim();
-  const output = document.getElementById('xml-output');
-  const parser = new DOMParser();
-  const xmlDoc = parser.parseFromString(input, 'text/xml');
-  if (xmlDoc.querySelector('parsererror')) {
-    output.textContent = 'Invalid XML';
-    return;
-  }
-  output.innerHTML = xmlToTree(xmlDoc.documentElement);
-  makeCollapsible(output);
-}
-
-// JSON to tree
-function jsonToTree(obj) {
-  if (typeof obj !== 'object' || obj === null) {
-    let type = typeof obj;
-    let cls = type === 'string' ? 'string' : 'number';
-    return `<span class="${cls}">${JSON.stringify(obj)}</span>`;
-  }
-  let html = '<ul>';
-  for (let key in obj) {
-    if (typeof obj[key] === 'object') {
-      html += `<li class="collapse"><span class="key">"${key}"</span>: ${jsonToTree(obj[key])}</li>`;
-    } else {
-      let type = typeof obj[key];
-      let cls = type === 'string' ? 'string' : 'number';
-      html += `<li><span class="key">"${key}"</span>: <span class="${cls}">${JSON.stringify(obj[key])}</span></li>`;
-    }
-  }
-  html += '</ul>';
-  return html;
-}
-
-// XML to tree
-function xmlToTree(node) {
-  let html = '<ul>';
-  html += `<li class="collapse"><span class="tag">&lt;${node.nodeName}</span>`;
-  if (node.attributes && node.attributes.length) {
-    for (let attr of node.attributes) {
-      html += ` <span class="attr">${attr.name}="${attr.value}"</span>`;
-    }
-  }
-  html += '<span class="tag">&gt;</span>';
-  Array.from(node.childNodes).forEach(child => {
-    if (child.nodeType === 1) html += xmlToTree(child);
-    else if (child.nodeType === 3 && child.nodeValue.trim())
-      html += `<ul><li><span class="string">${child.nodeValue.trim()}</span></li></ul>`;
-  });
-  html += `<span class="tag">&lt;/${node.nodeName}&gt;</span></li></ul>`;
-  return html;
-}
-
-// Make collapsible
-function makeCollapsible(container) {
-  container.querySelectorAll('.collapse').forEach(function(el) {
-    el.classList.add('collapsed');
-    el.addEventListener('click', function(e) {
-      e.stopPropagation();
-      el.classList.toggle('collapsed');
-    });
-  });
-}
-
-// Show JSON panel by default
-showOnly('json');
+showOnly('json'); // Default panel
 </script>
 </body>
 </html>
