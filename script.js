@@ -58,37 +58,26 @@ function clearInput(id) {
    Theme Toggle + save choice
 ------------------------- */
 document.getElementById('themeToggle').addEventListener('click', () => {
-  document.body.classList.toggle('light');
-  document.body.classList.toggle('dark');
-
-  const isLightMode = document.body.classList.contains('light');
-  document.getElementById('themeToggle').textContent = isLightMode
-    ? '🌞 Light Mode'
-    : '🌙 Dark Mode';
-
-  // Remember theme preference
-  localStorage.setItem('theme-mode', isLightMode ? 'light' : 'dark');
+  // Toggle theme classes on body
+  if (document.body.classList.contains('light')) {
+    document.body.classList.remove('light');
+    document.body.classList.add('dark');
+    document.getElementById('themeToggle').textContent = '🌙 Dark Mode';
+    localStorage.setItem('theme-mode', 'dark');
+  } else {
+    document.body.classList.remove('dark');
+    document.body.classList.add('light');
+    document.getElementById('themeToggle').textContent = '🌞 Light Mode';
+    localStorage.setItem('theme-mode', 'light');
+  }
 });
 
 /* -------------------------
    Restore everything on load
 ------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
-  // Restore saved inputs
-  const savedJSON = localStorage.getItem('json-input');
-  const savedXML = localStorage.getItem('xml-input');
-  if (savedJSON) document.getElementById('json-input').value = savedJSON;
-  if (savedXML) document.getElementById('xml-input').value = savedXML;
-
-  document.getElementById('json-input').addEventListener('input', function() {
-    localStorage.setItem('json-input', this.value);
-  });
-  document.getElementById('xml-input').addEventListener('input', function() {
-    localStorage.setItem('xml-input', this.value);
-  });
-
-  // Restore last theme
-  const savedTheme = localStorage.getItem('theme-mode');
+  // Restore saved theme. Default to dark
+  const savedTheme = localStorage.getItem('theme-mode') || 'dark';
   if (savedTheme === 'light') {
     document.body.classList.add('light');
     document.body.classList.remove('dark');
@@ -99,7 +88,21 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('themeToggle').textContent = '🌙 Dark Mode';
   }
 
-  // Restore last opened panel (default to JSON if not set)
+  // Restore saved inputs
+  const savedJSON = localStorage.getItem('json-input');
+  const savedXML  = localStorage.getItem('xml-input');
+  if (savedJSON) document.getElementById('json-input').value = savedJSON;
+  if (savedXML)  document.getElementById('xml-input').value  = savedXML;
+
+  document.getElementById('json-input').addEventListener('input', function() {
+    localStorage.setItem('json-input', this.value);
+  });
+
+  document.getElementById('xml-input').addEventListener('input', function() {
+    localStorage.setItem('xml-input', this.value);
+  });
+
+  // Restore last opened panel (default to JSON)
   const savedPanel = localStorage.getItem('last-panel') || 'json';
   showOnly(savedPanel);
 });
@@ -113,5 +116,10 @@ function clearAllSavedData() {
   localStorage.removeItem('last-panel');
   localStorage.removeItem('theme-mode');
   document.getElementById('json-input').value = '';
-  document.getElementById('xml-input').value = '';
+  document.getElementById('xml-input').value  = '';
+  // Reset to default panel and theme
+  showOnly('json');
+  document.body.classList.remove('light');
+  document.body.classList.add('dark');
+  document.getElementById('themeToggle').textContent = '🌙 Dark Mode';
 }
