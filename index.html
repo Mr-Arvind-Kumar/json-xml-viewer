@@ -152,6 +152,10 @@ html, body {
             <i class="fa-solid fa-up-right-and-down-left-from-center" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
             Expand All
           </button>
+          <button class="action-btn" onclick="captureScreenshot('json-output', 'json-output-screenshot.png')">
+            <i class="fa-solid fa-camera" style="font-size:20px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
+            Screenshot
+          </button>
         </div>
         <textarea id="json-input" placeholder="Paste JSON here"></textarea>
       </div>
@@ -189,6 +193,10 @@ html, body {
           <button class="action-btn" onclick="toggleFullScreen('xml-output')"><i class="fa-solid fa-display" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Full Screen</button>
           <button class="action-btn" onclick="collapseAllXML()"><i class="fa-solid fa-down-left-and-up-right-to-center" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Collapse All</button>
           <button class="action-btn" onclick="expandAllXML()"><i class="fa-solid fa-up-right-and-down-left-from-center" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Expand All</button>
+          <button class="action-btn" onclick="captureScreenshot('xml-output', 'xml-output-screenshot.png')">
+            <i class="fa-solid fa-camera" style="font-size:20px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
+            Screenshot
+          </button>
         </div>
         <textarea id="xml-input" placeholder="Paste XML here"></textarea>
       </div>
@@ -295,6 +303,28 @@ function showOnly(type) {
   const xmlWrapper = document.getElementById('xml-divider').parentNode;
   jsonWrapper.dispatchEvent(new Event('reset-divider'));
   xmlWrapper.dispatchEvent(new Event('reset-divider'));
+}
+</script>
+<!-- html2canvas for screenshot functionality -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+function captureScreenshot(outputId, filename) {
+  const output = document.getElementById(outputId);
+  if (!output) return;
+  // Temporarily expand to show all content
+  const prevScrollTop = output.scrollTop;
+  const prevScrollLeft = output.scrollLeft;
+  output.scrollTop = 0;
+  output.scrollLeft = 0;
+  html2canvas(output, {useCORS: true, backgroundColor: null, windowWidth: output.scrollWidth, windowHeight: output.scrollHeight, width: output.scrollWidth, height: output.scrollHeight, scrollY: -window.scrollY}).then(canvas => {
+    // Restore scroll
+    output.scrollTop = prevScrollTop;
+    output.scrollLeft = prevScrollLeft;
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
 }
 </script>
         <div id="xml-summary" style="margin-top: 8px; font-weight: bold; color: #888;"></div>
