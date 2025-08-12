@@ -119,10 +119,11 @@ function viewXML() {
 
 // Convert XML to HTML tree
 function xmlToTree(node, path) {
-  let html = '<ul>';
-  // Opening tag with copy button
-  html += `<li class="collapse" data-xml-path="${path}"><span class="tag">&lt;${node.nodeName}</span>`;
-  // Attributes
+  let html = `<ul><li class="collapse" data-xml-path="${path}">`;
+  // Opening tag row with inline arrow
+  html += `<div class="xml-row">`;
+  html += `<span class="xml-arrow"></span>`;
+  html += `<span class="tag xml-tag-open" data-xml-path="${path}">&lt;${node.nodeName}</span>`;
   if (node.attributes && node.attributes.length) {
     for (let attr of node.attributes) {
       html += ` <span class="attr">${attr.name}="<span class="attr-value">${escapeHtml(attr.value)}</span>"</span>`;
@@ -130,18 +131,38 @@ function xmlToTree(node, path) {
   }
   html += '<span class="tag">&gt;</span>';
   html += `<button class="xml-copy-btn" title="Copy this node" style="margin-left:6px;font-size:12px;vertical-align:middle;">📋</button>`;
-  // Child nodes
-  Array.from(node.childNodes).forEach((child, idx) => {
-    if (child.nodeType === 1) {
-      html += xmlToTree(child, path + '-' + idx);
-    } else if (child.nodeType === 3 && child.nodeValue.trim()) {
-      html += `<ul><li><span class="string">${escapeHtml(child.nodeValue.trim())}</span></li></ul>`;
-    }
-  });
-  // Closing tag
-  html += `<span class="tag">&lt;/${node.nodeName}&gt;</span></li></ul>`;
+  html += `</div>`;
+  // Children as sibling <li>s in a single <ul>
+  const children = Array.from(node.childNodes).filter(child => child.nodeType === 1 || (child.nodeType === 3 && child.nodeValue.trim()));
+  if (children.length > 0) {
+    html += '<ul>';
+    children.forEach((child, idx) => {
+      if (child.nodeType === 1) {
+        html += xmlToTree(child, path + '-' + idx);
+      } else if (child.nodeType === 3 && child.nodeValue.trim()) {
+        html += `<li><div class="xml-row"><span class="string">${escapeHtml(child.nodeValue.trim())}</span></div></li>`;
+      }
+    });
+    html += '</ul>';
+  }
+  // Closing tag row
+  html += `<div class="xml-row"><span class="tag xml-tag-close" data-xml-path="${path}">&lt;/${node.nodeName}&gt;</span></div>`;
+  html += '</li></ul>';
   return html;
 }
+// Highlight both opening and closing tags when either is hovered
+document.addEventListener('mouseover', function(e) {
+  if (e.target.classList.contains('xml-tag-open') || e.target.classList.contains('xml-tag-close')) {
+    const path = e.target.getAttribute('data-xml-path');
+    document.querySelectorAll('.xml-tag-open[data-xml-path="' + path + '"], .xml-tag-close[data-xml-path="' + path + '"]').forEach(el => el.classList.add('active'));
+  }
+});
+document.addEventListener('mouseout', function(e) {
+  if (e.target.classList.contains('xml-tag-open') || e.target.classList.contains('xml-tag-close')) {
+    const path = e.target.getAttribute('data-xml-path');
+    document.querySelectorAll('.xml-tag-open[data-xml-path="' + path + '"], .xml-tag-close[data-xml-path="' + path + '"]').forEach(el => el.classList.remove('active'));
+  }
+});
 // Add copy-to-clipboard listeners to XML nodes
 function addCopyListeners() {
   document.querySelectorAll('.xml-copy-btn').forEach(btn => {
@@ -215,10 +236,27 @@ function escapeHtml(text) {
 function makeCollapsible(container) {
   container.querySelectorAll('.collapse').forEach(function(el) {
     el.classList.add('collapsed'); // start collapsed
-    el.addEventListener('click', function(e) {
-      e.stopPropagation();
-      el.classList.toggle('collapsed');
-    });
+    // Only toggle when clicking the arrow
+    const arrow = el.querySelector('.xml-arrow');
+    if (arrow) {
+      arrow.innerHTML = '<span style="display:inline-block;transform:rotate(0deg);transition:transform 0.2s;">&#9654;</span>';
+      arrow.style.cursor = 'pointer';
+      arrow.onclick = function(e) {
+        e.stopPropagation();
+        el.classList.toggle('collapsed');
+        // Rotate arrow
+        const icon = arrow.querySelector('span');
+        if (el.classList.contains('collapsed')) {
+          icon.style.transform = 'rotate(0deg)';
+        } else {
+          icon.style.transform = 'rotate(90deg)';
+        }
+      };
+    }
+    // Set initial arrow direction
+    if (arrow && el.classList.contains('collapsed')) {
+      arrow.querySelector('span').style.transform = 'rotate(0deg)';
+    }
   });
 }
 

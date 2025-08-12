@@ -1,3 +1,21 @@
+.xml-row {
+  display: flex;
+  align-items: center;
+  margin: 2px 0 2px 0;
+  padding-left: 8px;
+  word-break: break-word;
+}
+.xml-tag-open,
+.xml-tag-close {
+  display: inline-block;
+  min-width: 1.5em;
+}
+.xml-tag-open.active, .xml-tag-close.active {
+  background: #2196f3;
+  color: #fff !important;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
 /* ====== Base Layout ====== */
 body {
   margin: 0;
@@ -192,15 +210,12 @@ textarea {
 }
 
 /* ====== Collapse Arrow Styling ====== */
-.collapse::before {
-  content: "▼ ";
+.xml-arrow {
+  width: 1.2em;
+  display: inline-block;
+  margin-right: 2px;
   color: var(--arrow-color);
-  font-weight: bold;
-}
-.collapsed::before {
-  content: "▶ ";
-  color: var(--arrow-color);
-  font-weight: bold;
+  vertical-align: middle;
 }
 .collapsed > ul {
   display: none;
