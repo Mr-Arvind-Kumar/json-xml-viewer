@@ -78,7 +78,7 @@ in any modern browser (Chrome, Edge, Firefox, Safari).
 ## 📸 Screenshot
 *(Optional — replace with your own image in `/assets/screenshot.png`)*
 
-![App Screenshot](assets/screenshot.png)
+![App Screenshot](assets/Screenshot.png)
 
 ---
 
