@@ -1,3 +1,50 @@
+.xml-search-match {
+  background: #ffe082 !important;
+  color: #222 !important;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+body.dark .xml-search-match {
+  background: #ffb300 !important;
+  color: #fff !important;
+}
+body.dark .xml-search-match .xml-arrow {
+  color: #fff !important;
+}
+/* ====== XML Search Highlight ====== */
+.xml-search-match {
+  background: #ffe082 !important;
+  color: #222 !important;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+/* ====== XML Search Bar Styling ====== */
+#xml-search-bar {
+  background: var(--input-bg);
+  color: var(--input-text);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 15px;
+  margin-right: 6px;
+}
+#xml-search-bar:focus {
+  outline: 2px solid var(--btn-active-bg);
+}
+.xml-search-btn {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.xml-search-btn:hover {
+  background: var(--btn-hover-bg);
+  color: var(--btn-text);
+}
 .xml-row {
   display: flex;
   align-items: center;

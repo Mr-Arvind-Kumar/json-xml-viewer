@@ -98,8 +98,8 @@ html, body {
 
 <!-- Toolbar -->
 <div class="toolbar">
-  <button id="btn-json" class="active" onclick="showOnly('json')">JSON</button>
-  <button id="btn-xml" onclick="showOnly('xml')">XML</button>
+  <button id="btn-json" class="active" onclick="showOnly('json')">JSON Viewer</button>
+  <button id="btn-xml" onclick="showOnly('xml')">XML Viewer</button>
 </div>
 
 <!-- Main Content -->
@@ -114,23 +114,23 @@ html, body {
         <div class="btn-group">
           <button onclick="copyInput('json-input')">
             <i class="fa-solid fa-copy" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
-            Copy
+            Copy JSON
           </button>
           <button onclick="pasteInput('json-input')">
             <i class="fa-solid fa-paste" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
-            Paste
+            Paste JSON
           </button>
           <button onclick="clearInput('json-input')">
             <i class="fa-solid fa-trash" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
-            Clear
+            Clear JSON
           </button>
           <button onclick="convertJSONtoXML()">
             <i class="fa-solid fa-arrow-right-arrow-left" style="font-size:20px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
-            Convert to XML
+            Convert JSON → XML
           </button>
           <button onclick="removeSpaces('json-input')">
             <i class="fa-solid fa-eraser" style="font-size:20px;color:#ff9800;text-shadow:2px 2px 4px #000000;"></i>
-            Remove Spaces
+            Remove Whitespace (JSON)
           </button>
           <button class="action-btn" onclick="beautifyJSON()">
             <i class="fa-solid fa-folder-tree" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
@@ -178,16 +178,16 @@ html, body {
       <!-- Left side: XML input -->
       <div class="io-input" id="xml-io-input">
         <div class="btn-group">
-          <button onclick="copyInput('xml-input')"><i class="fa-solid fa-copy" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Copy</button>
-          <button onclick="pasteInput('xml-input')"><i class="fa-solid fa-paste" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Paste</button>
-          <button onclick="clearInput('xml-input')"><i class="fa-solid fa-trash" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Clear</button>
+          <button onclick="copyInput('xml-input')"><i class="fa-solid fa-copy" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Copy XML</button>
+          <button onclick="pasteInput('xml-input')"><i class="fa-solid fa-paste" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Paste XML</button>
+          <button onclick="clearInput('xml-input')"><i class="fa-solid fa-trash" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Clear XML</button>
           <button onclick="convertXMLtoJSON()">
             <i class="fa-solid fa-arrow-right-arrow-left" style="font-size:20px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
-            Convert to JSON
+            Convert XML → JSON
           </button>
           <button onclick="removeSpaces('xml-input')">
             <i class="fa-solid fa-eraser" style="font-size:20px;color:#ff9800;text-shadow:2px 2px 4px #000000;"></i>
-            Remove Spaces
+            Remove Whitespace (XML)
           </button>
           <button class="action-btn" onclick="viewXML()"><i class="fa-solid fa-clipboard-check" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> View & Validate XML</button>
           <button class="action-btn" onclick="toggleFullScreen('xml-output')"><i class="fa-solid fa-display" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Full Screen</button>

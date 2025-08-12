@@ -74,9 +74,10 @@ function viewXML() {
   // Add search bar if not present
   if (!document.getElementById('xml-search-bar')) {
     const searchBar = document.createElement('div');
+    searchBar.style.marginBottom = '8px';
     searchBar.innerHTML = `
-      <input id="xml-search-bar" type="text" placeholder="Search tag or attribute..." style="margin-bottom:8px;width:70%"> 
-      <button onclick="clearXMLSearch()">Clear</button>
+      <input id="xml-search-bar" type="text" placeholder="Search tag or attribute...">
+      <button class="xml-search-btn" onclick="clearXMLSearch()">Clear</button>
     `;
     output.parentNode.insertBefore(searchBar, output);
     document.getElementById('xml-search-bar').addEventListener('input', filterXMLTree);
@@ -204,9 +205,11 @@ function getXMLStringFromNode(li) {
 function filterXMLTree() {
   const q = document.getElementById('xml-search-bar').value.trim().toLowerCase();
   document.querySelectorAll('#xml-output li[data-xml-path]').forEach(li => {
+    // Remove previous highlight
+    li.classList.remove('xml-search-match');
     const text = li.textContent.toLowerCase();
     if (!q || text.includes(q)) {
-      li.style.background = q ? '#333a' : '';
+      if (q && text.includes(q)) li.classList.add('xml-search-match');
       li.style.display = '';
     } else {
       li.style.display = 'none';
