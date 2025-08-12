@@ -2,7 +2,8 @@
 function removeSpaces(inputId) {
   const el = document.getElementById(inputId);
   if (!el) return;
-  el.value = el.value.replace(/\s+/g, '');
+  // Only remove newlines, tabs, and carriage returns (not spaces)
+  el.value = el.value.replace(/[\n\r\t]+/g, '');
   // Store updated value in localStorage
   try {
     localStorage.setItem(inputId, el.value);
