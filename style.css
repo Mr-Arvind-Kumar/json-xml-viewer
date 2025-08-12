@@ -1,1 +1,65 @@
+body { margin:0; font-family: Arial, sans-serif; transition: background 0.3s, color 0.3s; }
+header { padding: 10px 20px; background: var(--header-bg); color: var(--header-text); display:flex; align-items:center; }
+.header-content { display:flex; align-items:center; gap: 15px; width:100%; }
+.logo { height: 40px; }
+.theme-btn { margin-left:auto; padding: 6px 12px; cursor:pointer; border:none; border-radius:4px; background: var(--btn-bg); color: var(--btn-text); }
+
+footer { padding: 10px; text-align:center; background: var(--footer-bg); color: var(--footer-text); }
+
+.toolbar { background: var(--toolbar-bg); padding: 8px; display:flex; gap: 10px; }
+.toolbar button { border-radius:4px; border:none; padding: 8px; cursor:pointer; background: var(--btn-bg); color: var(--btn-text); }
+.toolbar button.active { background: var(--btn-active-bg); }
+
+.container { display:flex; gap: 10px; height: calc(100vh - 160px); padding: 10px; box-sizing:border-box; }
+.panel { flex: 1; display:flex; flex-direction: column; gap: 5px; }
+.hidden { display: none !important; }
+
+textarea { flex: 1; padding: 8px; border-radius: 4px; border: 1px solid var(--border-color); resize: vertical; background: var(--input-bg); color: var(--input-text); }
+.btn-group button, .action-btn { border:none; border-radius:4px; padding: 6px 10px; cursor:pointer; background: var(--btn-bg); color: var(--btn-text); }
+.action-btn:hover, .btn-group button:hover { background: var(--btn-hover-bg); }
+
+.input-actions { display:flex; flex-direction: column; gap:5px; }
+.btn-group { display:flex; gap:5px; }
+
+.output { flex: 1; overflow:auto; border:1px solid var(--border-color); border-radius:4px; background: var(--output-bg); padding:10px; font-family:Consolas,monospace; }
+
+.full-screen { position: fixed !important; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; border-radius: 0; }
+.full-screen::after { content:"✖"; position:absolute; top:10px; right:20px; font-size:20px; cursor:pointer; background:#d33; color:white; padding:4px 8px; border-radius:4px; }
+.full-screen::after:hover { background:#f55; }
+
+.tree ul { list-style-type: none; padding-left: 16px; }
+.tree li span.key { color: #9cdcfe; }
+.tree li span.string { color: #ce9178; }
+.tree li span.number { color: #b5cea8; }
+.tree li span.tag { color: #569cd6; }
+.tree li span.attr { color: #dcdcaa; }
+.collapse::before { content: "▼ "; }
+.collapsed::before { content: "▶ "; }
+.collapsed > ul { display: none; }
+
+.modal { display:none; position:fixed; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:10000; }
+.modal-content { background: var(--output-bg); margin:5% auto; padding: 20px; border-radius: 8px; border:1px solid var(--border-color); width:80%; max-height:85vh; overflow:auto; }
+.modal-close { float:right; font-size:24px; cursor:pointer; }
+
+:root {
+  --header-bg: #252526; --header-text: #fff;
+  --footer-bg: #252526; --footer-text: #ccc;
+  --toolbar-bg: #2d2d2d;
+  --btn-bg: #444; --btn-text: #fff;
+  --btn-hover-bg: #555;
+  --btn-active-bg: #2196f3;
+  --border-color: #555; --input-bg: #1e1e1e; --input-text: #d4d4d4;
+  --output-bg: #1e1e1e;
+}
+
+body.light {
+  --header-bg: #f1f1f1; --header-text: #000;
+  --footer-bg: #f1f1f1; --footer-text: #000;
+  --toolbar-bg: #ddd;
+  --btn-bg: #eee; --btn-text: #000;
+  --btn-hover-bg: #ccc;
+  --btn-active-bg: #4285f4;
+  --border-color: #ccc; --input-bg: #fff; --input-text: #000;
+  --output-bg: #fff;
+}
 
