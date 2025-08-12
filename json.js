@@ -1,3 +1,47 @@
+// Convert JSON to CSV and show in JSON output window
+function convertJSONtoCSV() {
+  const input = document.getElementById('json-input').value;
+  const output = document.getElementById('json-output');
+  try {
+    const obj = JSON.parse(input);
+    let csv = jsonToCSV(obj);
+    output.innerHTML = `<pre style="white-space:pre;overflow:auto;">${escapeHtml(csv)}</pre>`;
+  } catch (e) {
+    output.textContent = 'Invalid JSON: ' + e.message;
+  }
+}
+
+// Helper: Convert array of objects or single object to CSV string
+function jsonToCSV(obj) {
+  let arr = Array.isArray(obj) ? obj : [obj];
+  if (!arr.length || typeof arr[0] !== 'object') return '';
+  // Collect all unique keys
+  const keys = Array.from(arr.reduce((set, row) => {
+    Object.keys(row).forEach(k => set.add(k));
+    return set;
+  }, new Set()));
+  // Header
+  const header = keys.join(',');
+  // Rows
+  const rows = arr.map(row => keys.map(k => csvEscape(flattenValue(row[k]))).join(','));
+  return [header, ...rows].join('\n');
+}
+
+// Helper: Flatten nested objects/arrays to JSON string, otherwise return as is
+function flattenValue(val) {
+  if (val == null) return '';
+  if (typeof val === 'object') return JSON.stringify(val);
+  return val;
+}
+
+function csvEscape(val) {
+  if (val == null) return '';
+  let str = String(val);
+  if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+    str = '"' + str.replace(/"/g, '""') + '"';
+  }
+  return str;
+}
 // Collapse all JSON nodes
 function collapseAllJSON() {
   document.querySelectorAll('#json-output .collapse').forEach(el => {
@@ -129,12 +173,12 @@ function jsonToTree(obj) {
   }
   let html = '<ul>';
   for (let key in obj) {
-    if (typeof obj[key] === 'object') {
-      html += `<li class="collapse"><span class="key">"${key}"</span>: ${jsonToTree(obj[key])}</li>`;
+    if (typeof obj[key] === 'object' && obj[key] !== null) {
+  html += `<li class="collapse"><span class="json-arrow">&#9654;</span><span class="key">"${key}"</span>: ${jsonToTree(obj[key])}</li>`;
     } else {
       let type = typeof obj[key];
       let cls = type === 'string' ? 'string' : 'number';
-      html += `<li><span class="key">"${key}"</span>: <span class="${cls}">${JSON.stringify(obj[key])}</span></li>`;
+      html += `<li><span style="display:inline-block;width:1.2em;"></span><span class="key">"${key}"</span>: <span class="${cls}">${JSON.stringify(obj[key])}</span></li>`;
     }
   }
   html += '</ul>';
@@ -144,9 +188,31 @@ function jsonToTree(obj) {
 function makeCollapsible(container) {
   container.querySelectorAll('.collapse').forEach(function(el) {
     el.classList.add('collapsed');
+    const arrow = el.querySelector('.json-arrow');
+    if (arrow) {
+      arrow.style.transform = 'rotate(0deg)';
+      arrow.onclick = function(e) {
+        e.stopPropagation();
+        el.classList.toggle('collapsed');
+        if (el.classList.contains('collapsed')) {
+          arrow.style.transform = 'rotate(0deg)';
+        } else {
+          arrow.style.transform = 'rotate(90deg)';
+        }
+      };
+    }
+    // Also allow clicking anywhere on the li to expand/collapse
     el.addEventListener('click', function(e) {
-      e.stopPropagation();
+      if (e.target.classList.contains('json-arrow')) return; // already handled
       el.classList.toggle('collapsed');
+      const arrow = el.querySelector('.json-arrow');
+      if (arrow) {
+        if (el.classList.contains('collapsed')) {
+          arrow.style.transform = 'rotate(0deg)';
+        } else {
+          arrow.style.transform = 'rotate(90deg)';
+        }
+      }
     });
   });
 }

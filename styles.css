@@ -1,3 +1,15 @@
+/* ====== JSON Collapse Arrow Styling ====== */
+.json-arrow {
+  width: 1.2em;
+  display: inline-block;
+  margin-right: 2px;
+  color: var(--arrow-color);
+  vertical-align: middle;
+  cursor: pointer;
+  transition: transform 0.2s;
+  font-size: 1em;
+  user-select: none;
+}
 .xml-search-match {
   background: #ffe082 !important;
   color: #222 !important;
