@@ -63,3 +63,35 @@ body.light {
   --output-bg: #fff;
 }
 
+/* Panel layout: input + output side by side */
+.io-wrapper {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Input half */
+.io-input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Output half */
+.io-output {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.io-output .output {
+  flex: 1;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 768px) {
+  .io-wrapper {
+    flex-direction: column;
+  }
+}
