@@ -5,13 +5,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>JSON & XML Viewer</title>
 <link rel="stylesheet" href="styles.css"/>
+<style>
+/* Footer stick to bottom */
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  flex: 1;
+}
+
+/* Side-by-side IO layout */
+.io-wrapper {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Left input column */
+.io-input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Right output column */
+.io-output {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.io-output .output {
+  flex: 1;
+}
+
+/* Responsive stack for small screens */
+@media (max-width: 768px) {
+  .io-wrapper {
+    flex-direction: column;
+  }
+}
+</style>
 </head>
 <body class="dark">
 
 <!-- HEADER -->
 <header>
   <div class="header-content">
-    <img src="assets/Logo.png" alt="Logo" class="logo"/>
+    <img src="assets/logo.png" alt="Logo" class="logo"/>
     <h1>JSON & XML Viewer</h1>
     <button id="themeToggle" class="theme-btn">🌙 Dark Mode</button>
   </div>
@@ -23,69 +67,70 @@
   <button id="btn-xml" onclick="showOnly('xml')">XML</button>
 </div>
 
+<!-- Main Content -->
 <div class="container">
 
   <!-- JSON PANEL -->
   <div id="panel-json" class="panel">
-  
-  <div class="io-wrapper">
-    <!-- Left side input -->
-    <div class="io-input">
-      <textarea id="json-input" placeholder="Paste JSON here"></textarea>
-      <div class="btn-group">
-        <button onclick="copyInput('json-input')">📋 Copy</button>
-        <button onclick="pasteInput('json-input')">📥 Paste</button>
-        <button onclick="clearInput('json-input')">🗑 Clear</button>
-      </div>
-    </div>
+    <div class="io-wrapper">
 
-    <!-- Right side output -->
-    <div class="io-output">
-      <div class="actions">
-        <button class="action-btn" onclick="beautifyJSON()">📂 Tree View</button>
-        <button class="action-btn" onclick="openFullJSONModal()">📄 Full JSON</button>
-        <button class="action-btn" onclick="toggleFullScreen('json-output')">🖥 Full Screen</button>
+      <!-- Left side: JSON input -->
+      <div class="io-input">
+        <textarea id="json-input" placeholder="Paste JSON here"></textarea>
+        <div class="btn-group">
+          <button onclick="copyInput('json-input')">📋 Copy</button>
+          <button onclick="pasteInput('json-input')">📥 Paste</button>
+          <button onclick="clearInput('json-input')">🗑 Clear</button>
+        </div>
       </div>
-      <div id="json-output" class="output tree"></div>
+
+      <!-- Right side: JSON output -->
+      <div class="io-output">
+        <div class="actions">
+          <button class="action-btn" onclick="beautifyJSON()">📂 Tree View</button>
+          <button class="action-btn" onclick="openFullJSONModal()">📄 Full JSON</button>
+          <button class="action-btn" onclick="toggleFullScreen('json-output')">🖥 Full Screen</button>
+        </div>
+        <div id="json-output" class="output tree"></div>
+      </div>
+
     </div>
   </div>
-
-</div>
-
 
   <!-- XML PANEL -->
   <div id="panel-xml" class="panel hidden">
-  
-  <div class="io-wrapper">
-    <!-- Left side input -->
-    <div class="io-input">
-      <textarea id="xml-input" placeholder="Paste XML here"></textarea>
-      <div class="btn-group">
-        <button onclick="copyInput('xml-input')">📋 Copy</button>
-        <button onclick="pasteInput('xml-input')">📥 Paste</button>
-        <button onclick="clearInput('xml-input')">🗑 Clear</button>
-      </div>
-    </div>
+    <div class="io-wrapper">
 
-    <!-- Right side output -->
-    <div class="io-output">
-      <div class="actions">
-        <button class="action-btn" onclick="viewXML()">📂 Tree View</button>
-        <button class="action-btn" onclick="toggleFullScreen('xml-output')">🖥 Full Screen</button>
+      <!-- Left side: XML input -->
+      <div class="io-input">
+        <textarea id="xml-input" placeholder="Paste XML here"></textarea>
+        <div class="btn-group">
+          <button onclick="copyInput('xml-input')">📋 Copy</button>
+          <button onclick="pasteInput('xml-input')">📥 Paste</button>
+          <button onclick="clearInput('xml-input')">🗑 Clear</button>
+        </div>
       </div>
-      <div id="xml-output" class="output tree"></div>
+
+      <!-- Right side: XML output -->
+      <div class="io-output">
+        <div class="actions">
+          <button class="action-btn" onclick="viewXML()">📂 Tree View</button>
+          <button class="action-btn" onclick="toggleFullScreen('xml-output')">🖥 Full Screen</button>
+        </div>
+        <div id="xml-output" class="output tree"></div>
+      </div>
+
     </div>
   </div>
 
 </div>
 
-
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 JSON/XML Viewer Tool | Built with ❤️ by Arvind</p>
+  <p>© 2025 JSON/XML Viewer Tool | Built with ❤️ by You</p>
 </footer>
 
-<!-- FULL JSON MODAL -->
+<!-- Full JSON Modal -->
 <div id="jsonModal" class="modal">
   <div class="modal-content">
     <span class="modal-close" onclick="closeFullJSONModal()">&times;</span>
@@ -94,11 +139,13 @@
   </div>
 </div>
 
+<!-- Scripts -->
 <script src="script.js"></script>
 <script src="json.js"></script>
 <script src="xml.js"></script>
 <script>
-showOnly('json'); // Default panel
+showOnly('json'); // Show JSON panel on load
 </script>
+
 </body>
 </html>
