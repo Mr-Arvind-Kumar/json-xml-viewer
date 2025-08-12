@@ -18,16 +18,17 @@ It allows you to:
 
 ## 📂 Project Structure
 
-json-xml-viewer/
+📦 son-xml-viewer
+├── 📄 index.html        # 🌐 Main entry point
+├── 🎨 styles.css        # 🎭 Styling (light/dark theme support)
+├── ⚙️ script.js         # 🛠️ Global/shared JS (theme toggle, fullscreen, clipboard)
+├── 📜 json.js           # 📊 JSON-specific rendering & modal functions
+├── 📜 xml.js            # 📂 XML-specific rendering
 │
-├── index.html # Main entry point
-├── styles.css # Styling (light/dark theme support)
-├── script.js # Global/shared JS (theme toggle, fullscreen, clipboard)
-├── json.js # JSON-specific rendering & modal functions
-├── xml.js # XML-specific rendering
-└── assets/
-├── logo.png # Optional application logo
-└── screenshot.png # (Optional) for README screenshot
+└── 🗂️ assets            # 📎 Static assets
+    ├── 🖼️ logo.png      # 🖋️ Optional application logo
+    └── 🖼️ screenshot.png# 📷 (Optional) for README screenshot
+
 
 
 
