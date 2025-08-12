@@ -152,13 +152,11 @@ html, body {
       <!-- Right side: XML output -->
       <div class="io-output">
         <div class="actions">
-          <button class="action-btn" onclick="viewXML()">📂 Tree View</button>
+          <button class="action-btn" onclick="viewXML()">📂 View & Validate XML</button>
           <button class="action-btn" onclick="toggleFullScreen('xml-output')">🖥 Full Screen</button>
-          <!-- Button to collapse all nodes -->
-        <button class="action-btn" onclick="collapseAllXML()">➖ Collapse All</button>
-        
-        <!-- Button to expand all nodes -->
-        <button class="action-btn" onclick="expandAllXML()">➕ Expand All</button>
+          <button class="action-btn" onclick="collapseAllXML()">➖ Collapse All</button>
+          <button class="action-btn" onclick="expandAllXML()">➕ Expand All</button>
+
         </div>
         <div id="xml-output" class="output tree"></div>
         <div id="xml-summary" style="margin-top: 8px; font-weight: bold; color: #888;"></div>
