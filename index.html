@@ -27,7 +27,10 @@
 
   <!-- JSON PANEL -->
   <div id="panel-json" class="panel">
-    <div class="input-actions">
+  
+  <div class="io-wrapper">
+    <!-- Left side input -->
+    <div class="io-input">
       <textarea id="json-input" placeholder="Paste JSON here"></textarea>
       <div class="btn-group">
         <button onclick="copyInput('json-input')">📋 Copy</button>
@@ -36,17 +39,26 @@
       </div>
     </div>
 
-    <div class="actions">
-      <button class="action-btn" onclick="beautifyJSON()">📂 Tree View</button>
-      <button class="action-btn" onclick="openFullJSONModal()">📄 Full JSON</button>
-      <button class="action-btn" onclick="toggleFullScreen('json-output')">🖥 Full Screen</button>
+    <!-- Right side output -->
+    <div class="io-output">
+      <div class="actions">
+        <button class="action-btn" onclick="beautifyJSON()">📂 Tree View</button>
+        <button class="action-btn" onclick="openFullJSONModal()">📄 Full JSON</button>
+        <button class="action-btn" onclick="toggleFullScreen('json-output')">🖥 Full Screen</button>
+      </div>
+      <div id="json-output" class="output tree"></div>
     </div>
-    <div id="json-output" class="output tree"></div>
   </div>
+
+</div>
+
 
   <!-- XML PANEL -->
   <div id="panel-xml" class="panel hidden">
-    <div class="input-actions">
+  
+  <div class="io-wrapper">
+    <!-- Left side input -->
+    <div class="io-input">
       <textarea id="xml-input" placeholder="Paste XML here"></textarea>
       <div class="btn-group">
         <button onclick="copyInput('xml-input')">📋 Copy</button>
@@ -55,14 +67,18 @@
       </div>
     </div>
 
-    <div class="actions">
-      <button class="action-btn" onclick="viewXML()">📂 Tree View</button>
-      <button class="action-btn" onclick="toggleFullScreen('xml-output')">🖥 Full Screen</button>
+    <!-- Right side output -->
+    <div class="io-output">
+      <div class="actions">
+        <button class="action-btn" onclick="viewXML()">📂 Tree View</button>
+        <button class="action-btn" onclick="toggleFullScreen('xml-output')">🖥 Full Screen</button>
+      </div>
+      <div id="xml-output" class="output tree"></div>
     </div>
-    <div id="xml-output" class="output tree"></div>
   </div>
 
 </div>
+
 
 <!-- FOOTER -->
 <footer>
