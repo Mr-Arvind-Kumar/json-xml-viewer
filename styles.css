@@ -124,7 +124,9 @@ textarea {
 
 /* ====== Output Box ====== */
 .output {
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: auto;
+  white-space: pre;
   border: 1px solid var(--border-color);
   border-radius: 4px;
   background: var(--output-bg);
@@ -132,6 +134,9 @@ textarea {
   font-family: Consolas, monospace;
   font-size: 14px;
   color: var(--font-color);
+  max-height: calc(100vh - 250px); /* Prevent overlap with footer, header, toolbar */
+  min-height: 80px;
+  box-sizing: border-box;
 }
 
 /* ====== Full Screen ====== */

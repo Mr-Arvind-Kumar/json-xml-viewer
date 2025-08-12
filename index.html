@@ -110,7 +110,7 @@ html, body {
     <div class="io-wrapper">
 
       <!-- Left side: JSON input -->
-      <div class="io-input">
+      <div class="io-input" id="json-io-input">
         <div class="btn-group">
           <button onclick="copyInput('json-input')">
             <i class="fa-solid fa-copy" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
@@ -118,19 +118,20 @@ html, body {
           </button>
           <button onclick="pasteInput('json-input')">
             <i class="fa-solid fa-paste" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
-             Paste
+            Paste
           </button>
           <button onclick="clearInput('json-input')">
             <i class="fa-solid fa-trash" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
             Clear
           </button>
-        </div>
-        <textarea id="json-input" placeholder="Paste JSON here"></textarea>
-      </div>
-
-      <!-- Right side: JSON output -->
-      <div class="io-output">
-        <div class="actions">
+          <button onclick="convertJSONtoXML()">
+            <i class="fa-solid fa-arrow-right-arrow-left" style="font-size:20px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
+            Convert to XML
+          </button>
+          <button onclick="removeSpaces('json-input')">
+            <i class="fa-solid fa-eraser" style="font-size:20px;color:#ff9800;text-shadow:2px 2px 4px #000000;"></i>
+            Remove Spaces
+          </button>
           <button class="action-btn" onclick="beautifyJSON()">
             <i class="fa-solid fa-folder-tree" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
             Tree View
@@ -143,7 +144,23 @@ html, body {
             <i class="fa-solid fa-display" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
             Full Screen
           </button>
+          <button class="action-btn" onclick="collapseAllJSON()">
+            <i class="fa-solid fa-down-left-and-up-right-to-center" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
+            Collapse All
+          </button>
+          <button class="action-btn" onclick="expandAllJSON()">
+            <i class="fa-solid fa-up-right-and-down-left-from-center" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
+            Expand All
+          </button>
         </div>
+        <textarea id="json-input" placeholder="Paste JSON here"></textarea>
+      </div>
+
+  <!-- Draggable divider -->
+  <div class="divider" id="json-divider"></div>
+
+  <!-- Right side: JSON output -->
+  <div class="io-output" id="json-io-output">
         <div id="json-output" class="output tree"></div>
       </div>
 
@@ -155,25 +172,131 @@ html, body {
     <div class="io-wrapper">
 
       <!-- Left side: XML input -->
-      <div class="io-input">
+      <div class="io-input" id="xml-io-input">
         <div class="btn-group">
           <button onclick="copyInput('xml-input')"><i class="fa-solid fa-copy" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Copy</button>
           <button onclick="pasteInput('xml-input')"><i class="fa-solid fa-paste" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Paste</button>
           <button onclick="clearInput('xml-input')"><i class="fa-solid fa-trash" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Clear</button>
-        </div>
-        <textarea id="xml-input" placeholder="Paste XML here"></textarea>
-      </div>
-
-      <!-- Right side: XML output -->
-      <div class="io-output">
-        <div class="actions">
+          <button onclick="convertXMLtoJSON()">
+            <i class="fa-solid fa-arrow-right-arrow-left" style="font-size:20px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
+            Convert to JSON
+          </button>
+          <button onclick="removeSpaces('xml-input')">
+            <i class="fa-solid fa-eraser" style="font-size:20px;color:#ff9800;text-shadow:2px 2px 4px #000000;"></i>
+            Remove Spaces
+          </button>
           <button class="action-btn" onclick="viewXML()"><i class="fa-solid fa-clipboard-check" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> View & Validate XML</button>
           <button class="action-btn" onclick="toggleFullScreen('xml-output')"><i class="fa-solid fa-display" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Full Screen</button>
           <button class="action-btn" onclick="collapseAllXML()"><i class="fa-solid fa-down-left-and-up-right-to-center" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Collapse All</button>
           <button class="action-btn" onclick="expandAllXML()"><i class="fa-solid fa-up-right-and-down-left-from-center" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Expand All</button>
-
         </div>
-        <div id="xml-output" class="output tree"></div>
+        <textarea id="xml-input" placeholder="Paste XML here"></textarea>
+      </div>
+
+  <!-- Draggable divider -->
+  <div class="divider" id="xml-divider"></div>
+
+  <!-- Right side: XML output -->
+  <div class="io-output" id="xml-io-output">
+    <div id="xml-output" class="output tree"></div>
+    <div id="xml-summary" style="margin-top: 8px; font-weight: bold; color: #888;"></div>
+  </div>
+<style>
+.divider {
+  width: 6px;
+  background: linear-gradient(to bottom, #888 0%, #ccc 100%);
+  cursor: col-resize;
+  margin: 0 2px;
+  border-radius: 3px;
+  transition: background 0.2s;
+  z-index: 2;
+}
+.divider:hover, .divider.active {
+  background: #2196f3;
+}
+</style>
+<script>
+function makeResizable(inputId, dividerId, outputId) {
+  let dragging = false;
+  let startX = 0;
+  let startInputWidth = 0;
+  let startOutputWidth = 0;
+  const input = document.getElementById(inputId);
+  const divider = document.getElementById(dividerId);
+  const output = document.getElementById(outputId);
+  if (!input || !divider || !output) return;
+
+  // Reset widths to default (50/50) when panel is shown
+  function resetWidths() {
+    input.style.flex = '';
+    output.style.flex = '';
+    input.style.width = '';
+    output.style.width = '';
+  }
+
+  // Listen for custom event to reset widths
+  divider.parentNode.addEventListener('reset-divider', resetWidths);
+
+  divider.addEventListener('mousedown', function(e) {
+    dragging = true;
+    startX = e.clientX;
+    startInputWidth = input.offsetWidth;
+    startOutputWidth = output.offsetWidth;
+    divider.classList.add('active');
+    document.body.style.cursor = 'col-resize';
+    e.preventDefault();
+  });
+
+  function onMouseMove(e) {
+    if (!dragging) return;
+    const dx = e.clientX - startX;
+    let newInputWidth = startInputWidth + dx;
+    let newOutputWidth = startOutputWidth - dx;
+    const min = 80;
+    const total = newInputWidth + newOutputWidth;
+    if (newInputWidth < min) {
+      newInputWidth = min;
+      newOutputWidth = total - min;
+    }
+    if (newOutputWidth < min) {
+      newOutputWidth = min;
+      newInputWidth = total - min;
+    }
+    input.style.flex = 'none';
+    output.style.flex = 'none';
+    input.style.width = newInputWidth + 'px';
+    output.style.width = newOutputWidth + 'px';
+  }
+
+  function onMouseUp() {
+    if (dragging) {
+      dragging = false;
+      divider.classList.remove('active');
+      document.body.style.cursor = '';
+    }
+  }
+
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+}
+
+// Call after DOMContentLoaded to ensure all elements exist
+document.addEventListener('DOMContentLoaded', function() {
+  makeResizable('json-io-input', 'json-divider', 'json-io-output');
+  makeResizable('xml-io-input', 'xml-divider', 'xml-io-output');
+});
+
+// Reset divider widths when switching panels
+function showOnly(type) {
+  document.getElementById('panel-json').classList.toggle('hidden', type !== 'json');
+  document.getElementById('panel-xml').classList.toggle('hidden', type !== 'xml');
+  // Reset divider widths for both panels
+  const jsonWrapper = document.getElementById('json-divider').parentNode;
+  const xmlWrapper = document.getElementById('xml-divider').parentNode;
+  jsonWrapper.dispatchEvent(new Event('reset-divider'));
+  xmlWrapper.dispatchEvent(new Event('reset-divider'));
+}
+</script>
         <div id="xml-summary" style="margin-top: 8px; font-weight: bold; color: #888;"></div>
       </div>
 
