@@ -1,5 +1,5 @@
 /* -------------------------
-   Show only one panel
+   Show only one panel + save choice
 ------------------------- */
 function showOnly(type) {
   document.getElementById('panel-json').classList.add('hidden');
@@ -9,6 +9,9 @@ function showOnly(type) {
 
   document.getElementById(`panel-${type}`).classList.remove('hidden');
   document.getElementById(`btn-${type}`).classList.add('active');
+
+  // Remember last opened panel
+  localStorage.setItem('last-panel', type);
 }
 
 /* -------------------------
@@ -20,8 +23,7 @@ function toggleFullScreen(id) {
 
   // Allow clicking anywhere OUTSIDE content to exit full screen
   element.onclick = function(e) {
-    if (element.classList.contains('full-screen') &&
-        e.target === element) {
+    if (element.classList.contains('full-screen') && e.target === element) {
       element.classList.remove('full-screen');
     }
   }
@@ -53,38 +55,53 @@ function clearInput(id) {
 }
 
 /* -------------------------
-   Theme Toggle
+   Theme Toggle + save choice
 ------------------------- */
 document.getElementById('themeToggle').addEventListener('click', () => {
   document.body.classList.toggle('light');
   document.body.classList.toggle('dark');
 
-  document.getElementById('themeToggle').textContent =
-    document.body.classList.contains('light')
-      ? '🌞 Light Mode'
-      : '🌙 Dark Mode';
+  const isLightMode = document.body.classList.contains('light');
+  document.getElementById('themeToggle').textContent = isLightMode
+    ? '🌞 Light Mode'
+    : '🌙 Dark Mode';
+
+  // Remember theme preference
+  localStorage.setItem('theme-mode', isLightMode ? 'light' : 'dark');
 });
 
 /* -------------------------
-   Local Storage Persistence
+   Restore everything on load
 ------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
   // Restore saved inputs
   const savedJSON = localStorage.getItem('json-input');
-  const savedXML  = localStorage.getItem('xml-input');
-
+  const savedXML = localStorage.getItem('xml-input');
   if (savedJSON) document.getElementById('json-input').value = savedJSON;
-  if (savedXML)  document.getElementById('xml-input').value  = savedXML;
+  if (savedXML) document.getElementById('xml-input').value = savedXML;
 
-  // Save JSON as user types
   document.getElementById('json-input').addEventListener('input', function() {
     localStorage.setItem('json-input', this.value);
   });
-
-  // Save XML as user types
   document.getElementById('xml-input').addEventListener('input', function() {
     localStorage.setItem('xml-input', this.value);
   });
+
+  // Restore last theme
+  const savedTheme = localStorage.getItem('theme-mode');
+  if (savedTheme === 'light') {
+    document.body.classList.add('light');
+    document.body.classList.remove('dark');
+    document.getElementById('themeToggle').textContent = '🌞 Light Mode';
+  } else {
+    document.body.classList.add('dark');
+    document.body.classList.remove('light');
+    document.getElementById('themeToggle').textContent = '🌙 Dark Mode';
+  }
+
+  // Restore last opened panel (default to JSON if not set)
+  const savedPanel = localStorage.getItem('last-panel') || 'json';
+  showOnly(savedPanel);
 });
 
 /* -------------------------
@@ -93,6 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
 function clearAllSavedData() {
   localStorage.removeItem('json-input');
   localStorage.removeItem('xml-input');
+  localStorage.removeItem('last-panel');
+  localStorage.removeItem('theme-mode');
   document.getElementById('json-input').value = '';
-  document.getElementById('xml-input').value  = '';
+  document.getElementById('xml-input').value = '';
 }
