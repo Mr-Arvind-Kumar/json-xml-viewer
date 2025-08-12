@@ -18,6 +18,9 @@ It allows you to:
 
 ## 📂 Project Structure
 
+## 📂 Project Structure
+
+```text
 📦 son-xml-viewer
 ├── 📄 index.html         # 🌐 Main entry point
 ├── 🎨 styles.css         # 🎭 Styling (light/dark theme support)
@@ -28,6 +31,8 @@ It allows you to:
 └── 🗂️ assets             # 📎 Static assets
     ├── 🖼️ logo.png       # 🖋️ Optional application logo
     └── 🖼️ screenshot.png # 📷 (Optional) for README screenshot
+```
+
 
 
 
