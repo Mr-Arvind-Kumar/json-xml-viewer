@@ -357,6 +357,42 @@ function captureScreenshot(outputId, filename) {
 <script src="script.js"></script>
 <script src="json.js"></script>
 <script src="xml.js"></script>
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var jsonOutput = document.getElementById('json-output');
+  var jsonInput = document.getElementById('json-input');
+  // Helper to render tree view
+  function renderTreeView() {
+    if (!jsonInput || !jsonOutput) {
+      return;
+    }
+    try {
+      if (typeof jsonToTree !== 'function') {
+      }
+      if (typeof makeCollapsible !== 'function') {
+      }
+      const obj = JSON.parse(jsonInput.value);
+      jsonOutput.innerHTML = (typeof jsonToTree === 'function') ? jsonToTree(obj) : '';
+      if (typeof makeCollapsible === 'function') {
+        makeCollapsible(jsonOutput);
+      }
+    } catch (e) {
+      jsonOutput.textContent = 'Invalid JSON: ' + e.message;
+    }
+  }
+  // Auto-render tree view on input, paste, or change
+  if (jsonInput) {
+    jsonInput.addEventListener('input', renderTreeView);
+    jsonInput.addEventListener('paste', function() { setTimeout(renderTreeView, 0); });
+    jsonInput.addEventListener('change', renderTreeView);
+  }
+  // Initial render if any content
+  if (jsonInput && jsonInput.value.trim()) {
+    renderTreeView();
+  }
+});
+</script>
 
 </body>
 </html>

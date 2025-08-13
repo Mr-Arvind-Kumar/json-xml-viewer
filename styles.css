@@ -1,3 +1,42 @@
+
+/* Highlight only direct children of hovered node */
+
+/* Only highlight direct children of hovered node, not the hovered node itself */
+.tree li:hover > ul > li::before,
+.tree li:focus-within > ul > li::before {
+  border-left: 2px solid #2196f3;
+  opacity: 1;
+}
+.tree li:hover > ul > li,
+.tree li:focus-within > ul > li {
+  background: rgba(33, 150, 243, 0.10);
+  border-radius: 4px;
+}
+/* ====== JSON Tree Dotted Line Indicator ====== */
+.tree li {
+  position: relative;
+}
+.tree li::before {
+  content: '';
+  position: absolute;
+  top: 0.9em;
+  left: 0.5em;
+  width: 1px;
+  height: calc(100% - 0.9em);
+  border-left: 1.5px dotted #bbb;
+  opacity: 0.7;
+  z-index: 0;
+}
+.tree > ul > li::before {
+  display: none;
+}
+/* ====== JSON Tree Expand/Collapse ====== */
+.collapsed > ul {
+  display: none;
+}
+.expanded > ul {
+  display: block;
+}
 /* ====== JSON Collapse Arrow Styling ====== */
 .json-arrow {
   width: 1.2em;
