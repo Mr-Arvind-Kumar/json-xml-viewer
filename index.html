@@ -341,7 +341,7 @@ function captureScreenshot(outputId, filename) {
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 JSON/XML Viewer Tool | Built with ❤️ by Arvind</p>
+  <p>© 2025 JSON/XML Viewer Tool | Built with ❤️ by Developers</p>
 </footer>
 
 <!-- Full JSON Modal -->
@@ -357,39 +357,45 @@ function captureScreenshot(outputId, filename) {
 <script src="script.js"></script>
 <script src="json.js"></script>
 <script src="xml.js"></script>
-</script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   var jsonOutput = document.getElementById('json-output');
   var jsonInput = document.getElementById('json-input');
-  // Helper to render tree view
-  function renderTreeView() {
-    if (!jsonInput || !jsonOutput) {
+  
+  // Helper to render tree view automatically
+  function autoRenderTreeView() {
+    if (!jsonInput || !jsonOutput || !jsonInput.value.trim()) {
       return;
     }
-    try {
-      if (typeof jsonToTree !== 'function') {
-      }
-      if (typeof makeCollapsible !== 'function') {
-      }
-      const obj = JSON.parse(jsonInput.value);
-      jsonOutput.innerHTML = (typeof jsonToTree === 'function') ? jsonToTree(obj) : '';
-      if (typeof makeCollapsible === 'function') {
-        makeCollapsible(jsonOutput);
-      }
-    } catch (e) {
-      jsonOutput.textContent = 'Invalid JSON: ' + e.message;
+    
+    // Use the same logic as beautifyJSON function
+    if (typeof beautifyJSON === 'function') {
+      beautifyJSON();
     }
   }
+  
   // Auto-render tree view on input, paste, or change
   if (jsonInput) {
-    jsonInput.addEventListener('input', renderTreeView);
-    jsonInput.addEventListener('paste', function() { setTimeout(renderTreeView, 0); });
-    jsonInput.addEventListener('change', renderTreeView);
+    // Debounced input handler to avoid too many calls while typing
+    let inputTimeout;
+    jsonInput.addEventListener('input', function() {
+      clearTimeout(inputTimeout);
+      inputTimeout = setTimeout(autoRenderTreeView, 500); // 500ms delay
+    });
+    
+    // Immediate render on paste
+    jsonInput.addEventListener('paste', function() { 
+      setTimeout(autoRenderTreeView, 100); // Small delay to ensure paste content is available
+    });
+    
+    // Render on change (when focus is lost)
+    jsonInput.addEventListener('change', autoRenderTreeView);
   }
-  // Initial render if any content
+  
+  // Initial render if any content exists
   if (jsonInput && jsonInput.value.trim()) {
-    renderTreeView();
+    setTimeout(autoRenderTreeView, 100);
   }
 });
 </script>

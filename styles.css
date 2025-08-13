@@ -1,17 +1,11 @@
 
-/* Highlight only direct children of hovered node */
-
-/* Only highlight direct children of hovered node, not the hovered node itself */
+/* Removed hover background gradients for cleaner appearance */
 .tree li:hover > ul > li::before,
 .tree li:focus-within > ul > li::before {
   border-left: 2px solid #2196f3;
   opacity: 1;
 }
-.tree li:hover > ul > li,
-.tree li:focus-within > ul > li {
-  background: rgba(33, 150, 243, 0.10);
-  border-radius: 4px;
-}
+/* No background color change on hover for cleaner look */
 /* ====== JSON Tree Dotted Line Indicator ====== */
 .tree li {
   position: relative;
@@ -32,10 +26,31 @@
 }
 /* ====== JSON Tree Expand/Collapse ====== */
 .collapsed > ul {
-  display: none;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.2s ease, opacity 0.15s ease;
+  overflow: hidden;
 }
 .expanded > ul {
-  display: block;
+  max-height: none; /* Allow unlimited height for proper scrolling */
+  opacity: 1;
+  overflow: visible; /* Allow normal flow within expanded content */
+}
+
+/* Ensure tree containers don't interfere with scrolling */
+.json-tree {
+  overflow: visible;
+}
+
+/* Remove the override for .output.tree to maintain existing scrolling */
+
+/* Make collapsible nodes visually indicate they're clickable */
+.json-tree .collapse {
+  cursor: pointer;
+  padding: 2px 4px;
+  margin: 1px 0;
+  border-radius: 3px;
+  transition: all 0.3s ease;
 }
 /* ====== JSON Collapse Arrow Styling ====== */
 .json-arrow {
@@ -45,9 +60,84 @@
   color: var(--arrow-color);
   vertical-align: middle;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.3s ease;
   font-size: 1em;
   user-select: none;
+  transform-origin: center;
+}
+/* ====== JSON Copy Button Styling ====== */
+.json-copy-btn, .xml-copy-btn {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  padding: 2px 4px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 6px;
+  margin-right: 4px;
+  vertical-align: middle;
+  transition: all 0.2s;
+  opacity: 0.7;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+.json-copy-btn:hover, .xml-copy-btn:hover {
+  background: var(--btn-hover-bg);
+  opacity: 1;
+  transform: scale(1.1);
+}
+.json-copy-btn:active, .xml-copy-btn:active {
+  transform: scale(0.95);
+}
+
+/* Responsive: Hide copy buttons on small screens */
+@media (max-width: 768px) {
+  .json-copy-btn, .xml-copy-btn {
+    font-size: 10px;
+    padding: 1px 3px;
+    margin-left: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .json-copy-btn, .xml-copy-btn {
+    display: none;
+  }
+}
+
+/* ====== JSON Tree Responsive Design ====== */
+@media (max-width: 768px) {
+  .json-tree {
+    font-size: 13px;
+  }
+  .json-arrow {
+    width: 1em;
+    margin-right: 1px;
+  }
+  .tree li {
+    line-height: 1.3em;
+  }
+  .tree li::before {
+    left: 0.3em;
+  }
+}
+
+@media (max-width: 480px) {
+  .json-tree {
+    font-size: 12px;
+  }
+  .tree li {
+    line-height: 1.2em;
+  }
+  .json-arrow {
+    width: 0.9em;
+    font-size: 0.9em;
+  }
+  .tree ul {
+    padding-left: 12px;
+  }
 }
 .xml-search-match {
   background: #ffe082 !important;

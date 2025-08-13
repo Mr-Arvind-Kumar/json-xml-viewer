@@ -83,19 +83,6 @@ function convertJSONtoXML() {
   } catch (e) {
     alert('Invalid JSON: ' + e.message);
   }
-window.beautifyJSON = beautifyJSON;
-function beautifyJSON() {
-  const input = document.getElementById('json-input').value;
-  const output = document.getElementById('json-output');
-  try {
-    const obj = JSON.parse(input);
-    output.innerHTML = jsonToTree(obj);
-    setTimeout(() => makeCollapsible(output), 0); // Ensure DOM is ready
-  } catch (e) {
-    output.textContent = 'Invalid JSON: ' + e.message;
-  }
-}
-window.beautifyJSON = beautifyJSON;
 }
 
 // Helper: Convert JS object to XML string
@@ -191,27 +178,23 @@ window.convertJSONtoXML = convertJSONtoXML;
   });
   return formatted.trim();
 }
+
 function beautifyJSON() {
-window.openFullJSONModal = openFullJSONModal;
-function openFullJSONModal() {
-  const input = document.getElementById('json-input').value;
-  const modal = document.getElementById('jsonModal');
-  const content = document.getElementById('json-modal-content');
-  try {
-    const obj = JSON.parse(input);
-    content.textContent = JSON.stringify(obj, null, 2);
-  } catch (e) {
-    content.textContent = 'Invalid JSON: ' + e.message;
-  }
-  modal.style.display = 'block';
-}
-window.openFullJSONModal = openFullJSONModal;
   const input = document.getElementById('json-input').value;
   const output = document.getElementById('json-output');
+  
+  if (!input.trim()) {
+    output.textContent = 'Please enter JSON data.';
+    return;
+  }
+  
   try {
     const obj = JSON.parse(input);
-    output.innerHTML = jsonToTree(obj);
-    setTimeout(() => makeCollapsible(output), 0); // Ensure DOM is ready
+    output.innerHTML = jsonToTree(obj, true, []);
+    
+    setTimeout(() => {
+      makeCollapsibleJSON(output);
+    }, 0);
   } catch (e) {
     output.textContent = 'Invalid JSON: ' + e.message;
   }
@@ -219,11 +202,6 @@ window.openFullJSONModal = openFullJSONModal;
 
 function openFullJSONModal() {
   const input = document.getElementById('json-input').value;
-window.closeFullJSONModal = closeFullJSONModal;
-function closeFullJSONModal() {
-  document.getElementById('jsonModal').style.display = 'none';
-}
-window.closeFullJSONModal = closeFullJSONModal;
   const modal = document.getElementById('jsonModal');
   const content = document.getElementById('json-modal-content');
   try {
@@ -247,7 +225,7 @@ window.addEventListener('click', (e) => {
 });
 
 
-function jsonToTree(obj, isRoot = true) {
+function jsonToTree(obj, isRoot = true, path = []) {
   if (typeof obj !== 'object' || obj === null) {
     let type = typeof obj;
     let cls = type === 'string' ? 'string' : 'number';
@@ -256,81 +234,199 @@ function jsonToTree(obj, isRoot = true) {
   let html = '<ul class="json-tree">';
   for (let key in obj) {
     if (!obj.hasOwnProperty(key)) continue;
+    let newPath = path.concat([key]);
+    let pathAttr = `data-json-path='${newPath.map(k => k.replace(/'/g, "\\'")).join('.')}'`;
+    let copyBtn = `<button class="json-copy-btn" title="Copy this node" style="margin-left:6px;font-size:12px;vertical-align:middle;">📋</button>`;
     if (typeof obj[key] === 'object' && obj[key] !== null) {
       if (isRoot) {
-        html += `<li class="collapse expanded"><span class="json-arrow">&#9654;</span><span class="key">"${key}"</span>: ${jsonToTree(obj[key], false)}</li>`;
+        html += `<li class="collapse expanded" ${pathAttr}><span class="json-arrow">&#9654;</span><span class="key">"${key}"</span>: ${copyBtn}${jsonToTree(obj[key], false, newPath)}</li>`;
       } else {
-        html += `<li class="collapse collapsed"><span class="json-arrow">&#9654;</span><span class="key">"${key}"</span>: ${jsonToTree(obj[key], false)}</li>`;
+        html += `<li class="collapse collapsed" ${pathAttr}><span class="json-arrow">&#9654;</span><span class="key">"${key}"</span>: ${copyBtn}${jsonToTree(obj[key], false, newPath)}</li>`;
       }
     } else {
       let type = typeof obj[key];
       let cls = type === 'string' ? 'string' : 'number';
-      html += `<li><span style="display:inline-block;width:1.2em;"></span><span class="key">"${key}"</span>: <span class="${cls}">${JSON.stringify(obj[key])}</span></li>`;
+      html += `<li ${pathAttr}><span style="display:inline-block;width:1.2em;"></span><span class="key">"${key}"</span>: ${copyBtn}<span class="${cls}">${JSON.stringify(obj[key])}</span></li>`;
     }
   }
   html += '</ul>';
   return html;
 }
 
-function makeCollapsible(container) {
-  var collapses = container.querySelectorAll('.collapse');
-  collapses.forEach(function(el, idx) {
-    const arrow = el.querySelector('.json-arrow');
-    if (arrow) {
-      arrow.style.cursor = 'pointer';
-      arrow.onclick = function(e) {
-        e.stopPropagation();
-        if (el.classList.contains('collapsed')) {
-          el.classList.remove('collapsed');
-          el.classList.add('expanded');
-          arrow.style.transform = 'rotate(90deg)';
+// Add copy-to-clipboard listeners to JSON nodes
+function addJSONCopyListeners() {
+  document.querySelectorAll('.json-copy-btn').forEach(btn => {
+    btn.onclick = function(e) {
+      e.stopPropagation();
+      // Find the closest LI and get its data-json-path
+      const li = btn.closest('li');
+      if (!li) return;
+      const pathStr = li.getAttribute('data-json-path');
+      if (!pathStr) return;
+      const path = pathStr.split('.');
+      // Get the JSON from the input
+      let jsonInput = document.getElementById('json-input');
+      if (!jsonInput) return;
+      let obj;
+      try {
+        obj = JSON.parse(jsonInput.value);
+      } catch (e) { return; }
+      // Traverse the path to get the subtree
+      let subtree = obj;
+      for (let k of path) {
+        if (subtree && Object.prototype.hasOwnProperty.call(subtree, k)) {
+          subtree = subtree[k];
         } else {
-          el.classList.add('collapsed');
-          el.classList.remove('expanded');
-          arrow.style.transform = 'rotate(0deg)';
+          subtree = undefined;
+          break;
         }
-      };
-    }
-    el.onclick = function(e) {
-      if (e.target.classList.contains('json-arrow')) return;
-      if (el.classList.contains('collapsed')) {
-        el.classList.remove('collapsed');
-        el.classList.add('expanded');
-        if (arrow) arrow.style.transform = 'rotate(90deg)';
-      } else {
-        el.classList.add('collapsed');
-        el.classList.remove('expanded');
-        if (arrow) arrow.style.transform = 'rotate(0deg)';
+      }
+      if (subtree !== undefined) {
+        navigator.clipboard.writeText(JSON.stringify(subtree, null, 2));
+        btn.textContent = '✅';
+        setTimeout(() => { btn.textContent = '📋'; }, 1000);
+      }
+    };
+  });
+}
+
+function makeCollapsibleJSON(container) {
+  // Method 1: Direct event listeners on arrows AND entire collapsible nodes
+  const arrows = container.querySelectorAll('.json-arrow');
+  
+  arrows.forEach((arrow, idx) => {
+    arrow.style.cursor = 'pointer';
+    arrow.onclick = function(e) {
+      e.stopPropagation();
+      const li = arrow.closest('.collapse');
+      if (li) {
+        toggleNode(li, arrow);
       }
     };
   });
 
-  // Fallback: event delegation for .json-tree
-  const tree = container.querySelector('.json-tree');
-  if (tree && !tree._delegationAttached) {
-    tree.addEventListener('click', function(e) {
-      const arrow = e.target.closest('.json-arrow');
+  // Add click handlers to entire collapsible nodes
+  const collapsibleNodes = container.querySelectorAll('.collapse');
+  
+  collapsibleNodes.forEach((node, idx) => {
+    node.style.cursor = 'pointer';
+    node.onclick = function(e) {
+      // Don't trigger if clicking on copy button
+      if (e.target.classList.contains('json-copy-btn')) {
+        return;
+      }
+      e.stopPropagation();
+      const arrow = node.querySelector('.json-arrow');
       if (arrow) {
-        const li = arrow.closest('.collapse');
-        if (li) {
-          if (li.classList.contains('collapsed')) {
-            li.classList.remove('collapsed');
-            li.classList.add('expanded');
-            arrow.style.transform = 'rotate(90deg)';
+        toggleNode(node, arrow);
+      }
+    };
+  });
+
+  // Helper function to toggle node state
+  function toggleNode(li, arrow) {
+    if (li.classList.contains('collapsed')) {
+      li.classList.remove('collapsed');
+      li.classList.add('expanded');
+      arrow.style.transform = 'rotate(90deg)';
+    } else {
+      li.classList.add('collapsed');
+      li.classList.remove('expanded');
+      arrow.style.transform = 'rotate(0deg)';
+    }
+  }
+
+  // Method 2: Direct event listeners on copy buttons  
+  const copyBtns = container.querySelectorAll('.json-copy-btn');
+  
+  copyBtns.forEach((btn) => {
+    btn.onclick = function(e) {
+      e.stopPropagation();
+      const li = btn.closest('li');
+      const pathStr = li.getAttribute('data-json-path');
+      if (!pathStr) return;
+      
+      const path = pathStr.split('.');
+      let jsonInput = document.getElementById('json-input');
+      if (!jsonInput) return;
+      
+      try {
+        const obj = JSON.parse(jsonInput.value);
+        let subtree = obj;
+        for (let k of path) {
+          if (subtree && Object.prototype.hasOwnProperty.call(subtree, k)) {
+            subtree = subtree[k];
           } else {
-            li.classList.add('collapsed');
-            li.classList.remove('expanded');
-            arrow.style.transform = 'rotate(0deg)';
+            subtree = undefined;
+            break;
           }
         }
+        if (subtree !== undefined) {
+          navigator.clipboard.writeText(JSON.stringify(subtree, null, 2));
+          btn.textContent = '✅';
+          setTimeout(() => { btn.textContent = '📋'; }, 1000);
+        }
+      } catch (e) {
+        // Silent error handling
       }
-    });
+    };
+  });
+
+  // Method 3: Event delegation as backup
+  container.onclick = function(e) {
+    // Handle arrow clicks
+    if (e.target.classList.contains('json-arrow')) {
+      const arrow = e.target;
+      const li = arrow.closest('.collapse');
+      if (li) {
+        e.stopPropagation();
+        toggleNodeDelegation(li, arrow);
+      }
+    }
+    
+    // Handle clicks on collapsible nodes (but not copy buttons)
+    else if (e.target.closest('.collapse') && !e.target.classList.contains('json-copy-btn')) {
+      const li = e.target.closest('.collapse');
+      const arrow = li.querySelector('.json-arrow');
+      if (arrow && li) {
+        e.stopPropagation();
+        toggleNodeDelegation(li, arrow);
+      }
+    }
+    
+    // Handle copy button clicks
+    else if (e.target.classList.contains('json-copy-btn')) {
+      const btn = e.target;
+      e.stopPropagation();
+      btn.textContent = '✅';
+      setTimeout(() => btn.textContent = '📋', 1000);
+    }
+  };
+
+  // Helper function for delegation toggle
+  function toggleNodeDelegation(li, arrow) {
+    if (li.classList.contains('collapsed')) {
+      li.classList.remove('collapsed');
+      li.classList.add('expanded');
+      arrow.style.transform = 'rotate(90deg)';
+    } else {
+      li.classList.add('collapsed');
+      li.classList.remove('expanded');
+      arrow.style.transform = 'rotate(0deg)';
+    }
+  }
+
+  const tree = container.querySelector('.json-tree');
+  if (tree) {
     tree._delegationAttached = true;
   }
 }
 // Attach to window for global access
 window.jsonToTree = jsonToTree;
-window.makeCollapsible = makeCollapsible;
+window.makeCollapsibleJSON = makeCollapsibleJSON;
 window.expandAllJSON = expandAllJSON;
 window.collapseAllJSON = collapseAllJSON;
+window.beautifyJSON = beautifyJSON;
+window.openFullJSONModal = openFullJSONModal;
+window.closeFullJSONModal = closeFullJSONModal;
 
