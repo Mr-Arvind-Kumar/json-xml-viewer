@@ -60,10 +60,10 @@ function expandAllJSON() {
   });
 }
 // Remove all spaces from a given input area
-function removeSpaces(inputId) {
+function removeJSONSpaces(inputId) {
   const el = document.getElementById(inputId);
   if (!el) return;
-  el.value = el.value.replace(/\s+/g, '');
+  el.value = JSON.stringify(JSON.parse(el.value));
   // Store updated value in localStorage
   try {
     localStorage.setItem(inputId, el.value);
