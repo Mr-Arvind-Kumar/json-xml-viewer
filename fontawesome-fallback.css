@@ -1,0 +1,34 @@
+/* FontAwesome Fallback - Essential Icons */
+.fas, .fa-solid {
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+/* Use Unicode characters as fallback */
+.fas.fa-copy:before, .fa-solid.fa-copy:before { content: "📋"; }
+.fas.fa-paste:before, .fa-solid.fa-paste:before { content: "📄"; }
+.fas.fa-trash:before, .fa-solid.fa-trash:before { content: "🗑️"; }
+.fas.fa-exchange-alt:before, .fa-solid.fa-exchange-alt:before { content: "🔄"; }
+.fas.fa-file-csv:before, .fa-solid.fa-file-csv:before { content: "📊"; }
+.fas.fa-code:before, .fa-solid.fa-code:before { content: "💻"; }
+.fas.fa-compress-alt:before, .fa-solid.fa-compress-alt:before { content: "⬇️"; }
+.fas.fa-sitemap:before, .fa-solid.fa-sitemap:before { content: "🌳"; }
+.fas.fa-align-left:before, .fa-solid.fa-align-left:before { content: "📝"; }
+.fas.fa-expand:before, .fa-solid.fa-expand:before { content: "🔍"; }
+.fas.fa-minus-square:before, .fa-solid.fa-minus-square:before { content: "➖"; }
+.fas.fa-plus-square:before, .fa-solid.fa-plus-square:before { content: "➕"; }
+.fas.fa-camera:before, .fa-solid.fa-camera:before { content: "📷"; }
+.fas.fa-check-circle:before, .fa-solid.fa-check-circle:before { content: "✅"; }
+.fas.fa-file-code:before, .fa-solid.fa-file-code:before { content: "📄"; }
+.fas.fa-file-lines:before, .fa-solid.fa-file-lines:before { content: "📄"; }
+
+/* Ensure icons are always visible even if FontAwesome doesn't load */
+.fas::before, .fa-solid::before {
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 4px;
+}

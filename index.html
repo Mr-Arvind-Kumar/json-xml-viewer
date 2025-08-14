@@ -19,9 +19,9 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Dataz Studio - Advanced JSON, XML & Base64 Processor" />
 <meta property="og:description" content="Professional data processing tool for JSON tree visualization, XML validation, Base64 encoding/decoding, and JavaScript class generation. Features dark/light themes, full screen mode, and advanced data manipulation." />
-<meta property="og:url" content="https://dataz.tools/datacraft-studio" />
+<meta property="og:url" content="https://www.dataz.tools" />
 <meta property="og:site_name" content="dataz.tools" />
-<meta property="og:image" content="https://dataz.tools/assets/preview-image.png" />
+<meta property="og:image" content="https://www.dataz.tools/assets/preview-image.png" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -34,7 +34,10 @@
 <meta name="theme-color" content="#2196f3" />
 
 <link rel="stylesheet" href="styles.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<!-- Fallback CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" />
+<!-- Local FontAwesome fallback -->
+<link rel="stylesheet" href="fontawesome-fallback.css" />
 <style>
 /* Footer stick to bottom */
 html, body {
@@ -83,6 +86,98 @@ html, body {
     flex-direction: column;
   }
 }
+
+/* Header controls styling */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto; /* Move to right side */
+}
+
+/* Make header content a flex container */
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Logo on left, controls on right */
+  width: 100%;
+}
+
+.language-selector {
+  background: #2c2c2c;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease, border-color 1s ease;
+}
+
+.language-selector:hover {
+  background: #3c3c3c;
+  border-color: #2196f3;
+}
+
+.language-selector option {
+  background: #2c2c2c;
+  color: #fff;
+  padding: 5px;
+}
+
+/* Light theme adjustments */
+body.light .language-selector {
+  background: #ffffff;
+  color: #333333;
+  border-color: #ddd;
+}
+
+body.light .language-selector:hover {
+  background: #f5f5f5;
+  border-color: #2196f3;
+}
+
+body.light .language-selector option {
+  background: #ffffff;
+  color: #333333;
+}
+
+/* Dark theme explicit styling */
+body.dark .language-selector {
+  background: #2c2c2c;
+  color: #fff;
+  border-color: #555;
+}
+
+body.dark .language-selector:hover {
+  background: #3c3c3c;
+  border-color: #2196f3;
+}
+
+body.dark .language-selector option {
+  background: #2c2c2c;
+  color: #fff;
+}
+
+/* Responsive design for header */
+@media (max-width: 768px) {
+  .header-content {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .header-controls {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .language-selector {
+    min-width: 140px;
+  }
+}
 </style>
 </head>
 <body class="dark">
@@ -100,7 +195,7 @@ html, body {
     .fill-teal { fill: #00A3A3; }
     .fill-dark { fill: #4B4B4B; }
 
-    /* Dark theme adjustments */
+    /* Dark theme adjustments - using body class */
     body.dark .outline { stroke: #66B2FF; }
     body.dark .accent { stroke: #4DFFFF; }
     body.dark .text { fill: #FFFFFF; }
@@ -108,14 +203,22 @@ html, body {
     body.dark .fill-teal { fill: #4DFFFF; }
     body.dark .fill-dark { fill: #CCCCCC; }
 
+    /* Light theme explicit styling */
+    body.light .outline { stroke: #005BBB; }
+    body.light .accent { stroke: #00A3A3; }
+    body.light .text { fill: #333333; }
+    body.light .fill-blue { fill: #005BBB; }
+    body.light .fill-teal { fill: #00A3A3; }
+    body.light .fill-dark { fill: #4B4B4B; }
+
     /* Fallback for system preference dark mode */
     @media (prefers-color-scheme: dark) {
-      .outline { stroke: #66B2FF; }
-      .accent { stroke: #4DFFFF; }
-      .text { fill: #FFFFFF; }
-      .fill-blue { fill: #66B2FF; }
-      .fill-teal { fill: #4DFFFF; }
-      .fill-dark { fill: #CCCCCC; }
+      body:not(.light) .outline { stroke: #66B2FF; }
+      body:not(.light) .accent { stroke: #4DFFFF; }
+      body:not(.light) .text { fill: #FFFFFF; }
+      body:not(.light) .fill-blue { fill: #66B2FF; }
+      body:not(.light) .fill-teal { fill: #4DFFFF; }
+      body:not(.light) .fill-dark { fill: #CCCCCC; }
     }
   </style>
 
@@ -139,14 +242,44 @@ html, body {
   </text>
 </svg>
 
-    <button id="themeToggle" class="theme-btn">🌙 Dark Mode</button>
+    <div class="header-controls">
+      <select id="languageSelect" class="language-selector" onchange="changeLanguage(this.value)">
+        <option value="en">🇺🇸 English</option>
+        <!-- Nordic Languages -->
+        <option value="sv">🇸🇪 Svenska</option>
+        <option value="no">🇳🇴 Norsk</option>
+        <option value="da">🇩🇰 Dansk</option>
+        <option value="fi">🇫🇮 Suomi</option>
+        <!-- Other Languages -->
+        <option value="es">🇪🇸 Español</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="de">🇩🇪 Deutsch</option>
+        <option value="it">🇮🇹 Italiano</option>
+        <option value="pt">🇵🇹 Português</option>
+        <option value="ru">🇷🇺 Русский</option>
+        <option value="zh">🇨🇳 中文</option>
+        <option value="ja">🇯🇵 日本語</option>
+        <option value="ko">🇰🇷 한국어</option>
+        
+        <!-- Indian Languages -->
+        <option value="hi">🇮🇳 हिन्दी</option>
+        <option value="ta">🇮🇳 தமிழ்</option>
+        <option value="bn">🇧🇩 বাংলা</option>
+        <option value="te">🇮🇳 తెలుగు</option>
+      </select>
+      <button id="themeToggle" class="theme-btn" data-i18n="dark_mode">Dark Mode</button>
+    </div>
   </div>
 </header>
 
 <!-- Toolbar -->
 <div class="toolbar">
-  <button id="btn-json" class="active" onclick="showOnly('json')">JSON Viewer</button>
-  <button id="btn-xml" onclick="showOnly('xml')">XML Viewer</button>
+  <button id="btn-json" class="active" onclick="showOnly('json')" data-i18n="json_viewer">
+    <i class="fas fa-file-code"></i> JSON Viewer
+  </button>
+  <button id="btn-xml" onclick="showOnly('xml')" data-i18n="xml_viewer">
+    <i class="fas fa-file-lines"></i> XML Viewer
+  </button>
 </div>
 
 <!-- Main Content -->
@@ -159,60 +292,60 @@ html, body {
       <!-- Left side: JSON input -->
       <div class="io-input" id="json-io-input">
         <div class="btn-group">
-          <button onclick="copyInput('json-input')">
-            <i class="fa-solid fa-copy" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
+          <button onclick="copyInput('json-input')" data-i18n="copy_json">
+            <i class="fas fa-copy"></i>
             Copy JSON
           </button>
-          <button onclick="pasteInput('json-input')">
-            <i class="fa-solid fa-paste" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
+          <button onclick="pasteInput('json-input')" data-i18n="paste_json">
+            <i class="fas fa-paste"></i>
             Paste JSON
           </button>
-          <button onclick="clearInput('json-input')">
-            <i class="fa-solid fa-trash" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
+          <button onclick="clearInput('json-input')" data-i18n="clear_json">
+            <i class="fas fa-trash"></i>
             Clear JSON
           </button>
-          <button onclick="convertJSONtoXML()">
-            <i class="fa-solid fa-arrow-right-arrow-left" style="font-size:20px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
+          <button onclick="convertJSONtoXML()" data-i18n="convert_json_to_xml">
+            <i class="fas fa-exchange-alt"></i>
             Convert JSON → XML
           </button>
-          <button onclick="convertJSONtoCSV()">
-            <i class="fa-solid fa-file-csv" style="font-size:20px;color:#4caf50;text-shadow:2px 2px 4px #000000;"></i>
+          <button onclick="convertJSONtoCSV()" data-i18n="convert_json_to_csv">
+            <i class="fas fa-file-csv"></i>
             Convert JSON to CSV
           </button>
-          <button onclick="generateJavaScriptClasses()">
-            <i class="fa-solid fa-code" style="font-size:20px;color:#9c27b0;text-shadow:2px 2px 4px #000000;"></i>
+          <button onclick="generateJavaScriptClasses()" data-i18n="generate_js_classes">
+            <i class="fas fa-code"></i>
             Generate JS Classes
           </button>
-          <button onclick="removeJSONSpaces('json-input')">
-            <i class="fa-solid fa-eraser" style="font-size:20px;color:#ff9800;text-shadow:2px 2px 4px #000000;"></i>
+          <button onclick="removeJSONSpaces('json-input')" data-i18n="remove_whitespace_json">
+            <i class="fas fa-compress-alt"></i>
             Remove Whitespace (JSON)
           </button>
-          <button class="action-btn" onclick="beautifyJSON()">
-            <i class="fa-solid fa-folder-tree" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
+          <button class="action-btn" onclick="beautifyJSON()" data-i18n="tree_view">
+            <i class="fas fa-sitemap"></i>
             Tree View
           </button>
-          <button class="action-btn" onclick="openFullJSONModal()">
-            <i class="fa-solid fa-clipboard-check" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
+          <button class="action-btn" onclick="openFullJSONModal()" data-i18n="format_json">
+            <i class="fas fa-align-left"></i>
             Format JSON
           </button>
-          <button class="action-btn" onclick="toggleFullScreen('json-output')">
-            <i class="fa-solid fa-display" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
+          <button class="action-btn" onclick="toggleFullScreen('json-output')" data-i18n="full_screen">
+            <i class="fas fa-expand"></i>
             Full Screen
           </button>
-          <button class="action-btn" onclick="collapseAllJSON()">
-            <i class="fa-solid fa-down-left-and-up-right-to-center" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
+          <button class="action-btn" onclick="collapseAllJSON()" data-i18n="collapse_all">
+            <i class="fas fa-minus-square"></i>
             Collapse All
           </button>
-          <button class="action-btn" onclick="expandAllJSON()">
-            <i class="fa-solid fa-up-right-and-down-left-from-center" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i>
+          <button class="action-btn" onclick="expandAllJSON()" data-i18n="expand_all">
+            <i class="fas fa-plus-square"></i>
             Expand All
           </button>
-          <button class="action-btn" onclick="captureScreenshot('json-output', 'json-output-screenshot.png')">
-            <i class="fa-solid fa-camera" style="font-size:20px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
+          <button class="action-btn" onclick="captureScreenshot('json-output', 'json-output-screenshot.png')" data-i18n="screenshot">
+            <i class="fas fa-camera"></i>
             Screenshot
           </button>
         </div>
-        <textarea id="json-input" placeholder="Paste JSON here"></textarea>
+        <textarea id="json-input" data-i18n-placeholder="paste_json_here" placeholder="Paste JSON here"></textarea>
       </div>
 
   <!-- Draggable divider -->
@@ -233,27 +366,48 @@ html, body {
       <!-- Left side: XML input -->
       <div class="io-input" id="xml-io-input">
         <div class="btn-group">
-          <button onclick="copyInput('xml-input')"><i class="fa-solid fa-copy" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Copy XML</button>
-          <button onclick="pasteInput('xml-input')"><i class="fa-solid fa-paste" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Paste XML</button>
-          <button onclick="clearInput('xml-input')"><i class="fa-solid fa-trash" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Clear XML</button>
-          <button onclick="convertXMLtoJSON()">
-            <i class="fa-solid fa-arrow-right-arrow-left" style="font-size:20px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
+          <button onclick="copyInput('xml-input')" data-i18n="copy_xml">
+            <i class="fas fa-copy"></i>
+            Copy XML
+          </button>
+          <button onclick="pasteInput('xml-input')" data-i18n="paste_xml">
+            <i class="fas fa-paste"></i>
+            Paste XML
+          </button>
+          <button onclick="clearInput('xml-input')" data-i18n="clear_xml">
+            <i class="fas fa-trash"></i>
+            Clear XML
+          </button>
+          <button onclick="convertXMLtoJSON()" data-i18n="convert_xml_to_json">
+            <i class="fas fa-exchange-alt"></i>
             Convert XML → JSON
           </button>
-          <button onclick="removeSpaces('xml-input')">
-            <i class="fa-solid fa-eraser" style="font-size:20px;color:#ff9800;text-shadow:2px 2px 4px #000000;"></i>
+          <button onclick="removeSpaces('xml-input')" data-i18n="remove_whitespace_xml">
+            <i class="fas fa-compress-alt"></i>
             Remove Whitespace (XML)
           </button>
-          <button class="action-btn" onclick="viewXML()"><i class="fa-solid fa-clipboard-check" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> View & Validate XML</button>
-          <button class="action-btn" onclick="toggleFullScreen('xml-output')"><i class="fa-solid fa-display" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Full Screen</button>
-          <button class="action-btn" onclick="collapseAllXML()"><i class="fa-solid fa-down-left-and-up-right-to-center" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Collapse All</button>
-          <button class="action-btn" onclick="expandAllXML()"><i class="fa-solid fa-up-right-and-down-left-from-center" style="font-size:20px;color:lightblue;text-shadow:2px 2px 4px #000000;"></i> Expand All</button>
-          <button class="action-btn" onclick="captureScreenshot('xml-output', 'xml-output-screenshot.png')">
-            <i class="fa-solid fa-camera" style="font-size:20px;color:orange;text-shadow:2px 2px 4px #000000;"></i>
+          <button class="action-btn" onclick="viewXML()" data-i18n="view_validate_xml">
+            <i class="fas fa-check-circle"></i>
+            View & Validate XML
+          </button>
+          <button class="action-btn" onclick="toggleFullScreen('xml-output')" data-i18n="full_screen">
+            <i class="fas fa-expand"></i>
+            Full Screen
+          </button>
+          <button class="action-btn" onclick="collapseAllXML()" data-i18n="collapse_all">
+            <i class="fas fa-minus-square"></i>
+            Collapse All
+          </button>
+          <button class="action-btn" onclick="expandAllXML()" data-i18n="expand_all">
+            <i class="fas fa-plus-square"></i>
+            Expand All
+          </button>
+          <button class="action-btn" onclick="captureScreenshot('xml-output', 'xml-output-screenshot.png')" data-i18n="screenshot">
+            <i class="fas fa-camera"></i>
             Screenshot
           </button>
         </div>
-  <textarea id="xml-input" placeholder="Paste XML here" oninput="viewXML()"></textarea>
+  <textarea id="xml-input" data-i18n-placeholder="paste_xml_here" placeholder="Paste XML here" oninput="viewXML()"></textarea>
       </div>
 
   <!-- Draggable divider -->
@@ -392,14 +546,14 @@ function captureScreenshot(outputId, filename) {
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 Dataz Studio | Professional Data Processing & Visualization Tool</p>
+  <p data-i18n="footer_text">© 2025 Dataz Studio | Professional Data Processing & Visualization Tool</p>
 </footer>
 
 <!-- Full JSON Modal -->
 <div id="jsonModal" class="modal">
   <div class="modal-content">
     <span class="modal-close" onclick="closeFullJSONModal()">&times;</span>
-    <h3>Full Formatted JSON</h3>
+    <h3 data-i18n="full_formatted_json">Full Formatted JSON</h3>
     <pre id="json-modal-content"></pre>
   </div>
 </div>
@@ -448,6 +602,852 @@ document.addEventListener('DOMContentLoaded', function() {
   if (jsonInput && jsonInput.value.trim()) {
     setTimeout(autoRenderTreeView, 100);
   }
+});
+</script>
+
+<!-- Internationalization System -->
+<script>
+// Language translations object
+const translations = {
+  en: {
+    // Navigation and main
+    json_viewer: "JSON Viewer",
+    xml_viewer: "XML Viewer",
+    dark_mode: "Dark Mode",
+    light_mode: "Light Mode",
+    
+    // JSON Panel
+    copy_json: "Copy JSON",
+    paste_json: "Paste JSON",
+    clear_json: "Clear JSON",
+    convert_json_to_xml: "Convert JSON → XML",
+    convert_json_to_csv: "Convert JSON to CSV",
+    generate_js_classes: "Generate JS Classes",
+    remove_whitespace_json: "Remove Whitespace (JSON)",
+    tree_view: "Tree View",
+    format_json: "Format JSON",
+    full_screen: "Full Screen",
+    collapse_all: "Collapse All",
+    expand_all: "Expand All",
+    screenshot: "Screenshot",
+    
+    // XML Panel
+    copy_xml: "Copy XML",
+    paste_xml: "Paste XML",
+    clear_xml: "Clear XML",
+    convert_xml_to_json: "Convert XML → JSON",
+    remove_whitespace_xml: "Remove Whitespace (XML)",
+    view_validate_xml: "View & Validate XML",
+    
+    // Placeholders
+    paste_json_here: "Paste JSON here",
+    paste_xml_here: "Paste XML here",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | Professional Data Processing & Visualization Tool",
+    full_formatted_json: "Full Formatted JSON"
+  },
+  
+  es: {
+    // Navigation and main
+    json_viewer: "Visor JSON",
+    xml_viewer: "Visor XML",
+    dark_mode: "Modo Oscuro",
+    light_mode: "Modo Claro",
+    
+    // JSON Panel
+    copy_json: "Copiar JSON",
+    paste_json: "Pegar JSON",
+    clear_json: "Limpiar JSON",
+    convert_json_to_xml: "Convertir JSON → XML",
+    convert_json_to_csv: "Convertir JSON a CSV",
+    generate_js_classes: "Generar Clases JS",
+    remove_whitespace_json: "Eliminar Espacios (JSON)",
+    tree_view: "Vista de Árbol",
+    format_json: "Formatear JSON",
+    full_screen: "Pantalla Completa",
+    collapse_all: "Contraer Todo",
+    expand_all: "Expandir Todo",
+    screenshot: "Captura de Pantalla",
+    
+    // XML Panel
+    copy_xml: "Copiar XML",
+    paste_xml: "Pegar XML",
+    clear_xml: "Limpiar XML",
+    convert_xml_to_json: "Convertir XML → JSON",
+    remove_whitespace_xml: "Eliminar Espacios (XML)",
+    view_validate_xml: "Ver y Validar XML",
+    
+    // Placeholders
+    paste_json_here: "Pegar JSON aquí",
+    paste_xml_here: "Pegar XML aquí",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | Herramienta Profesional de Procesamiento y Visualización de Datos",
+    full_formatted_json: "JSON Formateado Completo"
+  },
+  
+  fr: {
+    // Navigation and main
+    json_viewer: "Visualiseur JSON",
+    xml_viewer: "Visualiseur XML",
+    dark_mode: "Mode Sombre",
+    light_mode: "Mode Clair",
+    
+    // JSON Panel
+    copy_json: "Copier JSON",
+    paste_json: "Coller JSON",
+    clear_json: "Effacer JSON",
+    convert_json_to_xml: "Convertir JSON → XML",
+    convert_json_to_csv: "Convertir JSON vers CSV",
+    generate_js_classes: "Générer Classes JS",
+    remove_whitespace_json: "Supprimer Espaces (JSON)",
+    tree_view: "Vue Arborescente",
+    format_json: "Formater JSON",
+    full_screen: "Plein Écran",
+    collapse_all: "Réduire Tout",
+    expand_all: "Développer Tout",
+    screenshot: "Capture d'Écran",
+    
+    // XML Panel
+    copy_xml: "Copier XML",
+    paste_xml: "Coller XML",
+    clear_xml: "Effacer XML",
+    convert_xml_to_json: "Convertir XML → JSON",
+    remove_whitespace_xml: "Supprimer Espaces (XML)",
+    view_validate_xml: "Voir et Valider XML",
+    
+    // Placeholders
+    paste_json_here: "Coller JSON ici",
+    paste_xml_here: "Coller XML ici",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | Outil Professionnel de Traitement et Visualisation de Données",
+    full_formatted_json: "JSON Formaté Complet"
+  },
+  
+  de: {
+    // Navigation and main
+    json_viewer: "JSON-Viewer",
+    xml_viewer: "XML-Viewer",
+    dark_mode: "Dunkler Modus",
+    light_mode: "Heller Modus",
+    
+    // JSON Panel
+    copy_json: "JSON Kopieren",
+    paste_json: "JSON Einfügen",
+    clear_json: "JSON Löschen",
+    convert_json_to_xml: "JSON → XML Konvertieren",
+    convert_json_to_csv: "JSON zu CSV Konvertieren",
+    generate_js_classes: "JS-Klassen Generieren",
+    remove_whitespace_json: "Leerzeichen Entfernen (JSON)",
+    tree_view: "Baumansicht",
+    format_json: "JSON Formatieren",
+    full_screen: "Vollbild",
+    collapse_all: "Alle Einklappen",
+    expand_all: "Alle Ausklappen",
+    screenshot: "Screenshot",
+    
+    // XML Panel
+    copy_xml: "XML Kopieren",
+    paste_xml: "XML Einfügen",
+    clear_xml: "XML Löschen",
+    convert_xml_to_json: "XML → JSON Konvertieren",
+    remove_whitespace_xml: "Leerzeichen Entfernen (XML)",
+    view_validate_xml: "XML Anzeigen & Validieren",
+    
+    // Placeholders
+    paste_json_here: "JSON hier einfügen",
+    paste_xml_here: "XML hier einfügen",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | Professionelles Datenverarbeitungs- und Visualisierungstool",
+    full_formatted_json: "Vollständig Formatiertes JSON"
+  },
+  
+  it: {
+    // Navigation and main
+    json_viewer: "Visualizzatore JSON",
+    xml_viewer: "Visualizzatore XML",
+    dark_mode: "Modalità Scura",
+    light_mode: "Modalità Chiara",
+    
+    // JSON Panel
+    copy_json: "Copia JSON",
+    paste_json: "Incolla JSON",
+    clear_json: "Cancella JSON",
+    convert_json_to_xml: "Converti JSON → XML",
+    convert_json_to_csv: "Converti JSON in CSV",
+    generate_js_classes: "Genera Classi JS",
+    remove_whitespace_json: "Rimuovi Spazi (JSON)",
+    tree_view: "Vista ad Albero",
+    format_json: "Formatta JSON",
+    full_screen: "Schermo Intero",
+    collapse_all: "Riduci Tutto",
+    expand_all: "Espandi Tutto",
+    screenshot: "Screenshot",
+    
+    // XML Panel
+    copy_xml: "Copia XML",
+    paste_xml: "Incolla XML",
+    clear_xml: "Cancella XML",
+    convert_xml_to_json: "Converti XML → JSON",
+    remove_whitespace_xml: "Rimuovi Spazi (XML)",
+    view_validate_xml: "Visualizza e Convalida XML",
+    
+    // Placeholders
+    paste_json_here: "Incolla JSON qui",
+    paste_xml_here: "Incolla XML qui",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | Strumento Professionale per Elaborazione e Visualizzazione Dati",
+    full_formatted_json: "JSON Formattato Completo"
+  },
+  
+  pt: {
+    // Navigation and main
+    json_viewer: "Visualizador JSON",
+    xml_viewer: "Visualizador XML",
+    dark_mode: "Modo Escuro",
+    light_mode: "Modo Claro",
+    
+    // JSON Panel
+    copy_json: "Copiar JSON",
+    paste_json: "Colar JSON",
+    clear_json: "Limpar JSON",
+    convert_json_to_xml: "Converter JSON → XML",
+    convert_json_to_csv: "Converter JSON para CSV",
+    generate_js_classes: "Gerar Classes JS",
+    remove_whitespace_json: "Remover Espaços (JSON)",
+    tree_view: "Visualização em Árvore",
+    format_json: "Formatar JSON",
+    full_screen: "Tela Cheia",
+    collapse_all: "Recolher Tudo",
+    expand_all: "Expandir Tudo",
+    screenshot: "Captura de Tela",
+    
+    // XML Panel
+    copy_xml: "Copiar XML",
+    paste_xml: "Colar XML",
+    clear_xml: "Limpar XML",
+    convert_xml_to_json: "Converter XML → JSON",
+    remove_whitespace_xml: "Remover Espaços (XML)",
+    view_validate_xml: "Visualizar e Validar XML",
+    
+    // Placeholders
+    paste_json_here: "Cole JSON aqui",
+    paste_xml_here: "Cole XML aqui",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | Ferramenta Profissional de Processamento e Visualização de Dados",
+    full_formatted_json: "JSON Formatado Completo"
+  },
+  
+  ru: {
+    // Navigation and main
+    json_viewer: "JSON Просмотрщик",
+    xml_viewer: "XML Просмотрщик",
+    dark_mode: "Тёмный Режим",
+    light_mode: "Светлый Режим",
+    
+    // JSON Panel
+    copy_json: "Копировать JSON",
+    paste_json: "Вставить JSON",
+    clear_json: "Очистить JSON",
+    convert_json_to_xml: "Конвертировать JSON → XML",
+    convert_json_to_csv: "Конвертировать JSON в CSV",
+    generate_js_classes: "Генерировать JS Классы",
+    remove_whitespace_json: "Удалить Пробелы (JSON)",
+    tree_view: "Древовидный Вид",
+    format_json: "Форматировать JSON",
+    full_screen: "Полный Экран",
+    collapse_all: "Свернуть Всё",
+    expand_all: "Развернуть Всё",
+    screenshot: "Скриншот",
+    
+    // XML Panel
+    copy_xml: "Копировать XML",
+    paste_xml: "Вставить XML",
+    clear_xml: "Очистить XML",
+    convert_xml_to_json: "Конвертировать XML → JSON",
+    remove_whitespace_xml: "Удалить Пробелы (XML)",
+    view_validate_xml: "Просмотр и Проверка XML",
+    
+    // Placeholders
+    paste_json_here: "Вставьте JSON здесь",
+    paste_xml_here: "Вставьте XML здесь",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | Профессиональный Инструмент Обработки и Визуализации Данных",
+    full_formatted_json: "Полностью Отформатированный JSON"
+  },
+  
+  zh: {
+    // Navigation and main
+    json_viewer: "JSON 查看器",
+    xml_viewer: "XML 查看器",
+    dark_mode: "深色模式",
+    light_mode: "浅色模式",
+    
+    // JSON Panel
+    copy_json: "复制 JSON",
+    paste_json: "粘贴 JSON",
+    clear_json: "清除 JSON",
+    convert_json_to_xml: "转换 JSON → XML",
+    convert_json_to_csv: "转换 JSON 为 CSV",
+    generate_js_classes: "生成 JS 类",
+    remove_whitespace_json: "删除空格 (JSON)",
+    tree_view: "树形视图",
+    format_json: "格式化 JSON",
+    full_screen: "全屏",
+    collapse_all: "全部折叠",
+    expand_all: "全部展开",
+    screenshot: "截图",
+    
+    // XML Panel
+    copy_xml: "复制 XML",
+    paste_xml: "粘贴 XML",
+    clear_xml: "清除 XML",
+    convert_xml_to_json: "转换 XML → JSON",
+    remove_whitespace_xml: "删除空格 (XML)",
+    view_validate_xml: "查看和验证 XML",
+    
+    // Placeholders
+    paste_json_here: "在此粘贴 JSON",
+    paste_xml_here: "在此粘贴 XML",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | 专业数据处理和可视化工具",
+    full_formatted_json: "完整格式化 JSON"
+  },
+  
+  ja: {
+    // Navigation and main
+    json_viewer: "JSONビューア",
+    xml_viewer: "XMLビューア",
+    dark_mode: "ダークモード",
+    light_mode: "ライトモード",
+    
+    // JSON Panel
+    copy_json: "JSONをコピー",
+    paste_json: "JSONを貼り付け",
+    clear_json: "JSONをクリア",
+    convert_json_to_xml: "JSON → XML変換",
+    convert_json_to_csv: "JSONをCSVに変換",
+    generate_js_classes: "JSクラスを生成",
+    remove_whitespace_json: "空白を削除 (JSON)",
+    tree_view: "ツリービュー",
+    format_json: "JSONをフォーマット",
+    full_screen: "全画面",
+    collapse_all: "すべて折りたたみ",
+    expand_all: "すべて展開",
+    screenshot: "スクリーンショット",
+    
+    // XML Panel
+    copy_xml: "XMLをコピー",
+    paste_xml: "XMLを貼り付け",
+    clear_xml: "XMLをクリア",
+    convert_xml_to_json: "XML → JSON変換",
+    remove_whitespace_xml: "空白を削除 (XML)",
+    view_validate_xml: "XMLの表示と検証",
+    
+    // Placeholders
+    paste_json_here: "ここにJSONを貼り付け",
+    paste_xml_here: "ここにXMLを貼り付け",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | プロフェッショナルデータ処理・可視化ツール",
+    full_formatted_json: "完全フォーマット済みJSON"
+  },
+  
+  ko: {
+    // Navigation and main
+    json_viewer: "JSON 뷰어",
+    xml_viewer: "XML 뷰어",
+    dark_mode: "다크 모드",
+    light_mode: "라이트 모드",
+    
+    // JSON Panel
+    copy_json: "JSON 복사",
+    paste_json: "JSON 붙여넣기",
+    clear_json: "JSON 지우기",
+    convert_json_to_xml: "JSON → XML 변환",
+    convert_json_to_csv: "JSON을 CSV로 변환",
+    generate_js_classes: "JS 클래스 생성",
+    remove_whitespace_json: "공백 제거 (JSON)",
+    tree_view: "트리 뷰",
+    format_json: "JSON 포맷",
+    full_screen: "전체 화면",
+    collapse_all: "모두 접기",
+    expand_all: "모두 펼치기",
+    screenshot: "스크린샷",
+    
+    // XML Panel
+    copy_xml: "XML 복사",
+    paste_xml: "XML 붙여넣기",
+    clear_xml: "XML 지우기",
+    convert_xml_to_json: "XML → JSON 변환",
+    remove_whitespace_xml: "공백 제거 (XML)",
+    view_validate_xml: "XML 보기 및 검증",
+    
+    // Placeholders
+    paste_json_here: "여기에 JSON 붙여넣기",
+    paste_xml_here: "여기에 XML 붙여넣기",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | 전문 데이터 처리 및 시각화 도구",
+    full_formatted_json: "완전 포맷된 JSON"
+  },
+
+  // Nordic Languages
+  sv: {
+    // Navigation and main
+    json_viewer: "JSON-visare",
+    xml_viewer: "XML-visare",
+    dark_mode: "Mörkt läge",
+    light_mode: "Ljust läge",
+    
+    // JSON Panel
+    copy_json: "Kopiera JSON",
+    paste_json: "Klistra in JSON",
+    clear_json: "Rensa JSON",
+    convert_json_to_xml: "Konvertera JSON → XML",
+    convert_json_to_csv: "Konvertera JSON till CSV",
+    generate_js_classes: "Generera JS-klasser",
+    remove_whitespace_json: "Ta bort mellanslag (JSON)",
+    tree_view: "Trädvy",
+    format_json: "Formatera JSON",
+    full_screen: "Helskärm",
+    collapse_all: "Fäll ihop alla",
+    expand_all: "Expandera alla",
+    screenshot: "Skärmdump",
+    
+    // XML Panel
+    copy_xml: "Kopiera XML",
+    paste_xml: "Klistra in XML",
+    clear_xml: "Rensa XML",
+    convert_xml_to_json: "Konvertera XML → JSON",
+    remove_whitespace_xml: "Ta bort mellanslag (XML)",
+    view_validate_xml: "Visa och validera XML",
+    
+    // Placeholders
+    paste_json_here: "Klistra in JSON här",
+    paste_xml_here: "Klistra in XML här",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | Professionellt verktyg för databehandling och visualisering",
+    full_formatted_json: "Fullständigt formaterad JSON"
+  },
+
+  no: {
+    // Navigation and main
+    json_viewer: "JSON-viser",
+    xml_viewer: "XML-viser",
+    dark_mode: "Mørk modus",
+    light_mode: "Lys modus",
+    
+    // JSON Panel
+    copy_json: "Kopier JSON",
+    paste_json: "Lim inn JSON",
+    clear_json: "Tøm JSON",
+    convert_json_to_xml: "Konverter JSON → XML",
+    convert_json_to_csv: "Konverter JSON til CSV",
+    generate_js_classes: "Generer JS-klasser",
+    remove_whitespace_json: "Fjern mellomrom (JSON)",
+    tree_view: "Trevisning",
+    format_json: "Formater JSON",
+    full_screen: "Fullskjerm",
+    collapse_all: "Kollaps alle",
+    expand_all: "Utvid alle",
+    screenshot: "Skjermbilde",
+    
+    // XML Panel
+    copy_xml: "Kopier XML",
+    paste_xml: "Lim inn XML",
+    clear_xml: "Tøm XML",
+    convert_xml_to_json: "Konverter XML → JSON",
+    remove_whitespace_xml: "Fjern mellomrom (XML)",
+    view_validate_xml: "Vis og valider XML",
+    
+    // Placeholders
+    paste_json_here: "Lim inn JSON her",
+    paste_xml_here: "Lim inn XML her",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | Profesjonelt verktøy for databehandling og visualisering",
+    full_formatted_json: "Fullstendig formatert JSON"
+  },
+
+  da: {
+    // Navigation and main
+    json_viewer: "JSON-fremviser",
+    xml_viewer: "XML-fremviser",
+    dark_mode: "Mørk tilstand",
+    light_mode: "Lys tilstand",
+    
+    // JSON Panel
+    copy_json: "Kopier JSON",
+    paste_json: "Indsæt JSON",
+    clear_json: "Ryd JSON",
+    convert_json_to_xml: "Konverter JSON → XML",
+    convert_json_to_csv: "Konverter JSON til CSV",
+    generate_js_classes: "Generer JS-klasser",
+    remove_whitespace_json: "Fjern mellemrum (JSON)",
+    tree_view: "Trævisning",
+    format_json: "Formater JSON",
+    full_screen: "Fuld skærm",
+    collapse_all: "Sammenfold alle",
+    expand_all: "Udvid alle",
+    screenshot: "Skærmbillede",
+    
+    // XML Panel
+    copy_xml: "Kopier XML",
+    paste_xml: "Indsæt XML",
+    clear_xml: "Ryd XML",
+    convert_xml_to_json: "Konverter XML → JSON",
+    remove_whitespace_xml: "Fjern mellemrum (XML)",
+    view_validate_xml: "Vis og valider XML",
+    
+    // Placeholders
+    paste_json_here: "Indsæt JSON her",
+    paste_xml_here: "Indsæt XML her",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | Professionelt værktøj til databehandling og visualisering",
+    full_formatted_json: "Fuldt formateret JSON"
+  },
+
+  fi: {
+    // Navigation and main
+    json_viewer: "JSON-katselin",
+    xml_viewer: "XML-katselin",
+    dark_mode: "Tumma tila",
+    light_mode: "Vaalea tila",
+    
+    // JSON Panel
+    copy_json: "Kopioi JSON",
+    paste_json: "Liitä JSON",
+    clear_json: "Tyhjennä JSON",
+    convert_json_to_xml: "Muunna JSON → XML",
+    convert_json_to_csv: "Muunna JSON CSV:ksi",
+    generate_js_classes: "Luo JS-luokat",
+    remove_whitespace_json: "Poista välilyönnit (JSON)",
+    tree_view: "Puunäkymä",
+    format_json: "Muotoile JSON",
+    full_screen: "Koko näyttö",
+    collapse_all: "Tiivistä kaikki",
+    expand_all: "Laajenna kaikki",
+    screenshot: "Kuvakaappaus",
+    
+    // XML Panel
+    copy_xml: "Kopioi XML",
+    paste_xml: "Liitä XML",
+    clear_xml: "Tyhjennä XML",
+    convert_xml_to_json: "Muunna XML → JSON",
+    remove_whitespace_xml: "Poista välilyönnit (XML)",
+    view_validate_xml: "Näytä ja vahvista XML",
+    
+    // Placeholders
+    paste_json_here: "Liitä JSON tähän",
+    paste_xml_here: "Liitä XML tähän",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | Ammattimainen tietojenkäsittely- ja visualisointityökalu",
+    full_formatted_json: "Täysin muotoiltu JSON"
+  },
+
+  // Indian Languages
+  hi: {
+    // Navigation and main
+    json_viewer: "JSON व्यूअर",
+    xml_viewer: "XML व्यूअर",
+    dark_mode: "डार्क मोड",
+    light_mode: "लाइट मोड",
+    
+    // JSON Panel
+    copy_json: "JSON कॉपी करें",
+    paste_json: "JSON पेस्ट करें",
+    clear_json: "JSON साफ़ करें",
+    convert_json_to_xml: "JSON → XML में बदलें",
+    convert_json_to_csv: "JSON को CSV में बदलें",
+    generate_js_classes: "JS क्लासेस जेनरेट करें",
+    remove_whitespace_json: "व्हाइटस्पेस हटाएं (JSON)",
+    tree_view: "ट्री व्यू",
+    format_json: "JSON फॉर्मेट करें",
+    full_screen: "पूर्ण स्क्रीन",
+    collapse_all: "सभी को संकुचित करें",
+    expand_all: "सभी को विस्तृत करें",
+    screenshot: "स्क्रीनशॉट",
+    
+    // XML Panel
+    copy_xml: "XML कॉपी करें",
+    paste_xml: "XML पेस्ट करें",
+    clear_xml: "XML साफ़ करें",
+    convert_xml_to_json: "XML → JSON में बदलें",
+    remove_whitespace_xml: "व्हाइटस्पेस हटाएं (XML)",
+    view_validate_xml: "XML देखें और सत्यापित करें",
+    
+    // Placeholders
+    paste_json_here: "यहाँ JSON पेस्ट करें",
+    paste_xml_here: "यहाँ XML पेस्ट करें",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | पेशेवर डेटा प्रोसेसिंग और विज़ुअलाइज़ेशन टूल",
+    full_formatted_json: "पूर्ण फॉर्मेटेड JSON"
+  },
+
+  ta: {
+    // Navigation and main
+    json_viewer: "JSON காட்சியளிப்பான்",
+    xml_viewer: "XML காட்சியளிப்பான்",
+    dark_mode: "இரவு பயன்முறை",
+    light_mode: "பகல் பயன்முறை",
+    
+    // JSON Panel
+    copy_json: "JSON நகலெடுக்கவும்",
+    paste_json: "JSON ஒட்டவும்",
+    clear_json: "JSON அழிக்கவும்",
+    convert_json_to_xml: "JSON → XML மாற்றவும்",
+    convert_json_to_csv: "JSON ஐ CSV ஆக மாற்றவும்",
+    generate_js_classes: "JS வகுப்புகள் உருவாக்கவும்",
+    remove_whitespace_json: "இடைவெளியை அகற்றவும் (JSON)",
+    tree_view: "மரக்காட்சி",
+    format_json: "JSON வடிவமைக்கவும்",
+    full_screen: "முழுத்திரை",
+    collapse_all: "அனைத்தையும் சுருக்கவும்",
+    expand_all: "அனைத்தையும் விரிவாக்கவும்",
+    screenshot: "திரைப்பிடிப்பு",
+    
+    // XML Panel
+    copy_xml: "XML நகலெடுக்கவும்",
+    paste_xml: "XML ஒட்டவும்",
+    clear_xml: "XML அழிக்கவும்",
+    convert_xml_to_json: "XML → JSON மாற்றவும்",
+    remove_whitespace_xml: "இடைவெளியை அகற்றவும் (XML)",
+    view_validate_xml: "XML பார்க்கவும் மற்றும் சரிபார்க்கவும்",
+    
+    // Placeholders
+    paste_json_here: "இங்கே JSON ஒட்டவும்",
+    paste_xml_here: "இங்கே XML ஒட்டவும்",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | தொழில்முறை தரவு செயலாக்கம் மற்றும் காட்சிப்படுத்தல் கருவி",
+    full_formatted_json: "முழுமையான வடிவமைக்கப்பட்ட JSON"
+  },
+
+  bn: {
+    // Navigation and main
+    json_viewer: "JSON ভিউয়ার",
+    xml_viewer: "XML ভিউয়ার",
+    dark_mode: "ডার্ক মোড",
+    light_mode: "লাইট মোড",
+    
+    // JSON Panel
+    copy_json: "JSON কপি করুন",
+    paste_json: "JSON পেস্ট করুন",
+    clear_json: "JSON পরিষ্কার করুন",
+    convert_json_to_xml: "JSON → XML রূপান্তর করুন",
+    convert_json_to_csv: "JSON কে CSV তে রূপান্তর করুন",
+    generate_js_classes: "JS ক্লাস তৈরি করুন",
+    remove_whitespace_json: "হোয়াইটস্পেস সরান (JSON)",
+    tree_view: "ট্রি ভিউ",
+    format_json: "JSON ফরম্যাট করুন",
+    full_screen: "পূর্ণ স্ক্রিন",
+    collapse_all: "সব সংকুচিত করুন",
+    expand_all: "সব প্রসারিত করুন",
+    screenshot: "স্ক্রিনশট",
+    
+    // XML Panel
+    copy_xml: "XML কপি করুন",
+    paste_xml: "XML পেস্ট করুন",
+    clear_xml: "XML পরিষ্কার করুন",
+    convert_xml_to_json: "XML → JSON রূপান্তর করুন",
+    remove_whitespace_xml: "হোয়াইটস্পেস সরান (XML)",
+    view_validate_xml: "XML দেখুন এবং যাচাই করুন",
+    
+    // Placeholders
+    paste_json_here: "এখানে JSON পেস্ট করুন",
+    paste_xml_here: "এখানে XML পেস্ট করুন",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | পেশাদার ডেটা প্রক্রিয়াকরণ এবং ভিজ্যুয়ালাইজেশন টুল",
+    full_formatted_json: "সম্পূর্ণ ফরম্যাট করা JSON"
+  },
+
+  te: {
+    // Navigation and main
+    json_viewer: "JSON వ్యూయర్",
+    xml_viewer: "XML వ్యూయర్",
+    dark_mode: "డార్క్ మోడ్",
+    light_mode: "లైట్ మోడ్",
+    
+    // JSON Panel
+    copy_json: "JSON కాపీ చేయండి",
+    paste_json: "JSON పేస్ట్ చేయండి",
+    clear_json: "JSON క్లియర్ చేయండి",
+    convert_json_to_xml: "JSON → XML కు మార్చండి",
+    convert_json_to_csv: "JSON ను CSV కు మార్చండి",
+    generate_js_classes: "JS క్లాసులు జనరేట్ చేయండి",
+    remove_whitespace_json: "వైట్స్పేస్ తొలగించండి (JSON)",
+    tree_view: "ట్రీ వ్యూ",
+    format_json: "JSON ఫార్మాట్ చేయండి",
+    full_screen: "పూర్తి స్క్రీన్",
+    collapse_all: "అన్నింటినీ కుదించండి",
+    expand_all: "అన్నింటినీ విస్తరించండి",
+    screenshot: "స్క్రీన్‌షాట్",
+    
+    // XML Panel
+    copy_xml: "XML కాపీ చేయండి",
+    paste_xml: "XML పేస్ట్ చేయండి",
+    clear_xml: "XML క్లియర్ చేయండి",
+    convert_xml_to_json: "XML → JSON కు మార్చండి",
+    remove_whitespace_xml: "వైట్స్పేస్ తొలగించండి (XML)",
+    view_validate_xml: "XML చూడండి మరియు ధృవీకరించండి",
+    
+    // Placeholders
+    paste_json_here: "ఇక్కడ JSON పేస్ట్ చేయండి",
+    paste_xml_here: "ఇక్కడ XML పేస్ట్ చేయండి",
+    
+    // Footer and Modal
+    footer_text: "© 2025 Dataz Studio | వృత్తిపరమైన డేటా ప్రాసెసింగ్ మరియు విజువలైజేషన్ టూల్",
+    full_formatted_json: "పూర్తిగా ఫార్మాట్ చేయబడిన JSON"
+  }
+};
+
+// Current language (default to English)
+let currentLanguage = localStorage.getItem('selectedLanguage') || 'en';
+
+// Function to translate text content
+function translateText(key, lang = currentLanguage) {
+  return translations[lang] && translations[lang][key] ? translations[lang][key] : translations['en'][key] || key;
+}
+
+// Function to update all translations
+function updateTranslations(lang = currentLanguage) {
+  // Update all elements with data-i18n attribute
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    const key = element.getAttribute('data-i18n');
+    const translatedText = translateText(key, lang);
+    
+    // Skip theme button - it has special handling
+    if (element.id === 'themeToggle') {
+      return;
+    }
+    
+    // Check if element contains icons (has <i> tags)
+    const iconElement = element.querySelector('i');
+    if (iconElement) {
+      // Preserve the icon and update only the text part
+      const iconHTML = iconElement.outerHTML;
+      element.innerHTML = iconHTML + ' ' + translatedText;
+    } else {
+      // No icons, safe to use textContent
+      element.textContent = translatedText;
+    }
+  });
+  
+  // Update all elements with data-i18n-placeholder attribute
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+    const key = element.getAttribute('data-i18n-placeholder');
+    element.placeholder = translateText(key, lang);
+  });
+  
+  // Update theme button text based on current theme
+  updateThemeButtonText();
+}
+
+// Debounce timer for theme button updates
+let themeButtonUpdateTimer = null;
+
+// Function to update theme button text
+function updateThemeButtonText() {
+  // Clear any pending update
+  if (themeButtonUpdateTimer) {
+    clearTimeout(themeButtonUpdateTimer);
+  }
+  
+  // Schedule the actual update
+  themeButtonUpdateTimer = setTimeout(() => {
+    const themeButton = document.getElementById('themeToggle');
+    if (!themeButton) return;
+    
+    const isLight = document.body.classList.contains('light');
+    
+    // Get the translated text without any icons
+    let text;
+    if (isLight) {
+      text = translateText('dark_mode');
+      // Remove any existing emojis from the translated text
+      text = text.replace(/🌙|🌞|☀️|🌟|⭐|✨/g, '').trim();
+      themeButton.innerHTML = '🌙 ' + text;
+    } else {
+      text = translateText('light_mode');
+      // Remove any existing emojis from the translated text
+      text = text.replace(/🌙|🌞|☀️|🌟|⭐|✨/g, '').trim();
+      themeButton.innerHTML = '☀️ ' + text;
+    }
+    
+    themeButtonUpdateTimer = null;
+  }, 50); // Small delay to debounce rapid calls
+}
+
+// Function to change language
+function changeLanguage(lang) {
+  currentLanguage = lang;
+  localStorage.setItem('selectedLanguage', lang);
+  updateTranslations(lang);
+  
+  // Update language selector
+  document.getElementById('languageSelect').value = lang;
+  
+  // Show brief confirmation (optional visual feedback)
+  const selector = document.getElementById('languageSelect');
+  selector.style.borderColor = '#4caf50';
+  setTimeout(() => {
+    selector.style.borderColor = '';
+  }, 1000);
+}
+
+// Initialize translations when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Restore saved language with fallback
+  const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+  currentLanguage = savedLanguage;
+  
+  // Set the language selector to saved language
+  const languageSelect = document.getElementById('languageSelect');
+  if (languageSelect) {
+    languageSelect.value = currentLanguage;
+  }
+  
+  // Apply translations with saved language
+  updateTranslations(currentLanguage);
+  
+  // Log for debugging (can be removed in production)
+  console.log('Restored language:', currentLanguage);
+  
+  // Observe theme changes to update translations
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        // Theme changed, update translations
+        updateThemeButtonText();
+      }
+    });
+  });
+  
+  // Start observing the body for class changes
+  observer.observe(document.body, { 
+    attributes: true, 
+    attributeFilter: ['class'] 
+  });
+  
+  // Also listen for storage changes (in case theme is changed in another tab)
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'theme-mode') {
+      updateThemeButtonText();
+    }
+  });
 });
 </script>
 

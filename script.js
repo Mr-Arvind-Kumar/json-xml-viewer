@@ -62,12 +62,10 @@ document.getElementById('themeToggle').addEventListener('click', () => {
   if (document.body.classList.contains('light')) {
     document.body.classList.remove('light');
     document.body.classList.add('dark');
-    document.getElementById('themeToggle').textContent = '🌙 Dark Mode';
     localStorage.setItem('theme-mode', 'dark');
   } else {
     document.body.classList.remove('dark');
     document.body.classList.add('light');
-    document.getElementById('themeToggle').textContent = '🌞 Light Mode';
     localStorage.setItem('theme-mode', 'light');
   }
 });
@@ -81,11 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (savedTheme === 'light') {
     document.body.classList.add('light');
     document.body.classList.remove('dark');
-    document.getElementById('themeToggle').textContent = '🌞 Light Mode';
   } else {
     document.body.classList.add('dark');
     document.body.classList.remove('light');
-    document.getElementById('themeToggle').textContent = '🌙 Dark Mode';
   }
 
   // Restore saved inputs
@@ -121,5 +117,4 @@ function clearAllSavedData() {
   showOnly('json');
   document.body.classList.remove('light');
   document.body.classList.add('dark');
-  document.getElementById('themeToggle').textContent = '🌙 Dark Mode';
 }

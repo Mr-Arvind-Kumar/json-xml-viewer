@@ -312,6 +312,14 @@ textarea {
   color: var(--btn-text);
   font-size: 14px;
 }
+
+/* Button icon styling */
+.btn-group button i,
+.action-btn i {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
 .action-btn:hover,
 .btn-group button:hover {
   background: var(--btn-hover-bg);
