@@ -35,11 +35,40 @@
   max-height: none; /* Allow unlimited height for proper scrolling */
   opacity: 1;
   overflow: visible; /* Allow normal flow within expanded content */
+  display: block; /* Ensure proper display */
 }
 
 /* Ensure tree containers don't interfere with scrolling */
 .json-tree {
   overflow: visible;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure output containers with tree content can scroll properly */
+.output.tree {
+  overflow-y: auto;
+  overflow-x: auto;
+  word-wrap: break-word;
+  height: 100%;
+}
+
+/* Make sure tree elements don't prevent scrolling */
+.tree ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.tree li {
+  list-style: none;
+  margin: 2px 0;
+}
+
+/* Ensure tree root elements are contained properly */
+.output .tree,
+.output > ul {
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Remove the override for .output.tree to maintain existing scrolling */
@@ -232,12 +261,13 @@ header {
 }
 .theme-btn {
   margin-left: auto;
-  padding: 6px 12px;
+  padding: 8px 10px;
   cursor: pointer;
   border: none;
-  border-radius: 4px;
+  border-radius: 3px;
   background: var(--btn-bg);
   color: var(--btn-text);
+  font-size: 12px;
 }
 
 /* ====== Footer ====== */
@@ -263,9 +293,17 @@ footer {
   cursor: pointer;
   background: var(--btn-bg);
   color: var(--btn-text);
+  position: relative;
 }
 .toolbar button.active {
   background: var(--btn-active-bg);
+  color: white;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 2px solid var(--btn-active-bg);
+  z-index: 1;
+  position: relative;
+  box-shadow: 0 0 8px var(--active-glow);
 }
 .toolbar button:hover {
   background: var(--btn-hover-bg);
@@ -284,6 +322,12 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  border-top: 2px solid var(--btn-active-bg);
+  border-radius: 0 4px 4px 4px;
+  background: var(--bg-color);
+  margin-top: -2px; /* Connect with toolbar button border */
+  padding: 10px;
+  box-shadow: 0 2px 8px var(--active-shadow), 0 0 0 1px var(--active-border);
 }
 .hidden {
   display: none !important;
@@ -305,19 +349,19 @@ textarea {
 .btn-group button,
 .action-btn {
   border: none;
-  border-radius: 4px;
-  padding: 6px 10px;
+  border-radius: 3px;
+  padding: 8px 10px;
   cursor: pointer;
   background: var(--btn-bg);
   color: var(--btn-text);
-  font-size: 14px;
+  font-size: 12px;
 }
 
 /* Button icon styling */
 .btn-group button i,
 .action-btn i {
-  margin-right: 6px;
-  font-size: 14px;
+  margin-right: 4px;
+  font-size: 12px;
 }
 
 .action-btn:hover,
@@ -329,11 +373,12 @@ textarea {
 .input-actions {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 3px;
 }
 .btn-group {
   display: flex;
-  gap: 5px;
+  gap: 15px;
+  margin: 10px 0;
 }
 
 /* ====== Output Box ====== */
@@ -468,6 +513,11 @@ textarea {
   --output-bg: #1e1e1e;
   --font-color: #d4d4d4;
 
+  /* Active highlight colors */
+  --active-glow: rgba(33, 150, 243, 0.3);
+  --active-shadow: rgba(33, 150, 243, 0.15);
+  --active-border: rgba(33, 150, 243, 0.1);
+
   --key-color: #9cdcfe;
   --string-color: #ce9178;
   --number-color: #b5cea8;
@@ -498,6 +548,11 @@ body.light {
   --input-text: #000;
   --output-bg: #fff;
   --font-color: #000;
+
+  /* Active highlight colors */
+  --active-glow: rgba(66, 133, 244, 0.3);
+  --active-shadow: rgba(66, 133, 244, 0.15);
+  --active-border: rgba(66, 133, 244, 0.1);
 
   --key-color: #005cab;
   --string-color: #b31d28;

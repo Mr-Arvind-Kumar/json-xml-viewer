@@ -52,6 +52,27 @@ html, body {
 /* Side-by-side IO layout */
 .io-wrapper {
   display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Button group positioned at top of io-wrapper */
+.io-wrapper > .btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 5px;
+  background: var(--toolbar-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+/* Content area below buttons */
+.io-content {
+  display: flex;
   gap: 10px;
   flex: 1;
   min-height: 0;
@@ -107,9 +128,9 @@ html, body {
   background: #2c2c2c;
   color: #fff;
   border: 1px solid #555;
-  border-radius: 6px;
-  padding: 8px 12px;
-  font-size: 14px;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-size: 12px;
   cursor: pointer;
   transition: all 0.3s ease, border-color 1s ease;
 }
@@ -288,72 +309,77 @@ body.dark .language-selector option {
   <!-- JSON PANEL -->
   <div id="panel-json" class="panel">
     <div class="io-wrapper">
-
-      <!-- Left side: JSON input -->
-      <div class="io-input" id="json-io-input">
-        <div class="btn-group">
-          <button onclick="copyInput('json-input')" data-i18n="copy_json">
-            <i class="fas fa-copy"></i>
-            Copy JSON
-          </button>
-          <button onclick="pasteInput('json-input')" data-i18n="paste_json">
-            <i class="fas fa-paste"></i>
-            Paste JSON
-          </button>
-          <button onclick="clearInput('json-input')" data-i18n="clear_json">
-            <i class="fas fa-trash"></i>
-            Clear JSON
-          </button>
-          <button onclick="convertJSONtoXML()" data-i18n="convert_json_to_xml">
-            <i class="fas fa-exchange-alt"></i>
-            Convert JSON → XML
-          </button>
-          <button onclick="convertJSONtoCSV()" data-i18n="convert_json_to_csv">
-            <i class="fas fa-file-csv"></i>
-            Convert JSON to CSV
-          </button>
-          <button onclick="generateJavaScriptClasses()" data-i18n="generate_js_classes">
-            <i class="fas fa-code"></i>
-            Generate JS Classes
-          </button>
-          <button onclick="removeJSONSpaces('json-input')" data-i18n="remove_whitespace_json">
-            <i class="fas fa-compress-alt"></i>
-            Remove Whitespace (JSON)
-          </button>
-          <button class="action-btn" onclick="beautifyJSON()" data-i18n="tree_view">
-            <i class="fas fa-sitemap"></i>
-            Tree View
-          </button>
-          <button class="action-btn" onclick="openFullJSONModal()" data-i18n="format_json">
-            <i class="fas fa-align-left"></i>
-            Format JSON
-          </button>
-          <button class="action-btn" onclick="toggleFullScreen('json-output')" data-i18n="full_screen">
-            <i class="fas fa-expand"></i>
-            Full Screen
-          </button>
-          <button class="action-btn" onclick="collapseAllJSON()" data-i18n="collapse_all">
-            <i class="fas fa-minus-square"></i>
-            Collapse All
-          </button>
-          <button class="action-btn" onclick="expandAllJSON()" data-i18n="expand_all">
-            <i class="fas fa-plus-square"></i>
-            Expand All
-          </button>
-          <button class="action-btn" onclick="captureScreenshot('json-output', 'json-output-screenshot.png')" data-i18n="screenshot">
-            <i class="fas fa-camera"></i>
-            Screenshot
-          </button>
-        </div>
-        <textarea id="json-input" data-i18n-placeholder="paste_json_here" placeholder="Paste JSON here"></textarea>
+      
+      <!-- JSON Action Buttons - positioned to cover both input and output -->
+      <div class="btn-group">
+        <button onclick="copyInput('json-input')" data-i18n="copy_json">
+          <i class="fas fa-copy"></i>
+          Copy JSON
+        </button>
+        <button onclick="pasteInput('json-input')" data-i18n="paste_json">
+          <i class="fas fa-paste"></i>
+          Paste JSON
+        </button>
+        <button onclick="clearInput('json-input')" data-i18n="clear_json">
+          <i class="fas fa-trash"></i>
+          Clear JSON
+        </button>
+        <button onclick="convertJSONtoXML()" data-i18n="convert_json_to_xml">
+          <i class="fas fa-exchange-alt"></i>
+          Convert JSON → XML
+        </button>
+        <button onclick="convertJSONtoCSV()" data-i18n="convert_json_to_csv">
+          <i class="fas fa-file-csv"></i>
+          Convert JSON to CSV
+        </button>
+        <button onclick="generateJavaScriptClasses()" data-i18n="generate_js_classes">
+          <i class="fas fa-code"></i>
+          Generate JS Classes
+        </button>
+        <button onclick="removeJSONSpaces('json-input')" data-i18n="remove_whitespace_json">
+          <i class="fas fa-compress-alt"></i>
+          Remove Whitespace (JSON)
+        </button>
+        <button class="action-btn" onclick="beautifyJSON()" data-i18n="tree_view">
+          <i class="fas fa-sitemap"></i>
+          Tree View
+        </button>
+        <button class="action-btn" onclick="openFullJSONModal()" data-i18n="format_json">
+          <i class="fas fa-align-left"></i>
+          Format JSON
+        </button>
+        <button class="action-btn" onclick="toggleFullScreen('json-output')" data-i18n="full_screen">
+          <i class="fas fa-expand"></i>
+          Full Screen
+        </button>
+        <button class="action-btn" onclick="collapseAllJSON()" data-i18n="collapse_all">
+          <i class="fas fa-minus-square"></i>
+          Collapse All
+        </button>
+        <button class="action-btn" onclick="expandAllJSON()" data-i18n="expand_all">
+          <i class="fas fa-plus-square"></i>
+          Expand All
+        </button>
+        <button class="action-btn" onclick="captureScreenshot('json-output', 'json-output-screenshot.png')" data-i18n="screenshot">
+          <i class="fas fa-camera"></i>
+          Screenshot
+        </button>
       </div>
 
-  <!-- Draggable divider -->
-  <div class="divider" id="json-divider"></div>
+      <!-- Content area with input and output -->
+      <div class="io-content">
+        <!-- Left side: JSON input -->
+        <div class="io-input" id="json-io-input">
+          <textarea id="json-input" data-i18n-placeholder="paste_json_here" placeholder="Paste JSON here"></textarea>
+        </div>
 
-  <!-- Right side: JSON output -->
-  <div class="io-output" id="json-io-output">
-        <div id="json-output" class="output tree"></div>
+        <!-- Draggable divider -->
+        <div class="divider" id="json-divider"></div>
+
+        <!-- Right side: JSON output -->
+        <div class="io-output" id="json-io-output">
+          <div id="json-output" class="output tree"></div>
+        </div>
       </div>
 
     </div>
@@ -362,62 +388,67 @@ body.dark .language-selector option {
   <!-- XML PANEL -->
   <div id="panel-xml" class="panel hidden">
     <div class="io-wrapper">
-
-      <!-- Left side: XML input -->
-      <div class="io-input" id="xml-io-input">
-        <div class="btn-group">
-          <button onclick="copyInput('xml-input')" data-i18n="copy_xml">
-            <i class="fas fa-copy"></i>
-            Copy XML
-          </button>
-          <button onclick="pasteInput('xml-input')" data-i18n="paste_xml">
-            <i class="fas fa-paste"></i>
-            Paste XML
-          </button>
-          <button onclick="clearInput('xml-input')" data-i18n="clear_xml">
-            <i class="fas fa-trash"></i>
-            Clear XML
-          </button>
-          <button onclick="convertXMLtoJSON()" data-i18n="convert_xml_to_json">
-            <i class="fas fa-exchange-alt"></i>
-            Convert XML → JSON
-          </button>
-          <button onclick="removeSpaces('xml-input')" data-i18n="remove_whitespace_xml">
-            <i class="fas fa-compress-alt"></i>
-            Remove Whitespace (XML)
-          </button>
-          <button class="action-btn" onclick="viewXML()" data-i18n="view_validate_xml">
-            <i class="fas fa-check-circle"></i>
-            View & Validate XML
-          </button>
-          <button class="action-btn" onclick="toggleFullScreen('xml-output')" data-i18n="full_screen">
-            <i class="fas fa-expand"></i>
-            Full Screen
-          </button>
-          <button class="action-btn" onclick="collapseAllXML()" data-i18n="collapse_all">
-            <i class="fas fa-minus-square"></i>
-            Collapse All
-          </button>
-          <button class="action-btn" onclick="expandAllXML()" data-i18n="expand_all">
-            <i class="fas fa-plus-square"></i>
-            Expand All
-          </button>
-          <button class="action-btn" onclick="captureScreenshot('xml-output', 'xml-output-screenshot.png')" data-i18n="screenshot">
-            <i class="fas fa-camera"></i>
-            Screenshot
-          </button>
-        </div>
-  <textarea id="xml-input" data-i18n-placeholder="paste_xml_here" placeholder="Paste XML here" oninput="viewXML()"></textarea>
+      
+      <!-- XML Action Buttons - positioned to cover both input and output -->
+      <div class="btn-group">
+        <button onclick="copyInput('xml-input')" data-i18n="copy_xml">
+          <i class="fas fa-copy"></i>
+          Copy XML
+        </button>
+        <button onclick="pasteInput('xml-input')" data-i18n="paste_xml">
+          <i class="fas fa-paste"></i>
+          Paste XML
+        </button>
+        <button onclick="clearInput('xml-input')" data-i18n="clear_xml">
+          <i class="fas fa-trash"></i>
+          Clear XML
+        </button>
+        <button onclick="convertXMLtoJSON()" data-i18n="convert_xml_to_json">
+          <i class="fas fa-exchange-alt"></i>
+          Convert XML → JSON
+        </button>
+        <button onclick="removeSpaces('xml-input')" data-i18n="remove_whitespace_xml">
+          <i class="fas fa-compress-alt"></i>
+          Remove Whitespace (XML)
+        </button>
+        <button class="action-btn" onclick="viewXML()" data-i18n="view_validate_xml">
+          <i class="fas fa-check-circle"></i>
+          View & Validate XML
+        </button>
+        <button class="action-btn" onclick="toggleFullScreen('xml-output')" data-i18n="full_screen">
+          <i class="fas fa-expand"></i>
+          Full Screen
+        </button>
+        <button class="action-btn" onclick="collapseAllXML()" data-i18n="collapse_all">
+          <i class="fas fa-minus-square"></i>
+          Collapse All
+        </button>
+        <button class="action-btn" onclick="expandAllXML()" data-i18n="expand_all">
+          <i class="fas fa-plus-square"></i>
+          Expand All
+        </button>
+        <button class="action-btn" onclick="captureScreenshot('xml-output', 'xml-output-screenshot.png')" data-i18n="screenshot">
+          <i class="fas fa-camera"></i>
+          Screenshot
+        </button>
       </div>
 
-  <!-- Draggable divider -->
-  <div class="divider" id="xml-divider"></div>
+      <!-- Content area with input and output -->
+      <div class="io-content">
+        <!-- Left side: XML input -->
+        <div class="io-input" id="xml-io-input">
+          <textarea id="xml-input" data-i18n-placeholder="paste_xml_here" placeholder="Paste XML here" oninput="viewXML()"></textarea>
+        </div>
 
-  <!-- Right side: XML output -->
-  <div class="io-output" id="xml-io-output">
-    <div id="xml-output" class="output tree"></div>
-    <div id="xml-summary" style="margin-top: 8px; font-weight: bold; color: #888;"></div>
-  </div>
+        <!-- Draggable divider -->
+        <div class="divider" id="xml-divider"></div>
+
+        <!-- Right side: XML output -->
+        <div class="io-output" id="xml-io-output">
+          <div id="xml-output" class="output tree"></div>
+          <div id="xml-summary" style="margin-top: 8px; font-weight: bold; color: #888;"></div>
+        </div>
+      </div>
 <style>
 .divider {
   width: 6px;
