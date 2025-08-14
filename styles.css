@@ -355,6 +355,7 @@ textarea {
   background: var(--btn-bg);
   color: var(--btn-text);
   font-size: 12px;
+  margin: 2px;
 }
 
 /* Button icon styling */
