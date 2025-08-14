@@ -42,6 +42,157 @@ function csvEscape(val) {
   }
   return str;
 }
+
+// Generate JavaScript classes/interfaces from JSON
+function generateJavaScriptClasses() {
+  const input = document.getElementById('json-input').value;
+  const output = document.getElementById('json-output');
+  
+  if (!input.trim()) {
+    output.textContent = 'Please enter JSON data to generate classes.';
+    return;
+  }
+  
+  try {
+    const obj = JSON.parse(input);
+    const classes = jsonToJavaScriptClasses(obj, 'MainClass');
+    output.innerHTML = `<pre style="white-space: pre-wrap; font-family: 'Courier New', monospace; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 6px; margin: 0; font-size: 14px; line-height: 1.4;">${escapeHtml(classes)}</pre>`;
+  } catch (e) {
+    output.textContent = 'Invalid JSON: ' + e.message;
+  }
+}
+
+// Helper function to generate JavaScript classes from JSON object
+function jsonToJavaScriptClasses(obj, className = 'GeneratedClass', processedClasses = new Set()) {
+  let result = '';
+  const nestedClasses = [];
+  
+  // Handle arrays
+  if (Array.isArray(obj)) {
+    if (obj.length > 0) {
+      return jsonToJavaScriptClasses(obj[0], className, processedClasses);
+    } else {
+      return `// Empty array - unable to determine structure\nclass ${className} {\n  // Add properties as needed\n}\n\n`;
+    }
+  }
+  
+  // Handle primitive values
+  if (typeof obj !== 'object' || obj === null) {
+    return `// Primitive value: ${typeof obj}\nclass ${className} {\n  constructor(value) {\n    this.value = value; // ${typeof obj}\n  }\n}\n\n`;
+  }
+  
+  // Generate class for object
+  const properties = [];
+  const constructorParams = [];
+  const constructorAssignments = [];
+  
+  for (const [key, value] of Object.entries(obj)) {
+    const type = getJavaScriptType(value);
+    const propertyName = sanitizePropertyName(key);
+    
+    // Handle nested objects
+    if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+      const nestedClassName = capitalizeFirst(propertyName);
+      if (!processedClasses.has(nestedClassName)) {
+        processedClasses.add(nestedClassName);
+        nestedClasses.push(jsonToJavaScriptClasses(value, nestedClassName, processedClasses));
+      }
+      properties.push(`  ${propertyName}; // ${nestedClassName}`);
+      constructorParams.push(`${propertyName} = null`);
+      constructorAssignments.push(`    this.${propertyName} = ${propertyName};`);
+    }
+    // Handle arrays
+    else if (Array.isArray(value)) {
+      if (value.length > 0 && typeof value[0] === 'object' && value[0] !== null) {
+        const itemClassName = capitalizeFirst(propertyName.replace(/s$/, ''));
+        if (!processedClasses.has(itemClassName)) {
+          processedClasses.add(itemClassName);
+          nestedClasses.push(jsonToJavaScriptClasses(value[0], itemClassName, processedClasses));
+        }
+        properties.push(`  ${propertyName}; // Array<${itemClassName}>`);
+        constructorParams.push(`${propertyName} = []`);
+        constructorAssignments.push(`    this.${propertyName} = ${propertyName};`);
+      } else {
+        const arrayType = value.length > 0 ? getJavaScriptType(value[0]) : 'any';
+        properties.push(`  ${propertyName}; // Array<${arrayType}>`);
+        constructorParams.push(`${propertyName} = []`);
+        constructorAssignments.push(`    this.${propertyName} = ${propertyName};`);
+      }
+    }
+    // Handle primitive types
+    else {
+      properties.push(`  ${propertyName}; // ${type}`);
+      constructorParams.push(`${propertyName} = ${getDefaultValue(type)}`);
+      constructorAssignments.push(`    this.${propertyName} = ${propertyName};`);
+    }
+  }
+  
+  // Generate class definition
+  result += `class ${className} {\n`;
+  if (properties.length > 0) {
+    result += properties.join('\n') + '\n\n';
+  }
+  
+  result += `  constructor(${constructorParams.join(', ')}) {\n`;
+  result += constructorAssignments.join('\n');
+  result += '\n  }\n\n';
+  
+  // Add static factory method
+  result += `  static fromJSON(json) {\n`;
+  result += `    const obj = typeof json === 'string' ? JSON.parse(json) : json;\n`;
+  result += `    return new ${className}(\n`;
+  
+  const factoryParams = [];
+  for (const [key, value] of Object.entries(obj)) {
+    const propertyName = sanitizePropertyName(key);
+    if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+      const nestedClassName = capitalizeFirst(propertyName);
+      factoryParams.push(`      obj.${key} ? ${nestedClassName}.fromJSON(obj.${key}) : null`);
+    } else if (Array.isArray(value) && value.length > 0 && typeof value[0] === 'object' && value[0] !== null) {
+      const itemClassName = capitalizeFirst(propertyName.replace(/s$/, ''));
+      factoryParams.push(`      obj.${key} ? obj.${key}.map(item => ${itemClassName}.fromJSON(item)) : []`);
+    } else {
+      factoryParams.push(`      obj.${key}`);
+    }
+  }
+  
+  result += factoryParams.join(',\n');
+  result += '\n    );\n  }\n';
+  result += '}\n\n';
+  
+  // Add nested classes
+  result = nestedClasses.join('') + result;
+  
+  return result;
+}
+
+// Helper functions
+function getJavaScriptType(value) {
+  if (value === null) return 'null';
+  if (Array.isArray(value)) return 'Array';
+  const type = typeof value;
+  if (type === 'object') return 'Object';
+  return type;
+}
+
+function getDefaultValue(type) {
+  switch (type) {
+    case 'string': return '""';
+    case 'number': return '0';
+    case 'boolean': return 'false';
+    case 'null': return 'null';
+    default: return 'null';
+  }
+}
+
+function sanitizePropertyName(name) {
+  // Replace invalid characters and ensure it starts with letter or underscore
+  return name.replace(/[^a-zA-Z0-9_$]/g, '_').replace(/^[0-9]/, '_$&');
+}
+
+function capitalizeFirst(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 // Collapse all JSON nodes
 function collapseAllJSON() {
   document.querySelectorAll('#json-output .collapse').forEach(el => {
@@ -429,4 +580,5 @@ window.collapseAllJSON = collapseAllJSON;
 window.beautifyJSON = beautifyJSON;
 window.openFullJSONModal = openFullJSONModal;
 window.closeFullJSONModal = closeFullJSONModal;
+window.generateJavaScriptClasses = generateJavaScriptClasses;
 
