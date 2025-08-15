@@ -184,13 +184,9 @@
 </script>
 
 <!-- Favicon and Icons -->
-<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
-<link rel="manifest" href="/site.webmanifest" />
+<link rel="icon" type="image/png" href="assets/logo.png" />
+<link rel="apple-touch-icon" href="assets/logo.png" />
+<link rel="manifest" href="site.webmanifest" />
 
 <!-- Additional SEO Links -->
 <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
@@ -200,7 +196,7 @@
 
 <!-- Performance Optimization -->
 <link rel="preload" href="styles.css" as="style" />
-<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" />
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'" />
 
 <!-- Additional Meta for Rich Snippets -->
 <meta name="format-detection" content="telephone=no" />
@@ -208,7 +204,6 @@
 
 <!-- Security Headers -->
 <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-<meta http-equiv="X-Frame-Options" content="DENY" />
 <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
 
@@ -216,8 +211,10 @@
 <meta name="keywords" content="dataz.tools, dataz tools, www.dataz.tools, free online tools, developer tools online, JSON XML viewer free, Base64 encode decode online, JWT token parser decoder, hash MD5 SHA256 generator, UUID generator validator, color converter hex rgb, timestamp unix converter, QR code generator free, regex regular expression tester, text utilities word count, markdown preview editor, API formatter curl postman, graph chart generator, web developer utilities, programming tools online, data processing tools, encode decode tools, crypto hash tools, developer productivity tools, online coding tools, web development utilities" />
 
 <link rel="stylesheet" href="styles.css"/>
-<!-- Fallback CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" />
+<!-- FontAwesome fallback for when preload fails -->
+<noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" />
+</noscript>
 <!-- Local FontAwesome fallback -->
 <link rel="stylesheet" href="fontawesome-fallback.css" />
 <!-- Chart.js for graph generation -->
@@ -550,55 +547,126 @@ body.dark .language-selector option {
   </div>
 </header>
 
-<!-- Toolbar -->
+<!-- Improved Toolbar with Categories -->
 <div class="toolbar">
-  <button id="btn-json" class="active" onclick="showOnly('json')" data-i18n="json_viewer">
-    <i class="fas fa-file-code"></i> JSON Viewer
-  </button>
-  <button id="btn-xml" onclick="showOnly('xml')" data-i18n="xml_viewer">
-    <i class="fas fa-file-lines"></i> XML Viewer
-  </button>
-  <button id="btn-graph" onclick="showOnly('graph')" data-i18n="graph_tab">
-    <i class="fas fa-chart-bar"></i> Generate Graph
-  </button>
-  <button id="btn-base64" onclick="showOnly('base64')" data-i18n="base64_tab">
-    <i class="fas fa-lock"></i> Base64 Encode/Decode
-  </button>
-  <button id="btn-jwt" onclick="showOnly('jwt')" data-i18n="jwt_tab">
-    <i class="fas fa-key"></i> JWT Token
-  </button>
-  <button id="btn-url" onclick="showOnly('url')" data-i18n="url_tab">
-    <i class="fas fa-link"></i> URL Encoder/Decoder
-  </button>
-  <button id="btn-hash" onclick="showOnly('hash')" data-i18n="hash_tab">
-    <i class="fas fa-hashtag"></i> Hash Generator
-  </button>
-  <button id="btn-uuid" onclick="showOnly('uuid')" data-i18n="uuid_tab">
-    <i class="fas fa-fingerprint"></i> UUID Generator
-  </button>
-  <button id="btn-color" onclick="showOnly('color')" data-i18n="color_tab">
-    <i class="fas fa-palette"></i> Color Converter
-  </button>
-  <button id="btn-timestamp" onclick="showOnly('timestamp')" data-i18n="timestamp_tab">
-    <i class="fas fa-clock"></i> Timestamp Converter
-  </button>
-  <button id="btn-qr" onclick="showOnly('qr')" data-i18n="qr_tab">
-    <i class="fas fa-qrcode"></i> QR Code Generator
-  </button>
-  <button id="btn-regex" onclick="showOnly('regex')" data-i18n="regex_tab">
-    <i class="fas fa-search"></i> Regex Tester
-  </button>
-  <button id="btn-text" onclick="showOnly('text')" data-i18n="text_tab">
-    <i class="fas fa-text-width"></i> Text Utilities
-  </button>
-  <button id="btn-api" onclick="showOnly('api')" data-i18n="api_tab">
-    <i class="fas fa-server"></i> API Formatter
-  </button>
-  <button id="btn-markdown" onclick="showOnly('markdown')" data-i18n="markdown_tab">
-    <i class="fas fa-markdown"></i> Markdown Preview
-  </button>
+  <!-- Data Viewers Category -->
+  <div class="tool-category" data-category="viewers">
+    <button class="category-btn" data-category="viewers">
+      <i class="fas fa-eye"></i> 
+      <span class="category-info">
+        <span class="category-text" data-i18n="category_data_viewers">Data Viewers</span>
+        <span class="selected-tool">JSON Viewer</span>
+      </span>
+      <i class="fas fa-chevron-down category-arrow"></i>
+    </button>
+    <div class="category-dropdown" id="viewers-dropdown">
+      <button id="btn-json" class="active dropdown-item" onclick="showOnly('json')" data-i18n="json_viewer">
+        <i class="fas fa-file-code"></i> JSON Viewer
+      </button>
+      <button id="btn-xml" class="dropdown-item" onclick="showOnly('xml')" data-i18n="xml_viewer">
+        <i class="fas fa-file-lines"></i> XML Viewer
+      </button>
+      <button id="btn-graph" class="dropdown-item" onclick="showOnly('graph')" data-i18n="graph_generator">
+        <i class="fas fa-chart-bar"></i> Generate Graph
+      </button>
+    </div>
+  </div>
+
+  <!-- Encoders & Decoders Category -->
+  <div class="tool-category" data-category="encoders">
+    <button class="category-btn" data-category="encoders">
+      <i class="fas fa-code"></i> 
+      <span class="category-info">
+        <span class="category-text" data-i18n="category_encoders_decoders">Encoders & Decoders</span>
+        <span class="selected-tool">Base64 Encode/Decode</span>
+      </span>
+      <i class="fas fa-chevron-down category-arrow"></i>
+    </button>
+    <div class="category-dropdown" id="encoders-dropdown">
+      <button id="btn-base64" class="active dropdown-item" onclick="showOnly('base64')" data-i18n="base64_encoder">
+        <i class="fas fa-lock"></i> Base64 Encode/Decode
+      </button>
+      <button id="btn-jwt" class="dropdown-item" onclick="showOnly('jwt')" data-i18n="jwt_decoder">
+        <i class="fas fa-key"></i> JWT Token
+      </button>
+      <button id="btn-url" class="dropdown-item" onclick="showOnly('url')" data-i18n="url_encoder">
+        <i class="fas fa-link"></i> URL Encoder/Decoder
+      </button>
+    </div>
+  </div>
+
+  <!-- Generators & Utilities Category -->
+  <div class="tool-category" data-category="generators">
+    <button class="category-btn" data-category="generators">
+      <i class="fas fa-tools"></i> 
+      <span class="category-info">
+        <span class="category-text" data-i18n="category_generators_utilities">Generators & Utilities</span>
+        <span class="selected-tool">Hash Generator</span>
+      </span>
+      <i class="fas fa-chevron-down category-arrow"></i>
+    </button>
+    <div class="category-dropdown" id="generators-dropdown">
+      <button id="btn-hash" class="active dropdown-item" onclick="showOnly('hash')" data-i18n="hash_generator">
+        <i class="fas fa-hashtag"></i> Hash Generator
+      </button>
+      <button id="btn-uuid" class="dropdown-item" onclick="showOnly('uuid')" data-i18n="uuid_generator">
+        <i class="fas fa-fingerprint"></i> UUID Generator
+      </button>
+      <button id="btn-qr" class="dropdown-item" onclick="showOnly('qr')" data-i18n="qr_generator">
+        <i class="fas fa-qrcode"></i> QR Code Generator
+      </button>
+    </div>
+  </div>
+
+  <!-- Converters Category -->
+  <div class="tool-category" data-category="converters">
+    <button class="category-btn" data-category="converters">
+      <i class="fas fa-exchange-alt"></i> 
+      <span class="category-info">
+        <span class="category-text" data-i18n="category_converters">Converters</span>
+        <span class="selected-tool">Color Converter</span>
+      </span>
+      <i class="fas fa-chevron-down category-arrow"></i>
+    </button>
+    <div class="category-dropdown" id="converters-dropdown">
+      <button id="btn-color" class="active dropdown-item" onclick="showOnly('color')" data-i18n="color_converter">
+        <i class="fas fa-palette"></i> Color Converter
+      </button>
+      <button id="btn-timestamp" class="dropdown-item" onclick="showOnly('timestamp')" data-i18n="timestamp_converter">
+        <i class="fas fa-clock"></i> Timestamp Converter
+      </button>
+    </div>
+  </div>
+
+  <!-- Text & Development Tools Category -->
+  <div class="tool-category" data-category="texttools">
+    <button class="category-btn" data-category="texttools">
+      <i class="fas fa-file-alt"></i> 
+      <span class="category-info">
+        <span class="category-text" data-i18n="category_text_dev_tools">Text & Dev Tools</span>
+        <span class="selected-tool">Regex Tester</span>
+      </span>
+      <i class="fas fa-chevron-down category-arrow"></i>
+    </button>
+    <div class="category-dropdown" id="texttools-dropdown">
+      <button id="btn-regex" class="active dropdown-item" onclick="showOnly('regex')" data-i18n="regex_tester">
+        <i class="fas fa-search"></i> Regex Tester
+      </button>
+      <button id="btn-text" class="dropdown-item" onclick="showOnly('text')" data-i18n="text_utilities">
+        <i class="fas fa-text-width"></i> Text Utilities
+      </button>
+      <button id="btn-api" class="dropdown-item" onclick="showOnly('api')" data-i18n="api_formatter">
+        <i class="fas fa-server"></i> API Formatter
+      </button>
+      <button id="btn-markdown" class="dropdown-item" onclick="showOnly('markdown')" data-i18n="markdown_preview">
+        <i class="fas fa-markdown"></i> Markdown Preview
+      </button>
+    </div>
+  </div>
+
+  <!-- Settings & Storage -->
   <button onclick="openStorageModal()" class="storage-btn" title="Manage stored data">
-    <i class="fas fa-database"></i> Storage
+    <i class="fas fa-database"></i> <span class="category-text">Storage</span>
   </button>
 </div>
 
@@ -850,6 +918,122 @@ function makeResizable(inputId, dividerId, outputId) {
   document.addEventListener('mouseup', onMouseUp);
 }
 
+// Categorized dropdown functionality
+function initializeCategorizedDropdowns() {
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  
+  categoryBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const category = this.getAttribute('data-category');
+      const dropdown = document.getElementById(category + '-dropdown');
+      
+      // Close all other dropdowns
+      document.querySelectorAll('.category-dropdown').forEach(other => {
+        if (other !== dropdown) {
+          other.classList.remove('show');
+        }
+      });
+      
+      // Remove open class from all category buttons
+      document.querySelectorAll('.category-btn').forEach(otherBtn => {
+        if (otherBtn !== this) {
+          otherBtn.classList.remove('open');
+        }
+      });
+      
+      // Toggle current dropdown
+      const isOpen = dropdown.classList.contains('show');
+      if (isOpen) {
+        dropdown.classList.remove('show');
+        this.classList.remove('open');
+      } else {
+        dropdown.classList.add('show');
+        this.classList.add('open');
+      }
+    });
+  });
+  
+  // Handle dropdown item clicks
+  document.querySelectorAll('.dropdown-item').forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.stopPropagation();
+      
+      // Remove active class from all dropdown items
+      document.querySelectorAll('.dropdown-item').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Add active class to clicked button
+      this.classList.add('active');
+      
+      // Update the selected tool text in the category button
+      const toolName = this.textContent.trim();
+      const dropdown = this.closest('.category-dropdown');
+      const categoryBtn = dropdown.previousElementSibling;
+      const selectedToolSpan = categoryBtn.querySelector('.selected-tool');
+      
+      if (selectedToolSpan) {
+        // Get the translated text if available
+        const i18nKey = this.getAttribute('data-i18n');
+        if (i18nKey && translations[currentLanguage] && translations[currentLanguage][i18nKey]) {
+          selectedToolSpan.textContent = translations[currentLanguage][i18nKey];
+        } else {
+          selectedToolSpan.textContent = toolName;
+        }
+      }
+      
+      // Close all dropdowns
+      document.querySelectorAll('.category-dropdown').forEach(dropdown => {
+        dropdown.classList.remove('show');
+      });
+      
+      // Remove open class from all category buttons
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('open');
+      });
+    });
+  });
+  
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.category-dropdown').forEach(dropdown => {
+      dropdown.classList.remove('show');
+    });
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.classList.remove('open');
+    });
+  });
+  
+  // Keyboard navigation support
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.category-dropdown').forEach(dropdown => {
+        dropdown.classList.remove('show');
+      });
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('open');
+      });
+    }
+  });
+}
+
+// Initialize selected tool names with proper translations
+function initializeSelectedToolNames() {
+  document.querySelectorAll('.selected-tool').forEach(selectedToolSpan => {
+    const categoryBtn = selectedToolSpan.closest('.category-btn');
+    const categoryDropdown = categoryBtn.parentElement.querySelector('.category-dropdown');
+    const activeItem = categoryDropdown.querySelector('.dropdown-item.active');
+    
+    if (activeItem) {
+      const i18nKey = activeItem.getAttribute('data-i18n');
+      if (i18nKey && translations[currentLanguage] && translations[currentLanguage][i18nKey]) {
+        selectedToolSpan.textContent = translations[currentLanguage][i18nKey];
+      }
+    }
+  });
+}
+
 // Call after DOMContentLoaded to ensure all elements exist
 document.addEventListener('DOMContentLoaded', function() {
   makeResizable('json-io-input', 'json-divider', 'json-io-output');
@@ -863,6 +1047,33 @@ document.addEventListener('DOMContentLoaded', function() {
   makeResizable('text-io-input', 'text-divider', 'text-io-output');
   makeResizable('api-io-input', 'api-divider', 'api-io-output');
   makeResizable('markdown-io-input', 'markdown-divider', 'markdown-io-output');
+  
+  // Initialize categorized dropdown functionality first
+  initializeCategorizedDropdowns();
+});
+
+// Initialize translations after DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Restore saved language with fallback
+  const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+  currentLanguage = savedLanguage;
+  
+  // Set the language selector to saved language
+  const languageSelect = document.getElementById('languageSelect');
+  if (languageSelect) {
+    languageSelect.value = currentLanguage;
+  }
+  
+  // Apply translations with saved language
+  updateTranslations(currentLanguage);
+  
+  // Initialize selected tool names after translations are applied
+  setTimeout(() => {
+    initializeSelectedToolNames();
+  }, 200);
+  
+  // Log for debugging (can be removed in production)
+  console.log('Restored language:', currentLanguage);
 });
 
 // Graph panel functionality
@@ -1186,36 +1397,173 @@ ${error.message}
   }
 }
 
+// Text Utility Functions
+function convertCase(caseType) {
+  const input = document.getElementById('text-input').value;
+  const output = document.getElementById('text-output');
+  
+  if (!input.trim()) {
+    output.innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-text-width" style="font-size: 48px; margin-bottom: 10px;"></i><div>Enter some text to convert</div></div>';
+    return;
+  }
+  
+  let result = '';
+  
+  switch (caseType) {
+    case 'upper':
+      result = input.toUpperCase();
+      break;
+    case 'lower':
+      result = input.toLowerCase();
+      break;
+    case 'camel':
+      result = input.toLowerCase()
+        .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
+          return index === 0 ? word.toLowerCase() : word.toUpperCase();
+        })
+        .replace(/\s+/g, '');
+      break;
+    case 'snake':
+      result = input.toLowerCase()
+        .replace(/\W+/g, '_')
+        .replace(/^_+|_+$/g, '');
+      break;
+    case 'kebab':
+      result = input.toLowerCase()
+        .replace(/\W+/g, '-')
+        .replace(/^-+|-+$/g, '');
+      break;
+    default:
+      result = input;
+  }
+  
+  output.innerHTML = `<div style="font-family: Consolas, monospace; padding: 10px;">${result}</div>`;
+}
+
+function getTextStats() {
+  const input = document.getElementById('text-input').value;
+  const output = document.getElementById('text-output');
+  
+  if (!input) {
+    output.innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-calculator" style="font-size: 48px; margin-bottom: 10px;"></i><div>Enter some text to analyze</div></div>';
+    return;
+  }
+  
+  const stats = {
+    characters: input.length,
+    charactersNoSpaces: input.replace(/\s/g, '').length,
+    words: input.trim() ? input.trim().split(/\s+/).length : 0,
+    sentences: input.split(/[.!?]+/).filter(s => s.trim().length > 0).length,
+    paragraphs: input.split(/\n\s*\n/).filter(p => p.trim().length > 0).length,
+    lines: input.split('\n').length
+  };
+  
+  output.innerHTML = `
+    <div style="font-family: Consolas, monospace; padding: 15px;">
+      <h4 style="margin-top: 0; color: #333;">📊 Text Statistics</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
+        <div><strong>Characters:</strong> ${stats.characters}</div>
+        <div><strong>Characters (no spaces):</strong> ${stats.charactersNoSpaces}</div>
+        <div><strong>Words:</strong> ${stats.words}</div>
+        <div><strong>Sentences:</strong> ${stats.sentences}</div>
+        <div><strong>Paragraphs:</strong> ${stats.paragraphs}</div>
+        <div><strong>Lines:</strong> ${stats.lines}</div>
+      </div>
+    </div>
+  `;
+}
+
+function reverseText() {
+  const input = document.getElementById('text-input').value;
+  const output = document.getElementById('text-output');
+  
+  if (!input.trim()) {
+    output.innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-text-width" style="font-size: 48px; margin-bottom: 10px;"></i><div>Enter some text to reverse</div></div>';
+    return;
+  }
+  
+  const result = input.split('').reverse().join('');
+  output.innerHTML = `<div style="font-family: Consolas, monospace; padding: 10px;">${result}</div>`;
+}
+
+function sortLines() {
+  const input = document.getElementById('text-input').value;
+  const output = document.getElementById('text-output');
+  
+  if (!input.trim()) {
+    output.innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-sort" style="font-size: 48px; margin-bottom: 10px;"></i><div>Enter some text with multiple lines to sort</div></div>';
+    return;
+  }
+  
+  const lines = input.split('\n').sort();
+  const result = lines.join('\n');
+  output.innerHTML = `<div style="font-family: Consolas, monospace; padding: 10px; white-space: pre-wrap;">${result}</div>`;
+}
+
+function removeDuplicateLines() {
+  const input = document.getElementById('text-input').value;
+  const output = document.getElementById('text-output');
+  
+  if (!input.trim()) {
+    output.innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-filter" style="font-size: 48px; margin-bottom: 10px;"></i><div>Enter some text to remove duplicate lines</div></div>';
+    return;
+  }
+  
+  const lines = input.split('\n');
+  const uniqueLines = [...new Set(lines)];
+  const result = uniqueLines.join('\n');
+  output.innerHTML = `<div style="font-family: Consolas, monospace; padding: 10px; white-space: pre-wrap;">${result}</div>`;
+}
+
 // URL Encoding/Decoding functions
 function urlEncode() {
   const input = document.getElementById('url-input').value;
-  document.getElementById('url-output').value = encodeURIComponent(input);
+  const output = document.getElementById('url-output');
+  
+  if (!input.trim()) {
+    output.innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-link" style="font-size: 48px; margin-bottom: 10px;"></i><div>Enter text to encode</div></div>';
+    return;
+  }
+  
+  const encoded = encodeURIComponent(input);
+  output.innerHTML = `<div style="font-family: Consolas, monospace; padding: 10px; word-break: break-all;"><strong>URL Encoded:</strong><br><br>${encoded}</div>`;
 }
 
 function urlDecode() {
   const input = document.getElementById('url-input').value;
+  const output = document.getElementById('url-output');
+  
+  if (!input.trim()) {
+    output.innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-link" style="font-size: 48px; margin-bottom: 10px;"></i><div>Enter URL-encoded text to decode</div></div>';
+    return;
+  }
+  
   try {
-    document.getElementById('url-output').value = decodeURIComponent(input);
+    const decoded = decodeURIComponent(input);
+    output.innerHTML = `<div style="font-family: Consolas, monospace; padding: 10px; word-break: break-all;"><strong>URL Decoded:</strong><br><br>${decoded}</div>`;
   } catch (e) {
-    document.getElementById('url-output').value = 'Invalid URL-encoded string';
+    output.innerHTML = '<div style="color: #ff6b6b; padding: 10px;">Invalid URL-encoded string</div>';
   }
 }
 
 function switchUrlDirection() {
   const input = document.getElementById('url-input').value;
-  const output = document.getElementById('url-output').value;
-  document.getElementById('url-input').value = output;
-  document.getElementById('url-output').value = input;
+  const outputDiv = document.getElementById('url-output');
+  const outputText = outputDiv.textContent || outputDiv.innerText || '';
+  
+  if (input.trim() && outputText.trim()) {
+    document.getElementById('url-input').value = outputText;
+    outputDiv.innerHTML = `<div style="font-family: Consolas, monospace; padding: 10px; word-break: break-all;">${input}</div>`;
+  }
 }
 
 // Hash generation functions
-async function generateHash() {
+async function generateHash(algorithm) {
   const input = document.getElementById('hash-input').value;
-  const algorithm = document.getElementById('hash-algorithm').value;
   const outputElement = document.getElementById('hash-output');
   
   if (!input.trim()) {
-    alert('Please enter text to hash!');
+    outputElement.innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-hashtag" style="font-size: 48px; margin-bottom: 10px;"></i><div>Enter text to generate hash</div></div>';
     return;
   }
   
@@ -1228,22 +1576,22 @@ async function generateHash() {
         case 'md5':
           hash = CryptoJS.MD5(input).toString();
           break;
-        case 'sha-1':
+        case 'sha1':
           hash = CryptoJS.SHA1(input).toString();
           break;
-        case 'sha-256':
+        case 'sha256':
           hash = CryptoJS.SHA256(input).toString();
           break;
-        case 'sha-384':
+        case 'sha384':
           hash = CryptoJS.SHA384(input).toString();
           break;
-        case 'sha-512':
+        case 'sha512':
           hash = CryptoJS.SHA512(input).toString();
           break;
         default:
           hash = CryptoJS.SHA256(input).toString();
       }
-      outputElement.textContent = hash;
+      outputElement.innerHTML = `<div style="font-family: Consolas, monospace; padding: 10px;"><strong>${algorithm.toUpperCase()}:</strong><br><br>${hash}</div>`;
     } 
     // Fallback to Web Crypto API
     else if (window.crypto && window.crypto.subtle && algorithm !== 'md5') {
@@ -1252,16 +1600,16 @@ async function generateHash() {
       
       let cryptoAlgorithm;
       switch (algorithm) {
-        case 'sha-1':
+        case 'sha1':
           cryptoAlgorithm = 'SHA-1';
           break;
-        case 'sha-256':
+        case 'sha256':
           cryptoAlgorithm = 'SHA-256';
           break;
-        case 'sha-384':
+        case 'sha384':
           cryptoAlgorithm = 'SHA-384';
           break;
-        case 'sha-512':
+        case 'sha512':
           cryptoAlgorithm = 'SHA-512';
           break;
         default:
@@ -1271,43 +1619,96 @@ async function generateHash() {
       const hashBuffer = await crypto.subtle.digest(cryptoAlgorithm, data);
       const hashArray = Array.from(new Uint8Array(hashBuffer));
       const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-      outputElement.textContent = hashHex;
+      outputElement.innerHTML = `<div style="font-family: Consolas, monospace; padding: 10px;"><strong>${algorithm.toUpperCase()}:</strong><br><br>${hashHex}</div>`;
     } 
     // Simple fallback for unsupported cases
     else {
       if (algorithm === 'md5') {
-        outputElement.textContent = 'MD5 requires crypto-js library (loading...)';
+        outputElement.innerHTML = '<div style="color: #ff6b6b; padding: 10px;">MD5 requires crypto-js library. <br><br>Please load the page with an internet connection for full crypto support.</div>';
       } else {
-        outputElement.textContent = 'Hash algorithm not supported in this browser';
+        outputElement.innerHTML = '<div style="color: #ff6b6b; padding: 10px;">Hash algorithm not supported in this browser</div>';
       }
     }
   } catch (error) {
-    outputElement.textContent = 'Error generating hash: ' + error.message;
+    outputElement.innerHTML = `<div style="color: #ff6b6b; padding: 10px;">Error generating hash: ${error.message}</div>`;
   }
 }
 
 // UUID generation functions
-function generateUUID() {
-  if (window.crypto && window.crypto.randomUUID) {
-    document.getElementById('uuid-output').value = window.crypto.randomUUID();
+function generateUUID(version = 'v4') {
+  const output = document.getElementById('uuid-output');
+  
+  if (version === 'v1') {
+    // UUID v1 generation (timestamp-based)
+    const uuid = generateUUIDv1();
+    output.innerHTML = `<div style="font-family: Consolas, monospace; padding: 10px;"><strong>UUID v1 (Timestamp-based):</strong><br><br>${uuid}<br><br><small>Generated at: ${new Date().toISOString()}</small></div>`;
   } else {
-    // Fallback UUID v4 generation
-    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      const r = Math.random() * 16 | 0;
-      const v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
-    document.getElementById('uuid-output').value = uuid;
+    // UUID v4 generation (random)
+    let uuid;
+    if (window.crypto && window.crypto.randomUUID) {
+      uuid = window.crypto.randomUUID();
+    } else {
+      // Fallback UUID v4 generation
+      uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0;
+        const v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
+    output.innerHTML = `<div style="font-family: Consolas, monospace; padding: 10px;"><strong>UUID v4 (Random):</strong><br><br>${uuid}</div>`;
   }
+}
+
+function generateUUIDv1() {
+  // Simple UUID v1 implementation
+  const timestamp = Date.now();
+  const randomBytes = new Array(16);
+  for (let i = 0; i < 16; i++) {
+    randomBytes[i] = Math.floor(Math.random() * 256);
+  }
+  
+  // Set version (4 bits) and variant (2 bits)
+  randomBytes[6] = (randomBytes[6] & 0x0f) | 0x10; // Version 1
+  randomBytes[8] = (randomBytes[8] & 0x3f) | 0x80; // Variant 10
+  
+  const hex = randomBytes.map(b => b.toString(16).padStart(2, '0')).join('');
+  return [
+    hex.slice(0, 8),
+    hex.slice(8, 12),
+    hex.slice(12, 16),
+    hex.slice(16, 20),
+    hex.slice(20, 32)
+  ].join('-');
+}
+
+function generateMultipleUUIDs() {
+  const output = document.getElementById('uuid-output');
+  const uuids = [];
+  
+  for (let i = 0; i < 10; i++) {
+    let uuid;
+    if (window.crypto && window.crypto.randomUUID) {
+      uuid = window.crypto.randomUUID();
+    } else {
+      // Fallback UUID v4 generation
+      uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0;
+        const v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
+    uuids.push(uuid);
+  }
+  
+  output.innerHTML = `<div style="font-family: Consolas, monospace; padding: 10px;"><strong>10 UUID v4 (Random):</strong><br><br>${uuids.join('<br>')}</div>`;
 }
 
 function validateUUID() {
   const input = document.getElementById('uuid-input').value.trim();
-  const output = document.getElementById('uuid-validation');
+  const output = document.getElementById('uuid-output');
   
   if (!input) {
-    output.textContent = 'Enter a UUID to validate';
-    output.style.color = '#666';
+    output.innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-fingerprint" style="font-size: 48px; margin-bottom: 10px;"></i><div>Enter a UUID to validate</div></div>';
     return;
   }
   
@@ -1315,22 +1716,19 @@ function validateUUID() {
   
   if (uuidRegex.test(input)) {
     const version = input.charAt(14);
-    output.textContent = `✅ Valid UUID v${version}`;
-    output.style.color = '#28a745';
+    output.innerHTML = `<div style="font-family: Consolas, monospace; padding: 10px; color: #28a745;"><strong>✅ Valid UUID v${version}</strong><br><br>${input}<br><br><small>UUID format is correct and follows RFC 4122 standards.</small></div>`;
   } else {
-    output.textContent = '❌ Invalid UUID format';
-    output.style.color = '#dc3545';
+    output.innerHTML = `<div style="font-family: Consolas, monospace; padding: 10px; color: #dc3545;"><strong>❌ Invalid UUID format</strong><br><br>${input}<br><br><small>UUID should follow format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</small></div>`;
   }
 }
 
 // Color conversion functions
-function convertColor() {
+function convertColor(format) {
   const input = document.getElementById('color-input').value.trim();
-  const format = document.getElementById('color-format').value;
   const output = document.getElementById('color-output');
   
   if (!input) {
-    output.textContent = 'Enter a color value to convert';
+    output.innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-palette" style="font-size: 48px; margin-bottom: 10px;"></i><div>Enter a color value to convert</div></div>';
     return;
   }
   
@@ -1339,23 +1737,46 @@ function convertColor() {
     if (!color) throw new Error('Invalid color format');
     
     let result = '';
+    let formatLabel = '';
     switch (format) {
       case 'hex':
         result = rgbToHex(color.r, color.g, color.b);
+        formatLabel = 'HEX';
         break;
       case 'rgb':
         result = `rgb(${color.r}, ${color.g}, ${color.b})`;
+        formatLabel = 'RGB';
         break;
       case 'hsl':
         const hsl = rgbToHsl(color.r, color.g, color.b);
         result = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+        formatLabel = 'HSL';
         break;
+      default:
+        result = rgbToHex(color.r, color.g, color.b);
+        formatLabel = 'HEX';
     }
     
-    output.textContent = result;
-    document.getElementById('color-preview').style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
+    const colorPreview = `rgb(${color.r}, ${color.g}, ${color.b})`;
+    output.innerHTML = `
+      <div style="font-family: Consolas, monospace; padding: 15px;">
+        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+          <div style="width: 50px; height: 50px; background: ${colorPreview}; border: 2px solid #ddd; border-radius: 8px;"></div>
+          <div>
+            <strong>${formatLabel} Format:</strong><br>
+            <span style="font-size: 18px; color: #333;">${result}</span>
+          </div>
+        </div>
+        <div style="font-size: 12px; color: #666; margin-top: 10px;">
+          <strong>All Formats:</strong><br>
+          HEX: ${rgbToHex(color.r, color.g, color.b)}<br>
+          RGB: rgb(${color.r}, ${color.g}, ${color.b})<br>
+          HSL: hsl(${rgbToHsl(color.r, color.g, color.b).h}, ${rgbToHsl(color.r, color.g, color.b).s}%, ${rgbToHsl(color.r, color.g, color.b).l}%)
+        </div>
+      </div>
+    `;
   } catch (error) {
-    output.textContent = 'Error: ' + error.message;
+    output.innerHTML = `<div style="color: #ff6b6b; padding: 10px;">Error: ${error.message}<br><br><small>Try formats like: #ff0000, red, rgb(255,0,0), hsl(0,100%,50%)</small></div>`;
   }
 }
 
@@ -1397,6 +1818,12 @@ function rgbToHsl(r, g, b) {
   }
   
   return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+}
+
+function convertFromPicker() {
+  const pickerValue = document.getElementById('color-picker').value;
+  document.getElementById('color-input').value = pickerValue;
+  convertColor('hex'); // Convert to hex by default when using color picker
 }
 
 // Timestamp conversion functions
@@ -1468,44 +1895,42 @@ function clearAll(panelType) {
   switch (panelType) {
     case 'url':
       document.getElementById('url-input').value = '';
-      document.getElementById('url-output').value = '';
+      document.getElementById('url-output').innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-link" style="font-size: 48px; margin-bottom: 10px;"></i><div>URL encoded/decoded result will appear here</div></div>';
       break;
     case 'hash':
       document.getElementById('hash-input').value = '';
-      document.getElementById('hash-output').textContent = 'Hash will appear here';
+      document.getElementById('hash-output').innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-hashtag" style="font-size: 48px; margin-bottom: 10px;"></i><div>Hash values will appear here</div></div>';
       break;
     case 'uuid':
       document.getElementById('uuid-input').value = '';
-      document.getElementById('uuid-output').value = '';
-      document.getElementById('uuid-validation').textContent = '';
+      document.getElementById('uuid-output').innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-fingerprint" style="font-size: 48px; margin-bottom: 10px;"></i><div>Generated UUIDs will appear here</div></div>';
       break;
     case 'color':
       document.getElementById('color-input').value = '';
-      document.getElementById('color-output').textContent = '';
-      document.getElementById('color-preview').style.backgroundColor = '#f0f0f0';
+      document.getElementById('color-output').innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-palette" style="font-size: 48px; margin-bottom: 10px;"></i><div>Color conversions will appear here</div></div>';
       break;
     case 'timestamp':
       document.getElementById('timestamp-input').value = '';
-      document.getElementById('timestamp-output').textContent = 'Timestamp conversion will appear here';
+      document.getElementById('timestamp-output').innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-clock" style="font-size: 48px; margin-bottom: 10px;"></i><div>Timestamp conversions will appear here</div></div>';
       break;
     case 'regex':
       document.getElementById('regex-pattern').value = '';
       document.getElementById('regex-input').value = '';
-      document.getElementById('regex-flags').value = 'gi';
-      document.getElementById('regex-output').textContent = 'Test results will appear here';
+      if (document.getElementById('regex-global')) document.getElementById('regex-global').checked = true;
+      if (document.getElementById('regex-ignorecase')) document.getElementById('regex-ignorecase').checked = true;
+      document.getElementById('regex-output').innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-search" style="font-size: 48px; margin-bottom: 10px;"></i><div>Regex matches will appear here</div></div>';
       break;
     case 'text':
       document.getElementById('text-input').value = '';
-      document.getElementById('text-output').textContent = '';
-      document.getElementById('text-stats').innerHTML = '';
+      document.getElementById('text-output').innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-text-width" style="font-size: 48px; margin-bottom: 10px;"></i><div>Processed text will appear here</div></div>';
       break;
     case 'api':
       document.getElementById('api-input').value = '';
-      document.getElementById('api-output').textContent = '';
+      document.getElementById('api-output').innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-server" style="font-size: 48px; margin-bottom: 10px;"></i><div>Formatted API response will appear here</div></div>';
       break;
     case 'markdown':
       document.getElementById('markdown-input').value = '';
-      document.getElementById('markdown-output').innerHTML = '<p><em>Enter Markdown text to see preview</em></p>';
+      document.getElementById('markdown-output').innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-markdown" style="font-size: 48px; margin-bottom: 10px;"></i><div>Markdown preview will appear here</div></div>';
       break;
   }
 }
@@ -1747,11 +2172,21 @@ function clearQR() {
 function testRegex() {
   const pattern = document.getElementById('regex-pattern').value;
   const text = document.getElementById('regex-input').value;
-  const flags = document.getElementById('regex-flags').value || 'gi';
+  
+  // Construct flags from checkboxes
+  let flags = '';
+  if (document.getElementById('regex-global') && document.getElementById('regex-global').checked) {
+    flags += 'g';
+  }
+  if (document.getElementById('regex-ignorecase') && document.getElementById('regex-ignorecase').checked) {
+    flags += 'i';
+  }
+  if (!flags) flags = 'gi'; // Default flags if none selected
+  
   const output = document.getElementById('regex-output');
   
   if (!pattern) {
-    output.textContent = 'Enter a regex pattern to test';
+    output.innerHTML = '<div style="color: #888; text-align: center; margin-top: 100px;"><i class="fas fa-search" style="font-size: 48px; margin-bottom: 10px;"></i><div>Enter a regex pattern to test</div></div>';
     return;
   }
   
@@ -2408,14 +2843,12 @@ function initializeInputPersistence() {
     
     // Hash Panel
     { panel: 'hash', id: 'hash-input', type: 'textarea' },
-    { panel: 'hash', id: 'hash-algorithm', type: 'select' },
     
     // UUID Panel
     { panel: 'uuid', id: 'uuid-input', type: 'input' },
     
     // Color Panel
     { panel: 'color', id: 'color-input', type: 'input' },
-    { panel: 'color', id: 'color-format', type: 'select' },
     
     // Timestamp Panel
     { panel: 'timestamp', id: 'timestamp-input', type: 'input' },
@@ -2426,7 +2859,8 @@ function initializeInputPersistence() {
     
     // Regex Panel
     { panel: 'regex', id: 'regex-pattern', type: 'input' },
-    { panel: 'regex', id: 'regex-flags', type: 'input' },
+    { panel: 'regex', id: 'regex-global', type: 'checkbox' },
+    { panel: 'regex', id: 'regex-ignorecase', type: 'checkbox' },
     { panel: 'regex', id: 'regex-input', type: 'textarea' },
     
     // Text Panel
@@ -2448,13 +2882,27 @@ function initializeInputPersistence() {
       // Load saved value
       const savedValue = LocalStorage.loadInput(mapping.panel, mapping.id);
       if (savedValue) {
-        element.value = savedValue;
+        if (mapping.type === 'checkbox') {
+          element.checked = savedValue === 'true';
+        } else {
+          element.value = savedValue;
+        }
       }
       
       // Add auto-save listener
-      const eventType = mapping.type === 'select' ? 'change' : 'input';
+      let eventType = 'input';
+      if (mapping.type === 'select') {
+        eventType = 'change';
+      } else if (mapping.type === 'checkbox') {
+        eventType = 'change';
+      }
+      
       element.addEventListener(eventType, function() {
-        LocalStorage.saveInput(mapping.panel, mapping.id, this.value);
+        if (mapping.type === 'checkbox') {
+          LocalStorage.saveInput(mapping.panel, mapping.id, this.checked.toString());
+        } else {
+          LocalStorage.saveInput(mapping.panel, mapping.id, this.value);
+        }
       });
       
       // For textarea, also save on paste
@@ -2668,10 +3116,10 @@ function initializeInputPersistence() {
   <div id="panel-url" class="panel hidden">
     <div class="io-wrapper">
       <div class="btn-group">
-        <button onclick="encodeURL()" data-i18n="encode_url">
+        <button onclick="urlEncode()" data-i18n="encode_url">
           <i class="fas fa-link"></i> Encode URL
         </button>
-        <button onclick="decodeURL()" data-i18n="decode_url">
+        <button onclick="urlDecode()" data-i18n="decode_url">
           <i class="fas fa-unlink"></i> Decode URL
         </button>
         <button onclick="pasteInput('url-input')" data-i18n="paste">
@@ -3364,11 +3812,28 @@ const translations = {
     // Navigation and main
     json_viewer: "JSON Viewer",
     xml_viewer: "XML Viewer",
-    graph_tab: "Generate Graph",
-    base64_tab: "Base64 Encode/Decode",
-    jwt_tab: "JWT Token",
+    graph_generator: "Generate Graph",
+    base64_encoder: "Base64 Encode/Decode",
+    jwt_decoder: "JWT Token",
+    url_encoder: "URL Encoder/Decoder",
+    hash_generator: "Hash Generator",
+    uuid_generator: "UUID Generator",
+    color_converter: "Color Converter",
+    timestamp_converter: "Timestamp Converter",
+    qr_generator: "QR Code Generator",
+    regex_tester: "Regex Tester",
+    text_utilities: "Text Utilities",
+    api_formatter: "API Formatter",
+    markdown_preview: "Markdown Preview",
     dark_mode: "Dark Mode",
     light_mode: "Light Mode",
+    
+    // Category Names
+    category_data_viewers: "Data Viewers",
+    category_encoders_decoders: "Encoders & Decoders",
+    category_generators_utilities: "Generators & Utilities",
+    category_converters: "Converters",
+    category_text_dev_tools: "Text & Dev Tools",
     
     // Generic Actions
     copy: "Copy",
@@ -3455,9 +3920,28 @@ const translations = {
     // Navigation and main
     json_viewer: "Visor JSON",
     xml_viewer: "Visor XML",
-    graph_tab: "Generar Gráfico",
+    graph_generator: "Generar Gráfico",
+    base64_encoder: "Codificar/Decodificar Base64",
+    jwt_decoder: "Token JWT",
+    url_encoder: "Codificador/Decodificador URL",
+    hash_generator: "Generador de Hash",
+    uuid_generator: "Generador UUID",
+    color_converter: "Convertidor de Color",
+    timestamp_converter: "Convertidor de Timestamp",
+    qr_generator: "Generador de Código QR",
+    regex_tester: "Probador Regex",
+    text_utilities: "Utilidades de Texto",
+    api_formatter: "Formateador API",
+    markdown_preview: "Vista Previa Markdown",
     dark_mode: "Modo Oscuro",
     light_mode: "Modo Claro",
+    
+    // Category Names
+    category_data_viewers: "Visualizadores de Datos",
+    category_encoders_decoders: "Codificadores y Decodificadores",
+    category_generators_utilities: "Generadores y Utilidades",
+    category_converters: "Convertidores",
+    category_text_dev_tools: "Herramientas de Texto y Desarrollo",
     
     // Generic Actions
     copy: "Copiar",
@@ -3520,7 +4004,19 @@ const translations = {
     // Navigation and main
     json_viewer: "Visualiseur JSON",
     xml_viewer: "Visualiseur XML",
-    graph_tab: "Générer Graphique",
+    graph_generator: "Générer Graphique",
+    base64_encoder: "Encoder/Décoder Base64",
+    jwt_decoder: "Token JWT",
+    url_encoder: "Encodeur/Décodeur URL",
+    hash_generator: "Générateur de Hash",
+    uuid_generator: "Générateur UUID",
+    color_converter: "Convertisseur de Couleur",
+    timestamp_converter: "Convertisseur Timestamp",
+    qr_generator: "Générateur Code QR",
+    regex_tester: "Testeur Regex",
+    text_utilities: "Utilitaires Texte",
+    api_formatter: "Formateur API",
+    markdown_preview: "Aperçu Markdown",
     dark_mode: "Mode Sombre",
     light_mode: "Mode Clair",
     
@@ -3578,7 +4074,19 @@ const translations = {
     // Navigation and main
     json_viewer: "JSON-Viewer",
     xml_viewer: "XML-Viewer",
-    graph_tab: "Diagramm Erstellen",
+    graph_generator: "Diagramm Erstellen",
+    base64_encoder: "Base64 Kodieren/Dekodieren",
+    jwt_decoder: "JWT Token",
+    url_encoder: "URL Encoder/Decoder",
+    hash_generator: "Hash Generator",
+    uuid_generator: "UUID Generator",
+    color_converter: "Farb-Konverter",
+    timestamp_converter: "Zeitstempel-Konverter",
+    qr_generator: "QR-Code Generator",
+    regex_tester: "Regex Tester",
+    text_utilities: "Text-Utilities",
+    api_formatter: "API-Formatierer",
+    markdown_preview: "Markdown-Vorschau",
     dark_mode: "Dunkler Modus",
     light_mode: "Heller Modus",
     
@@ -4271,15 +4779,32 @@ function updateTranslations(lang = currentLanguage) {
       return;
     }
     
-    // Check if element contains icons (has <i> tags)
-    const iconElement = element.querySelector('i');
-    if (iconElement) {
-      // Preserve the icon and update only the text part
-      const iconHTML = iconElement.outerHTML;
-      element.innerHTML = iconHTML + ' ' + translatedText;
-    } else {
-      // No icons, safe to use textContent
+    // Special handling for dropdown items with icons
+    if (element.classList.contains('dropdown-item')) {
+      const iconElement = element.querySelector('i');
+      if (iconElement) {
+        // Preserve the icon and update only the text part
+        const iconHTML = iconElement.outerHTML;
+        element.innerHTML = iconHTML + ' ' + translatedText;
+      } else {
+        element.textContent = translatedText;
+      }
+    }
+    // Handle category text spans
+    else if (element.classList.contains('category-text')) {
       element.textContent = translatedText;
+    }
+    // Check if element contains icons (general case)
+    else {
+      const iconElement = element.querySelector('i');
+      if (iconElement) {
+        // Preserve the icon and update only the text part
+        const iconHTML = iconElement.outerHTML;
+        element.innerHTML = iconHTML + ' ' + translatedText;
+      } else {
+        // No icons, safe to use textContent
+        element.textContent = translatedText;
+      }
     }
   });
   
@@ -4291,6 +4816,20 @@ function updateTranslations(lang = currentLanguage) {
   
   // Update theme button text based on current theme
   updateThemeButtonText();
+  
+  // Update selected tool names in category buttons
+  document.querySelectorAll('.selected-tool').forEach(selectedToolSpan => {
+    const categoryBtn = selectedToolSpan.closest('.category-btn');
+    const categoryDropdown = categoryBtn.parentElement.querySelector('.category-dropdown');
+    const activeItem = categoryDropdown.querySelector('.dropdown-item.active');
+    
+    if (activeItem) {
+      const i18nKey = activeItem.getAttribute('data-i18n');
+      if (i18nKey && translations[lang] && translations[lang][i18nKey]) {
+        selectedToolSpan.textContent = translations[lang][i18nKey];
+      }
+    }
+  });
 }
 
 // Debounce timer for theme button updates
@@ -4334,6 +4873,11 @@ function changeLanguage(lang) {
   localStorage.setItem('selectedLanguage', lang);
   updateTranslations(lang);
   
+  // Initialize selected tool names after language change
+  setTimeout(() => {
+    initializeSelectedToolNames();
+  }, 50);
+  
   // Update language selector
   document.getElementById('languageSelect').value = lang;
   
@@ -4345,25 +4889,8 @@ function changeLanguage(lang) {
   }, 1000);
 }
 
-// Initialize translations when DOM is loaded
+// Observe theme changes to update translations
 document.addEventListener('DOMContentLoaded', function() {
-  // Restore saved language with fallback
-  const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
-  currentLanguage = savedLanguage;
-  
-  // Set the language selector to saved language
-  const languageSelect = document.getElementById('languageSelect');
-  if (languageSelect) {
-    languageSelect.value = currentLanguage;
-  }
-  
-  // Apply translations with saved language
-  updateTranslations(currentLanguage);
-  
-  // Log for debugging (can be removed in production)
-  console.log('Restored language:', currentLanguage);
-  
-  // Observe theme changes to update translations
   const observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       if (mutation.type === 'attributes' && mutation.attributeName === 'class') {

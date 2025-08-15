@@ -314,6 +314,451 @@ footer {
   background: var(--btn-hover-bg);
 }
 
+/* ====== Categorized Toolbar Dropdown ====== */
+.tool-category {
+  position: relative;
+  display: inline-block;
+}
+
+.category-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 160px;
+  justify-content: space-between;
+  border-radius: 4px;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 0;
+}
+
+.category-text {
+  font-weight: 600;
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.selected-tool {
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+.category-arrow {
+  font-size: 10px;
+  transition: transform 0.2s ease;
+}
+
+.category-btn.open .category-arrow {
+  transform: rotate(180deg);
+}
+
+/* Category-specific colors */
+.tool-category[data-category="viewers"] .category-btn {
+  background: var(--category-viewers-bg);
+  color: var(--category-viewers-text);
+  border-left: 4px solid var(--category-viewers-text);
+}
+
+.tool-category[data-category="viewers"] .category-btn:hover {
+  background: var(--category-viewers-hover);
+}
+
+/* Enhanced active state highlighting for category buttons */
+.tool-category[data-category="viewers"].active .category-btn,
+.tool-category[data-category="viewers"]:has(.dropdown-item.active) .category-btn {
+  background: var(--category-viewers-bg);
+  color: var(--category-viewers-text);
+  border-left: 4px solid var(--category-viewers-text);
+  border: 2px solid var(--category-viewers-text);
+  box-shadow: 0 0 12px rgba(0,123,255,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  transform: scale(1.02);
+  position: relative;
+}
+
+.tool-category[data-category="viewers"].active .category-btn::before,
+.tool-category[data-category="viewers"]:has(.dropdown-item.active) .category-btn::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 12px;
+  height: 12px;
+  background: var(--category-viewers-text);
+  border-radius: 50%;
+  border: 2px solid var(--bg-color);
+  animation: activeIndicator 2s infinite;
+}
+
+@keyframes activeIndicator {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.tool-category[data-category="viewers"] .category-text,
+.tool-category[data-category="viewers"] .selected-tool {
+  color: var(--category-viewers-text);
+}
+
+.tool-category[data-category="encoders"] .category-btn {
+  background: var(--category-encoders-bg);
+  color: var(--category-encoders-text);
+  border-left: 4px solid var(--category-encoders-text);
+}
+
+.tool-category[data-category="encoders"] .category-btn:hover {
+  background: var(--category-encoders-hover);
+}
+
+/* Enhanced active state highlighting for encoders category */
+.tool-category[data-category="encoders"].active .category-btn,
+.tool-category[data-category="encoders"]:has(.dropdown-item.active) .category-btn {
+  background: var(--category-encoders-bg);
+  color: var(--category-encoders-text);
+  border-left: 4px solid var(--category-encoders-text);
+  border: 2px solid var(--category-encoders-text);
+  box-shadow: 0 0 12px rgba(255,193,7,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  transform: scale(1.02);
+  position: relative;
+}
+
+.tool-category[data-category="encoders"].active .category-btn::before,
+.tool-category[data-category="encoders"]:has(.dropdown-item.active) .category-btn::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 12px;
+  height: 12px;
+  background: var(--category-encoders-text);
+  border-radius: 50%;
+  border: 2px solid var(--bg-color);
+  animation: activeIndicator 2s infinite;
+}
+
+.tool-category[data-category="encoders"] .category-text,
+.tool-category[data-category="encoders"] .selected-tool {
+  color: var(--category-encoders-text);
+}
+
+.tool-category[data-category="generators"] .category-btn {
+  background: var(--category-generators-bg);
+  color: var(--category-generators-text);
+  border-left: 4px solid var(--category-generators-text);
+}
+
+.tool-category[data-category="generators"] .category-btn:hover {
+  background: var(--category-generators-hover);
+}
+
+/* Enhanced active state highlighting for generators category */
+.tool-category[data-category="generators"].active .category-btn,
+.tool-category[data-category="generators"]:has(.dropdown-item.active) .category-btn {
+  background: var(--category-generators-bg);
+  color: var(--category-generators-text);
+  border-left: 4px solid var(--category-generators-text);
+  border: 2px solid var(--category-generators-text);
+  box-shadow: 0 0 12px rgba(156,39,176,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  transform: scale(1.02);
+  position: relative;
+}
+
+.tool-category[data-category="generators"].active .category-btn::before,
+.tool-category[data-category="generators"]:has(.dropdown-item.active) .category-btn::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 12px;
+  height: 12px;
+  background: var(--category-generators-text);
+  border-radius: 50%;
+  border: 2px solid var(--bg-color);
+  animation: activeIndicator 2s infinite;
+}
+
+.tool-category[data-category="generators"] .category-text,
+.tool-category[data-category="generators"] .selected-tool {
+  color: var(--category-generators-text);
+}
+
+.tool-category[data-category="converters"] .category-btn {
+  background: var(--category-converters-bg);
+  color: var(--category-converters-text);
+  border-left: 4px solid var(--category-converters-text);
+}
+
+.tool-category[data-category="converters"] .category-btn:hover {
+  background: var(--category-converters-hover);
+}
+
+/* Enhanced active state highlighting for converters category */
+.tool-category[data-category="converters"].active .category-btn,
+.tool-category[data-category="converters"]:has(.dropdown-item.active) .category-btn {
+  background: var(--category-converters-bg);
+  color: var(--category-converters-text);
+  border-left: 4px solid var(--category-converters-text);
+  border: 2px solid var(--category-converters-text);
+  box-shadow: 0 0 12px rgba(76,175,80,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  transform: scale(1.02);
+  position: relative;
+}
+
+.tool-category[data-category="converters"].active .category-btn::before,
+.tool-category[data-category="converters"]:has(.dropdown-item.active) .category-btn::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 12px;
+  height: 12px;
+  background: var(--category-converters-text);
+  border-radius: 50%;
+  border: 2px solid var(--bg-color);
+  animation: activeIndicator 2s infinite;
+}
+
+.tool-category[data-category="converters"] .category-text,
+.tool-category[data-category="converters"] .selected-tool {
+  color: var(--category-converters-text);
+}
+
+.tool-category[data-category="texttools"] .category-btn {
+  background: var(--category-texttools-bg);
+  color: var(--category-texttools-text);
+  border-left: 4px solid var(--category-texttools-text);
+}
+
+.tool-category[data-category="texttools"] .category-btn:hover {
+  background: var(--category-texttools-hover);
+}
+
+/* Enhanced active state highlighting for texttools category */
+.tool-category[data-category="texttools"].active .category-btn,
+.tool-category[data-category="texttools"]:has(.dropdown-item.active) .category-btn {
+  background: var(--category-texttools-bg);
+  color: var(--category-texttools-text);
+  border-left: 4px solid var(--category-texttools-text);
+  border: 2px solid var(--category-texttools-text);
+  box-shadow: 0 0 12px rgba(244,67,54,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  transform: scale(1.02);
+  position: relative;
+}
+
+.tool-category[data-category="texttools"].active .category-btn::before,
+.tool-category[data-category="texttools"]:has(.dropdown-item.active) .category-btn::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 12px;
+  height: 12px;
+  background: var(--category-texttools-text);
+  border-radius: 50%;
+  border: 2px solid var(--bg-color);
+  animation: activeIndicator 2s infinite;
+}
+
+.tool-category[data-category="texttools"] .category-text,
+.tool-category[data-category="texttools"] .selected-tool {
+  color: var(--category-texttools-text);
+}
+
+/* Dropdown item colors based on parent category */
+.tool-category[data-category="viewers"] .dropdown-item {
+  border-left: 3px solid var(--category-viewers-text);
+}
+
+.tool-category[data-category="viewers"] .dropdown-item:hover {
+  background: var(--category-viewers-bg);
+  color: var(--category-viewers-text);
+}
+
+.tool-category[data-category="viewers"] .dropdown-item.active {
+  background: var(--category-viewers-bg);
+  color: var(--category-viewers-text);
+  font-weight: bold;
+  border-left: 5px solid var(--category-viewers-text);
+  box-shadow: inset 3px 0 0 var(--category-viewers-text), 0 2px 8px rgba(0,0,0,0.15);
+  transform: translateX(2px);
+}
+
+.tool-category[data-category="encoders"] .dropdown-item {
+  border-left: 3px solid var(--category-encoders-text);
+}
+
+.tool-category[data-category="encoders"] .dropdown-item:hover {
+  background: var(--category-encoders-bg);
+  color: var(--category-encoders-text);
+}
+
+.tool-category[data-category="encoders"] .dropdown-item.active {
+  background: var(--category-encoders-bg);
+  color: var(--category-encoders-text);
+  font-weight: bold;
+  border-left: 5px solid var(--category-encoders-text);
+  box-shadow: inset 3px 0 0 var(--category-encoders-text), 0 2px 8px rgba(0,0,0,0.15);
+  transform: translateX(2px);
+}
+
+.tool-category[data-category="generators"] .dropdown-item {
+  border-left: 3px solid var(--category-generators-text);
+}
+
+.tool-category[data-category="generators"] .dropdown-item:hover {
+  background: var(--category-generators-bg);
+  color: var(--category-generators-text);
+}
+
+.tool-category[data-category="generators"] .dropdown-item.active {
+  background: var(--category-generators-bg);
+  color: var(--category-generators-text);
+  font-weight: bold;
+  border-left: 5px solid var(--category-generators-text);
+  box-shadow: inset 3px 0 0 var(--category-generators-text), 0 2px 8px rgba(0,0,0,0.15);
+  transform: translateX(2px);
+}
+
+.tool-category[data-category="converters"] .dropdown-item {
+  border-left: 3px solid var(--category-converters-text);
+}
+
+.tool-category[data-category="converters"] .dropdown-item:hover {
+  background: var(--category-converters-bg);
+  color: var(--category-converters-text);
+}
+
+.tool-category[data-category="converters"] .dropdown-item.active {
+  background: var(--category-converters-bg);
+  color: var(--category-converters-text);
+  font-weight: bold;
+  border-left: 5px solid var(--category-converters-text);
+  box-shadow: inset 3px 0 0 var(--category-converters-text), 0 2px 8px rgba(0,0,0,0.15);
+  transform: translateX(2px);
+}
+
+.tool-category[data-category="texttools"] .dropdown-item {
+  border-left: 3px solid var(--category-texttools-text);
+}
+
+.tool-category[data-category="texttools"] .dropdown-item:hover {
+  background: var(--category-texttools-bg);
+  color: var(--category-texttools-text);
+}
+
+.tool-category[data-category="texttools"] .dropdown-item.active {
+  background: var(--category-texttools-bg);
+  color: var(--category-texttools-text);
+  font-weight: bold;
+  border-left: 5px solid var(--category-texttools-text);
+  box-shadow: inset 3px 0 0 var(--category-texttools-text), 0 2px 8px rgba(0,0,0,0.15);
+  transform: translateX(2px);
+}
+
+.category-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--toolbar-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  min-width: 200px;
+  padding: 4px;
+  margin-top: 2px;
+}
+
+.category-dropdown.show {
+  display: block;
+  animation: dropdownFadeIn 0.15s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  margin: 2px 0;
+  border-radius: 3px;
+  font-size: 12px;
+  border: none;
+  background: transparent;
+  color: var(--btn-text);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown-item:hover {
+  background: var(--btn-hover-bg);
+}
+
+.dropdown-item.active {
+  background: var(--btn-active-bg);
+  color: white;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .toolbar {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .tool-category {
+    margin: 2px;
+    flex: 1;
+    min-width: 140px;
+  }
+  
+  .category-btn {
+    min-width: 100%;
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+  
+  .category-text {
+    display: none;
+  }
+  
+  .selected-tool {
+    font-size: 10px;
+    max-width: 100px;
+  }
+  
+  .category-dropdown {
+    min-width: 180px;
+  }
+}
+
 /* ====== Panels ====== */
 .container {
   display: flex;
@@ -333,6 +778,7 @@ footer {
   margin-top: -2px; /* Connect with toolbar button border */
   padding: 0; /* Remove padding that causes top spacing */
   box-shadow: 0 2px 8px var(--active-shadow), 0 0 0 1px var(--active-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Wrapper for panel content */
@@ -342,6 +788,79 @@ footer {
   height: 100%;
   padding: 10px;
   gap: 10px;
+}
+
+/* Category-specific panel borders for opened panels */
+/* Viewers Category - Blue theme */
+#panel-json:not(.hidden),
+#panel-xml:not(.hidden),
+#panel-graph:not(.hidden) {
+  border-top: 3px solid var(--category-viewers-text);
+  border-left: 2px solid var(--category-viewers-text);
+  border-right: 2px solid var(--category-viewers-text);
+  border-bottom: 2px solid var(--category-viewers-text);
+  box-shadow: 0 0 15px rgba(0,123,255,0.2), inset 0 1px 0 rgba(0,123,255,0.1);
+}
+
+/* Encoders Category - Yellow theme */
+#panel-base64:not(.hidden),
+#panel-jwt:not(.hidden),
+#panel-url:not(.hidden) {
+  border-top: 3px solid var(--category-encoders-text);
+  border-left: 2px solid var(--category-encoders-text);
+  border-right: 2px solid var(--category-encoders-text);
+  border-bottom: 2px solid var(--category-encoders-text);
+  box-shadow: 0 0 15px rgba(255,193,7,0.2), inset 0 1px 0 rgba(255,193,7,0.1);
+}
+
+/* Generators Category - Purple theme */
+#panel-hash:not(.hidden),
+#panel-uuid:not(.hidden),
+#panel-qr:not(.hidden) {
+  border-top: 3px solid var(--category-generators-text);
+  border-left: 2px solid var(--category-generators-text);
+  border-right: 2px solid var(--category-generators-text);
+  border-bottom: 2px solid var(--category-generators-text);
+  box-shadow: 0 0 15px rgba(156,39,176,0.2), inset 0 1px 0 rgba(156,39,176,0.1);
+}
+
+/* Converters Category - Green theme */
+#panel-color:not(.hidden),
+#panel-timestamp:not(.hidden) {
+  border-top: 3px solid var(--category-converters-text);
+  border-left: 2px solid var(--category-converters-text);
+  border-right: 2px solid var(--category-converters-text);
+  border-bottom: 2px solid var(--category-converters-text);
+  box-shadow: 0 0 15px rgba(76,175,80,0.2), inset 0 1px 0 rgba(76,175,80,0.1);
+}
+
+/* Text Tools Category - Red theme */
+#panel-regex:not(.hidden),
+#panel-text:not(.hidden),
+#panel-api:not(.hidden) {
+  border-top: 3px solid var(--category-texttools-text);
+  border-left: 2px solid var(--category-texttools-text);
+  border-right: 2px solid var(--category-texttools-text);
+  border-bottom: 2px solid var(--category-texttools-text);
+  box-shadow: 0 0 15px rgba(244,67,54,0.2), inset 0 1px 0 rgba(244,67,54,0.1);
+}
+
+/* Panel activation animation */
+.panel:not(.hidden) {
+  animation: panelActivate 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes panelActivate {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.98);
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    box-shadow: inherit;
+  }
 }
 
 /* Action buttons should be at the top without extra spacing */
@@ -457,6 +976,483 @@ textarea {
 .btn-group button {
   flex-shrink: 0;
   white-space: nowrap;
+}
+
+/* ====== Colored Action Buttons ====== */
+/* Copy buttons */
+button[onclick*="copy"],
+button[data-i18n*="copy"] {
+  background: var(--action-copy-bg);
+  color: var(--action-copy-hover);
+  border: 1px solid var(--action-copy-hover);
+}
+
+button[onclick*="copy"]:hover,
+button[data-i18n*="copy"]:hover {
+  background: var(--action-copy-hover);
+  color: white;
+}
+
+/* Paste buttons */
+button[onclick*="paste"],
+button[data-i18n*="paste"] {
+  background: var(--action-paste-bg);
+  color: var(--action-paste-hover);
+  border: 1px solid var(--action-paste-hover);
+}
+
+button[onclick*="paste"]:hover,
+button[data-i18n*="paste"]:hover {
+  background: var(--action-paste-hover);
+  color: white;
+}
+
+/* Clear buttons */
+button[onclick*="clear"],
+button[data-i18n*="clear"] {
+  background: var(--action-clear-bg);
+  color: var(--action-clear-hover);
+  border: 1px solid var(--action-clear-hover);
+}
+
+button[onclick*="clear"]:hover,
+button[data-i18n*="clear"]:hover {
+  background: var(--action-clear-hover);
+  color: white;
+}
+
+/* Convert buttons */
+button[onclick*="convert"],
+button[data-i18n*="convert"] {
+  background: var(--action-convert-bg);
+  color: var(--action-convert-hover);
+  border: 1px solid var(--action-convert-hover);
+}
+
+button[onclick*="convert"]:hover,
+button[data-i18n*="convert"]:hover {
+  background: var(--action-convert-hover);
+  color: white;
+}
+
+/* Generate buttons */
+button[onclick*="generate"],
+button[data-i18n*="generate"] {
+  background: var(--action-generate-bg);
+  color: var(--action-generate-hover);
+  border: 1px solid var(--action-generate-hover);
+}
+
+button[onclick*="generate"]:hover,
+button[data-i18n*="generate"]:hover {
+  background: var(--action-generate-hover);
+  color: white;
+}
+
+/* Remove whitespace / Format buttons */
+button[onclick*="removeJSONSpaces"],
+button[onclick*="removeSpaces"],
+button[onclick*="beautifyJSON"],
+button[onclick*="formatAPI"],
+button[data-i18n*="format"],
+button[data-i18n*="remove_whitespace"],
+button[data-i18n*="tree_view"] {
+  background: var(--action-format-bg);
+  color: var(--action-format-hover);
+  border: 1px solid var(--action-format-hover);
+}
+
+button[onclick*="removeJSONSpaces"]:hover,
+button[onclick*="removeSpaces"]:hover,
+button[onclick*="beautifyJSON"]:hover,
+button[onclick*="formatAPI"]:hover,
+button[data-i18n*="format"]:hover,
+button[data-i18n*="remove_whitespace"]:hover,
+button[data-i18n*="tree_view"]:hover {
+  background: var(--action-format-hover);
+  color: white;
+}
+
+/* Validate buttons */
+button[onclick*="viewXML"],
+button[onclick*="validateUUID"],
+button[data-i18n*="validate"] {
+  background: var(--action-validate-bg);
+  color: var(--action-validate-hover);
+  border: 1px solid var(--action-validate-hover);
+}
+
+button[onclick*="viewXML"]:hover,
+button[onclick*="validateUUID"]:hover,
+button[data-i18n*="validate"]:hover {
+  background: var(--action-validate-hover);
+  color: white;
+}
+
+/* Full screen buttons */
+button[onclick*="toggleFullScreen"],
+button[onclick*="openFullJSONModal"],
+button[data-i18n*="full_screen"] {
+  background: var(--action-fullscreen-bg);
+  color: var(--action-fullscreen-hover);
+  border: 1px solid var(--action-fullscreen-hover);
+}
+
+button[onclick*="toggleFullScreen"]:hover,
+button[onclick*="openFullJSONModal"]:hover,
+button[data-i18n*="full_screen"]:hover {
+  background: var(--action-fullscreen-hover);
+  color: white;
+}
+
+/* Download buttons */
+button[onclick*="download"],
+button[onclick*="downloadGraphFromPanel"],
+button[onclick*="downloadQR"],
+button[data-i18n*="download"] {
+  background: var(--action-download-bg);
+  color: var(--action-download-hover);
+  border: 1px solid var(--action-download-hover);
+}
+
+button[onclick*="download"]:hover,
+button[onclick*="downloadGraphFromPanel"]:hover,
+button[onclick*="downloadQR"]:hover,
+button[data-i18n*="download"]:hover {
+  background: var(--action-download-hover);
+  color: white;
+}
+
+/* Screenshot buttons */
+button[onclick*="captureScreenshot"],
+button[data-i18n*="screenshot"] {
+  background: var(--action-screenshot-bg);
+  color: var(--action-screenshot-hover);
+  border: 1px solid var(--action-screenshot-hover);
+}
+
+button[onclick*="captureScreenshot"]:hover,
+button[data-i18n*="screenshot"]:hover {
+  background: var(--action-screenshot-hover);
+  color: white;
+}
+
+/* Expand buttons */
+button[onclick*="expandAllJSON"],
+button[onclick*="expandAllXML"],
+button[data-i18n*="expand"] {
+  background: var(--action-expand-bg);
+  color: var(--action-expand-hover);
+  border: 1px solid var(--action-expand-hover);
+}
+
+button[onclick*="expandAllJSON"]:hover,
+button[onclick*="expandAllXML"]:hover,
+button[data-i18n*="expand"]:hover {
+  background: var(--action-expand-hover);
+  color: white;
+}
+
+/* Collapse buttons */
+button[onclick*="collapseAllJSON"],
+button[onclick*="collapseAllXML"],
+button[data-i18n*="collapse"] {
+  background: var(--action-collapse-bg);
+  color: var(--action-collapse-hover);
+  border: 1px solid var(--action-collapse-hover);
+}
+
+button[onclick*="collapseAllJSON"]:hover,
+button[onclick*="collapseAllXML"]:hover,
+button[data-i18n*="collapse"]:hover {
+  background: var(--action-collapse-hover);
+  color: white;
+}
+
+/* Encode buttons */
+button[onclick*="encodeBase64"],
+button[onclick*="urlEncode"],
+button[data-i18n*="encode"] {
+  background: var(--action-encode-bg);
+  color: var(--action-encode-hover);
+  border: 1px solid var(--action-encode-hover);
+}
+
+button[onclick*="encodeBase64"]:hover,
+button[onclick*="urlEncode"]:hover,
+button[data-i18n*="encode"]:hover {
+  background: var(--action-encode-hover);
+  color: white;
+}
+
+/* Decode buttons */
+button[onclick*="decodeBase64"],
+button[onclick*="decodeJWT"],
+button[onclick*="urlDecode"],
+button[data-i18n*="decode"] {
+  background: var(--action-decode-bg);
+  color: var(--action-decode-hover);
+  border: 1px solid var(--action-decode-hover);
+}
+
+button[onclick*="decodeBase64"]:hover,
+button[onclick*="decodeJWT"]:hover,
+button[onclick*="urlDecode"]:hover,
+button[data-i18n*="decode"]:hover {
+  background: var(--action-decode-hover);
+  color: white;
+}
+
+/* Test buttons */
+button[onclick*="testRegex"],
+button[data-i18n*="test"] {
+  background: var(--action-test-bg);
+  color: var(--action-test-hover);
+  border: 1px solid var(--action-test-hover);
+}
+
+button[onclick*="testRegex"]:hover,
+button[data-i18n*="test"]:hover {
+  background: var(--action-test-hover);
+  color: white;
+}
+
+/* Hash generation buttons */
+button[onclick*="generateHash"] {
+  background: var(--action-generate-bg);
+  color: var(--action-generate-hover);
+  border: 1px solid var(--action-generate-hover);
+}
+
+button[onclick*="generateHash"]:hover {
+  background: var(--action-generate-hover);
+  color: white;
+}
+
+/* UUID generation buttons */
+button[onclick*="generateUUID"],
+button[onclick*="generateMultipleUUIDs"] {
+  background: var(--action-generate-bg);
+  color: var(--action-generate-hover);
+  border: 1px solid var(--action-generate-hover);
+}
+
+button[onclick*="generateUUID"]:hover,
+button[onclick*="generateMultipleUUIDs"]:hover {
+  background: var(--action-generate-hover);
+  color: white;
+}
+
+/* QR Code generation buttons */
+button[onclick*="generateQR"] {
+  background: var(--action-generate-bg);
+  color: var(--action-generate-hover);
+  border: 1px solid var(--action-generate-hover);
+}
+
+button[onclick*="generateQR"]:hover {
+  background: var(--action-generate-hover);
+  color: white;
+}
+
+/* Text utilities buttons */
+button[onclick*="convertCase"],
+button[onclick*="getTextStats"] {
+  background: var(--action-convert-bg);
+  color: var(--action-convert-hover);
+  border: 1px solid var(--action-convert-hover);
+}
+
+button[onclick*="convertCase"]:hover,
+button[onclick*="getTextStats"]:hover {
+  background: var(--action-convert-hover);
+  color: white;
+}
+
+/* Specific data-i18n based buttons for tools that might be missed */
+button[data-i18n*="generate_md5"],
+button[data-i18n*="generate_sha1"],
+button[data-i18n*="generate_sha256"],
+button[data-i18n*="generate_sha512"],
+button[data-i18n*="generate_uuid"],
+button[data-i18n*="generate_qr"],
+button[data-i18n*="generate_multiple"] {
+  background: var(--action-generate-bg);
+  color: var(--action-generate-hover);
+  border: 1px solid var(--action-generate-hover);
+}
+
+button[data-i18n*="generate_md5"]:hover,
+button[data-i18n*="generate_sha1"]:hover,
+button[data-i18n*="generate_sha256"]:hover,
+button[data-i18n*="generate_sha512"]:hover,
+button[data-i18n*="generate_uuid"]:hover,
+button[data-i18n*="generate_qr"]:hover,
+button[data-i18n*="generate_multiple"]:hover {
+  background: var(--action-generate-hover);
+  color: white;
+}
+
+/* Text case conversion buttons */
+button[data-i18n*="to_uppercase"],
+button[data-i18n*="to_lowercase"],
+button[data-i18n*="to_camelcase"],
+button[data-i18n*="to_snakecase"],
+button[data-i18n*="to_kebabcase"],
+button[data-i18n*="text_stats"] {
+  background: var(--action-convert-bg);
+  color: var(--action-convert-hover);
+  border: 1px solid var(--action-convert-hover);
+}
+
+button[data-i18n*="to_uppercase"]:hover,
+button[data-i18n*="to_lowercase"]:hover,
+button[data-i18n*="to_camelcase"]:hover,
+button[data-i18n*="to_snakecase"]:hover,
+button[data-i18n*="to_kebabcase"]:hover,
+button[data-i18n*="text_stats"]:hover {
+  background: var(--action-convert-hover);
+  color: white;
+}
+
+/* Color conversion buttons */
+button[onclick*="convertColor"],
+button[onclick*="convertFromPicker"] {
+  background: var(--action-convert-bg);
+  color: var(--action-convert-hover);
+  border: 1px solid var(--action-convert-hover);
+}
+
+button[onclick*="convertColor"]:hover,
+button[onclick*="convertFromPicker"]:hover {
+  background: var(--action-convert-hover);
+  color: white;
+}
+
+button[data-i18n*="convert_to_hex"],
+button[data-i18n*="convert_to_rgb"],
+button[data-i18n*="convert_to_hsl"] {
+  background: var(--action-convert-bg);
+  color: var(--action-convert-hover);
+  border: 1px solid var(--action-convert-hover);
+}
+
+button[data-i18n*="convert_to_hex"]:hover,
+button[data-i18n*="convert_to_rgb"]:hover,
+button[data-i18n*="convert_to_hsl"]:hover {
+  background: var(--action-convert-hover);
+  color: white;
+}
+
+/* Markdown preview buttons */
+button[onclick*="previewMarkdown"],
+button[data-i18n*="preview_markdown"] {
+  background: var(--action-format-bg);
+  color: var(--action-format-hover);
+  border: 1px solid var(--action-format-hover);
+}
+
+button[onclick*="previewMarkdown"]:hover,
+button[data-i18n*="preview_markdown"]:hover {
+  background: var(--action-format-hover);
+  color: white;
+}
+
+/* Timestamp conversion buttons */
+button[onclick*="convertTimestamp"],
+button[onclick*="getCurrentTimestamp"] {
+  background: var(--action-convert-bg);
+  color: var(--action-convert-hover);
+  border: 1px solid var(--action-convert-hover);
+}
+
+button[onclick*="convertTimestamp"]:hover,
+button[onclick*="getCurrentTimestamp"]:hover {
+  background: var(--action-convert-hover);
+  color: white;
+}
+
+button[data-i18n*="to_unix"],
+button[data-i18n*="from_unix"],
+button[data-i18n*="current_timestamp"] {
+  background: var(--action-convert-bg);
+  color: var(--action-convert-hover);
+  border: 1px solid var(--action-convert-hover);
+}
+
+button[data-i18n*="to_unix"]:hover,
+button[data-i18n*="from_unix"]:hover,
+button[data-i18n*="current_timestamp"]:hover {
+  background: var(--action-convert-hover);
+  color: white;
+}
+
+/* Full screen buttons */
+button[onclick*="toggleFullScreen"] {
+  background: var(--action-general-bg);
+  color: var(--action-general-hover);
+  border: 1px solid var(--action-general-hover);
+}
+
+button[onclick*="toggleFullScreen"]:hover {
+  background: var(--action-general-hover);
+  color: white;
+}
+
+button[data-i18n*="full_screen"] {
+  background: var(--action-general-bg);
+  color: var(--action-general-hover);
+  border: 1px solid var(--action-general-hover);
+}
+
+button[data-i18n*="full_screen"]:hover {
+  background: var(--action-general-hover);
+  color: white;
+}
+
+/* Remove whitespace buttons */
+button[onclick*="removeJSONSpaces"],
+button[onclick*="removeXMLSpaces"],
+button[onclick*="removeWhitespace"] {
+  background: var(--action-clear-bg);
+  color: var(--action-clear-hover);
+  border: 1px solid var(--action-clear-hover);
+}
+
+button[onclick*="removeJSONSpaces"]:hover,
+button[onclick*="removeXMLSpaces"]:hover,
+button[onclick*="removeWhitespace"]:hover {
+  background: var(--action-clear-hover);
+  color: white;
+}
+
+button[data-i18n*="remove_whitespace"] {
+  background: var(--action-clear-bg);
+  color: var(--action-clear-hover);
+  border: 1px solid var(--action-clear-hover);
+}
+
+button[data-i18n*="remove_whitespace"]:hover {
+  background: var(--action-clear-hover);
+  color: white;
+}
+
+/* Missing Generator Buttons */
+button[onclick*="generateJavaScriptClasses"],
+button[onclick*="generateGraphInPanel"],
+button[data-i18n*="generate_js_classes"],
+button[data-i18n*="generate_graph"] {
+  background: var(--action-generate-bg);
+  color: var(--action-generate-hover);
+  border: 1px solid var(--action-generate-hover);
+}
+
+button[onclick*="generateJavaScriptClasses"]:hover,
+button[onclick*="generateGraphInPanel"]:hover,
+button[data-i18n*="generate_js_classes"]:hover,
+button[data-i18n*="generate_graph"]:hover {
+  background: var(--action-generate-hover);
+  color: white;
 }
 
 /* ====== Output Box ====== */
@@ -604,6 +1600,61 @@ textarea {
 
   /* Dark mode arrow */
   --arrow-color: #f1f1f1;
+  
+  /* Category Colors - Dark Theme */
+  --category-viewers-bg: #2d5aa0;
+  --category-viewers-hover: #3a6bb3;
+  --category-viewers-text: #ffffff;
+  
+  --category-encoders-bg: #6a4c93;
+  --category-encoders-hover: #7d5ba6;
+  --category-encoders-text: #ffffff;
+  
+  --category-generators-bg: #c17767;
+  --category-generators-hover: #d4897a;
+  --category-generators-text: #ffffff;
+  
+  --category-converters-bg: #4a7c59;
+  --category-converters-hover: #5d8f6c;
+  --category-converters-text: #ffffff;
+  
+  --category-texttools-bg: #b85450;
+  --category-texttools-hover: #cb6663;
+  --category-texttools-text: #ffffff;
+  
+  /* Action Button Colors - Dark Theme */
+  --action-copy-bg: #1e3a5f;
+  --action-copy-hover: #4a90e2;
+  --action-paste-bg: #2d5016;
+  --action-paste-hover: #50c878;
+  --action-clear-bg: #5d1a1a;
+  --action-clear-hover: #ff6b6b;
+  --action-convert-bg: #5d4037;
+  --action-convert-hover: #ffa726;
+  --action-generate-bg: #4a148c;
+  --action-generate-hover: #ab47bc;
+  
+  /* Additional Action Button Colors - Dark Theme */
+  --action-format-bg: #2e7d32;
+  --action-format-hover: #4caf50;
+  --action-validate-bg: #c2185b;
+  --action-validate-hover: #e91e63;
+  --action-fullscreen-bg: #f57c00;
+  --action-fullscreen-hover: #ff9800;
+  --action-download-bg: #7b1fa2;
+  --action-download-hover: #9c27b0;
+  --action-screenshot-bg: #455a64;
+  --action-screenshot-hover: #607d8b;
+  --action-expand-bg: #1976d2;
+  --action-expand-hover: #2196f3;
+  --action-collapse-bg: #d32f2f;
+  --action-collapse-hover: #f44336;
+  --action-encode-bg: #388e3c;
+  --action-encode-hover: #4caf50;
+  --action-decode-bg: #1976d2;
+  --action-decode-hover: #2196f3;
+  --action-test-bg: #f57c00;
+  --action-test-hover: #ff9800;
 }
 
 body.light {
@@ -640,6 +1691,61 @@ body.light {
 
   /* Light mode arrow */
   --arrow-color: #333;
+  
+  /* Category Colors - Light Theme */
+  --category-viewers-bg: #e3f2fd;
+  --category-viewers-hover: #bbdefb;
+  --category-viewers-text: #1565c0;
+  
+  --category-encoders-bg: #f3e5f5;
+  --category-encoders-hover: #e1bee7;
+  --category-encoders-text: #6a1b99;
+  
+  --category-generators-bg: #fce4ec;
+  --category-generators-hover: #f8bbd9;
+  --category-generators-text: #c2185b;
+  
+  --category-converters-bg: #e8f5e8;
+  --category-converters-hover: #c8e6c9;
+  --category-converters-text: #2e7d32;
+  
+  --category-texttools-bg: #fff3e0;
+  --category-texttools-hover: #ffcc02;
+  --category-texttools-text: #e65100;
+  
+  /* Action Button Colors - Light Theme */
+  --action-copy-bg: #e3f2fd;
+  --action-copy-hover: #1976d2;
+  --action-paste-bg: #e8f5e8;
+  --action-paste-hover: #388e3c;
+  --action-clear-bg: #ffebee;
+  --action-clear-hover: #d32f2f;
+  --action-convert-bg: #fff8e1;
+  --action-convert-hover: #f57c00;
+  --action-generate-bg: #f3e5f5;
+  --action-generate-hover: #7b1fa2;
+  
+  /* Additional Action Button Colors - Light Theme */
+  --action-format-bg: #e8f5e8;
+  --action-format-hover: #2e7d32;
+  --action-validate-bg: #fce4ec;
+  --action-validate-hover: #c2185b;
+  --action-fullscreen-bg: #fff8e1;
+  --action-fullscreen-hover: #f57c00;
+  --action-download-bg: #f3e5f5;
+  --action-download-hover: #7b1fa2;
+  --action-screenshot-bg: #f5f5f5;
+  --action-screenshot-hover: #455a64;
+  --action-expand-bg: #e3f2fd;
+  --action-expand-hover: #1976d2;
+  --action-collapse-bg: #ffebee;
+  --action-collapse-hover: #d32f2f;
+  --action-encode-bg: #e8f5e8;
+  --action-encode-hover: #388e3c;
+  --action-decode-bg: #e3f2fd;
+  --action-decode-hover: #1976d2;
+  --action-test-bg: #fff8e1;
+  --action-test-hover: #f57c00;
 }
 
 /* ====== Additional Developer Tool Styles ====== */
