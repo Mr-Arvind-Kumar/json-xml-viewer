@@ -1,0 +1,20 @@
+/* TEAM */
+Developer: Arvind Kumar & Contributors
+Contact: github.com/Mr-Arvind-Kumar
+Location: Global
+
+/* THANKS */
+Chart.js - Charting library
+QRious - QR code generation
+Crypto-JS - Hash functions
+FontAwesome - Icons
+Open Source Community
+
+/* SITE */
+Last update: 2025/08/15
+Language: English / Multi-language
+Doctype: HTML5
+IDE: VS Code
+Standards: W3C, SEO optimized
+Components: HTML5, CSS3, JavaScript
+Software: Pure vanilla JavaScript

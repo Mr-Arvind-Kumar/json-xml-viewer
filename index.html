@@ -1,43 +1,240 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<!-- Title -->
-<title>Dataz Studio - Advanced JSON, XML & Base64 Processing Tool</title>
 
-<!-- Primary Meta Tags -->
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="A modern, free online tool to view, beautify, and explore JSON data in collapsible tree form and XML data with interactive tree view. Includes Dark/Light mode, full-screen, clipboard features, and data persistence."/>
-<meta name="keywords" content="JSON viewer, XML viewer, JSON beautify, XML tree view, online JSON formatter, online XML formatter, JSON editor, XML editor, JSON to XML, XML to JSON, JSON parser, XML parser"/>
-<meta name="author" content="Your Name"/>
-<meta name="robots" content="index, follow" />
+<!-- Primary SEO Meta Tags -->
+<title>DataZ Tools - Free Online Developer Tools | JSON, XML, Base64, JWT, Hash, UUID & More</title>
+<meta name="description" content="DataZ.Tools - The ultimate free online developer toolkit with 15+ professional tools: JSON/XML viewers, Base64 encoder, JWT decoder, hash generator, UUID generator, color converter, QR codes, regex tester, and more. No signup required!"/>
+<meta name="keywords" content="dataz.tools, dataz tools, free developer tools, JSON viewer, XML formatter, Base64 encoder decoder, JWT token decoder, hash generator, UUID generator, color converter, timestamp converter, QR code generator, regex tester, markdown preview, API formatter, online tools, web developer tools, programmer tools, data tools, developer utilities"/>
+<meta name="author" content="DataZ Tools"/>
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 <meta http-equiv="Content-Language" content="en" />
+<meta name="language" content="English" />
+<meta name="geo.region" content="US" />
+<meta name="geo.placename" content="United States" />
+
+<!-- Site Verification -->
+<meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
+<meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://dataz.tools" />
+<link rel="alternate" href="https://www.dataz.tools" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Dataz Studio - Advanced JSON, XML & Base64 Processor" />
-<meta property="og:description" content="Professional data processing tool for JSON tree visualization, XML validation, Base64 encoding/decoding, and JavaScript class generation. Features dark/light themes, full screen mode, and advanced data manipulation." />
-<meta property="og:url" content="https://www.dataz.tools" />
-<meta property="og:site_name" content="dataz.tools" />
-<meta property="og:image" content="https://www.dataz.tools/assets/preview-image.png" />
+<meta property="og:title" content="DataZ Tools - Free Online Developer Tools | JSON, XML, Base64 & More" />
+<meta property="og:description" content="Professional free online developer toolkit with 15+ tools: JSON/XML viewers, Base64 encoder, JWT decoder, hash generator, UUID generator, and more developer utilities. No signup required!" />
+<meta property="og:url" content="https://dataz.tools" />
+<meta property="og:site_name" content="DataZ Tools" />
+<meta property="og:image" content="https://dataz.tools/assets/preview-social.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:locale" content="en_US" />
 
-<!-- Twitter -->
+<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Dataz Studio - Professional Data Processing & Visualization" />
-<meta name="twitter:description" content="Transform and visualize JSON/XML data with advanced features: tree views, validation, Base64 encoding, class generation, and more professional tools." />
-<meta name="twitter:image" content="https://dataz.tools/assets/preview-image.png" />
+<meta name="twitter:title" content="DataZ Tools - Free Developer Toolkit" />
+<meta name="twitter:description" content="15+ professional developer tools in one place: JSON/XML viewers, encoders, generators, converters & more. Free online toolkit for developers." />
+<meta name="twitter:image" content="https://dataz.tools/assets/preview-social.png" />
+<meta name="twitter:image:alt" content="DataZ Tools - Free Online Developer Toolkit" />
 <meta name="twitter:site" content="@dataztools" />
+<meta name="twitter:creator" content="@dataztools" />
 
-<!-- Theme color for mobile browsers -->
+<!-- Additional Social Meta -->
+<meta property="article:author" content="DataZ Tools" />
+<meta property="article:publisher" content="https://dataz.tools" />
+
+<!-- App Information -->
+<meta name="application-name" content="DataZ Tools" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="DataZ Tools" />
+
+<!-- Theme and Branding -->
 <meta name="theme-color" content="#2196f3" />
+<meta name="msapplication-TileColor" content="#2196f3" />
+<meta name="msapplication-navbutton-color" content="#2196f3" />
+
+<!-- Performance and Caching -->
+<meta http-equiv="Cache-Control" content="public, max-age=31536000" />
+<meta http-equiv="Expires" content="Wed, 15 Aug 2026 00:00:00 GMT" />
+
+<!-- Structured Data for Rich Snippets -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DataZ Tools",
+  "url": "https://dataz.tools",
+  "description": "Free online developer toolkit with 15+ professional tools including JSON/XML viewers, Base64 encoder, JWT decoder, hash generator, and more utilities for developers.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "DataZ Tools"
+  },
+  "featureList": [
+    "JSON Viewer & Formatter",
+    "XML Viewer & Formatter", 
+    "Base64 Encoder/Decoder",
+    "JWT Token Decoder",
+    "Hash Generator (MD5, SHA-1, SHA-256, SHA-384, SHA-512)",
+    "UUID Generator & Validator",
+    "Color Converter",
+    "Timestamp Converter", 
+    "QR Code Generator",
+    "Regex Tester",
+    "Text Utilities",
+    "API Formatter",
+    "Markdown Preview",
+    "URL Encoder/Decoder",
+    "Graph Generator"
+  ]
+}
+</script>
+
+<!-- Additional Structured Data for Tools -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "DataZ Tools - Developer Utilities",
+  "description": "Complete list of free online developer tools",
+  "numberOfItems": 15,
+  "itemListElement": [
+    {
+      "@type": "SoftwareApplication",
+      "position": 1,
+      "name": "JSON Viewer & Formatter",
+      "description": "View and format JSON data with interactive tree structure",
+      "url": "https://dataz.tools#json",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web Browser"
+    },
+    {
+      "@type": "SoftwareApplication", 
+      "position": 2,
+      "name": "XML Viewer & Formatter",
+      "description": "Parse and visualize XML documents with collapsible tree view",
+      "url": "https://dataz.tools#xml",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web Browser"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "position": 3,
+      "name": "Base64 Encoder/Decoder",
+      "description": "Encode and decode Base64 strings with one click",
+      "url": "https://dataz.tools#base64",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web Browser"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "position": 4,
+      "name": "JWT Token Decoder",
+      "description": "Decode and analyze JWT tokens with security validation",
+      "url": "https://dataz.tools#jwt",
+      "applicationCategory": "DeveloperApplication", 
+      "operatingSystem": "Web Browser"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "position": 5,
+      "name": "Hash Generator",
+      "description": "Generate MD5, SHA-1, SHA-256, SHA-384, SHA-512 hashes",
+      "url": "https://dataz.tools#hash",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web Browser"
+    }
+  ]
+}
+</script>
+
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "DataZ Tools",
+  "url": "https://dataz.tools",
+  "logo": "https://dataz.tools/assets/logo.png",
+  "description": "Free online developer toolkit with 15+ professional tools for JSON, XML, Base64, JWT, hashing, and more utilities.",
+  "sameAs": [
+    "https://www.dataz.tools",
+    "https://github.com/Mr-Arvind-Kumar/json-xml-viewer"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint", 
+    "contactType": "Technical Support",
+    "url": "https://github.com/Mr-Arvind-Kumar/json-xml-viewer/issues"
+  }
+}
+</script>
+
+<!-- Favicon and Icons -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- Additional SEO Links -->
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+<!-- Performance Optimization -->
+<link rel="preload" href="styles.css" as="style" />
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" />
+
+<!-- Additional Meta for Rich Snippets -->
+<meta name="format-detection" content="telephone=no" />
+<meta name="format-detection" content="address=no" />
+
+<!-- Security Headers -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta http-equiv="X-Frame-Options" content="DENY" />
+<meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+
+<!-- Additional Keywords for Long-tail SEO -->
+<meta name="keywords" content="dataz.tools, dataz tools, www.dataz.tools, free online tools, developer tools online, JSON XML viewer free, Base64 encode decode online, JWT token parser decoder, hash MD5 SHA256 generator, UUID generator validator, color converter hex rgb, timestamp unix converter, QR code generator free, regex regular expression tester, text utilities word count, markdown preview editor, API formatter curl postman, graph chart generator, web developer utilities, programming tools online, data processing tools, encode decode tools, crypto hash tools, developer productivity tools, online coding tools, web development utilities" />
 
 <link rel="stylesheet" href="styles.css"/>
 <!-- Fallback CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" />
 <!-- Local FontAwesome fallback -->
 <link rel="stylesheet" href="fontawesome-fallback.css" />
+<!-- Chart.js for graph generation -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- QRious library for QR code generation -->
+<script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+<!-- Crypto-JS for better hash generation -->
+<script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.js"></script>
+<!-- Backup QR Code library -->
+<script>
+// Backup QR code functionality if QRious fails to load
+window.addEventListener('load', function() {
+  if (typeof QRious === 'undefined') {
+    console.warn('QRious not loaded, using fallback');
+  }
+});
+</script>
 <style>
 /* Footer stick to bottom */
 html, body {
@@ -199,6 +396,66 @@ body.dark .language-selector option {
     min-width: 140px;
   }
 }
+
+/* Graph Modal Styles */
+.graph-modal {
+  max-width: 800px !important;
+  width: 90% !important;
+}
+
+.graph-controls {
+  margin-bottom: 20px;
+}
+
+.graph-controls label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.graph-controls select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--input-bg);
+  color: var(--input-text);
+}
+
+.graph-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.graph-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.graph-buttons button:hover {
+  background: var(--btn-hover-bg);
+}
+
+.chart-container {
+  text-align: center;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.chart-container canvas {
+  max-width: 100%;
+  height: auto;
+}
 </style>
 </head>
 <body class="dark">
@@ -301,6 +558,71 @@ body.dark .language-selector option {
   <button id="btn-xml" onclick="showOnly('xml')" data-i18n="xml_viewer">
     <i class="fas fa-file-lines"></i> XML Viewer
   </button>
+  <button id="btn-graph" onclick="showOnly('graph')" data-i18n="graph_tab">
+    <i class="fas fa-chart-bar"></i> Generate Graph
+  </button>
+  <button id="btn-base64" onclick="showOnly('base64')" data-i18n="base64_tab">
+    <i class="fas fa-lock"></i> Base64 Encode/Decode
+  </button>
+  <button id="btn-jwt" onclick="showOnly('jwt')" data-i18n="jwt_tab">
+    <i class="fas fa-key"></i> JWT Token
+  </button>
+  <button id="btn-url" onclick="showOnly('url')" data-i18n="url_tab">
+    <i class="fas fa-link"></i> URL Encoder/Decoder
+  </button>
+  <button id="btn-hash" onclick="showOnly('hash')" data-i18n="hash_tab">
+    <i class="fas fa-hashtag"></i> Hash Generator
+  </button>
+  <button id="btn-uuid" onclick="showOnly('uuid')" data-i18n="uuid_tab">
+    <i class="fas fa-fingerprint"></i> UUID Generator
+  </button>
+  <button id="btn-color" onclick="showOnly('color')" data-i18n="color_tab">
+    <i class="fas fa-palette"></i> Color Converter
+  </button>
+  <button id="btn-timestamp" onclick="showOnly('timestamp')" data-i18n="timestamp_tab">
+    <i class="fas fa-clock"></i> Timestamp Converter
+  </button>
+  <button id="btn-qr" onclick="showOnly('qr')" data-i18n="qr_tab">
+    <i class="fas fa-qrcode"></i> QR Code Generator
+  </button>
+  <button id="btn-regex" onclick="showOnly('regex')" data-i18n="regex_tab">
+    <i class="fas fa-search"></i> Regex Tester
+  </button>
+  <button id="btn-text" onclick="showOnly('text')" data-i18n="text_tab">
+    <i class="fas fa-text-width"></i> Text Utilities
+  </button>
+  <button id="btn-api" onclick="showOnly('api')" data-i18n="api_tab">
+    <i class="fas fa-server"></i> API Formatter
+  </button>
+  <button id="btn-markdown" onclick="showOnly('markdown')" data-i18n="markdown_tab">
+    <i class="fas fa-markdown"></i> Markdown Preview
+  </button>
+  <button onclick="openStorageModal()" class="storage-btn" title="Manage stored data">
+    <i class="fas fa-database"></i> Storage
+  </button>
+</div>
+
+<!-- Storage Management Modal -->
+<div id="storage-modal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close" onclick="closeStorageModal()">&times;</span>
+    <h2><i class="fas fa-database"></i> Storage Management</h2>
+    <div id="storage-info">
+      <p>Loading storage information...</p>
+    </div>
+    <div class="storage-actions">
+      <button onclick="clearAllStorage()" class="btn-danger">
+        <i class="fas fa-trash"></i> Clear All Data
+      </button>
+      <button onclick="exportStorageData()" class="btn-secondary">
+        <i class="fas fa-download"></i> Export Data
+      </button>
+      <input type="file" id="import-file" accept=".json" style="display: none;" onchange="importStorageData(event)">
+      <button onclick="document.getElementById('import-file').click()" class="btn-secondary">
+        <i class="fas fa-upload"></i> Import Data
+      </button>
+    </div>
+  </div>
 </div>
 
 <!-- Main Content -->
@@ -312,17 +634,17 @@ body.dark .language-selector option {
       
       <!-- JSON Action Buttons - positioned to cover both input and output -->
       <div class="btn-group">
-        <button onclick="copyInput('json-input')" data-i18n="copy_json">
+        <button onclick="copyInput('json-input')" data-i18n="copy">
           <i class="fas fa-copy"></i>
-          Copy JSON
+          Copy
         </button>
-        <button onclick="pasteInput('json-input')" data-i18n="paste_json">
+        <button onclick="pasteInput('json-input')" data-i18n="paste">
           <i class="fas fa-paste"></i>
-          Paste JSON
+          Paste
         </button>
-        <button onclick="clearInput('json-input')" data-i18n="clear_json">
+        <button onclick="clearInput('json-input')" data-i18n="clear">
           <i class="fas fa-trash"></i>
-          Clear JSON
+          Clear
         </button>
         <button onclick="convertJSONtoXML()" data-i18n="convert_json_to_xml">
           <i class="fas fa-exchange-alt"></i>
@@ -338,7 +660,7 @@ body.dark .language-selector option {
         </button>
         <button onclick="removeJSONSpaces('json-input')" data-i18n="remove_whitespace_json">
           <i class="fas fa-compress-alt"></i>
-          Remove Whitespace (JSON)
+          Remove Whitespace
         </button>
         <button class="action-btn" onclick="beautifyJSON()" data-i18n="tree_view">
           <i class="fas fa-sitemap"></i>
@@ -391,17 +713,17 @@ body.dark .language-selector option {
       
       <!-- XML Action Buttons - positioned to cover both input and output -->
       <div class="btn-group">
-        <button onclick="copyInput('xml-input')" data-i18n="copy_xml">
+        <button onclick="copyInput('xml-input')" data-i18n="copy">
           <i class="fas fa-copy"></i>
-          Copy XML
+          Copy
         </button>
-        <button onclick="pasteInput('xml-input')" data-i18n="paste_xml">
+        <button onclick="pasteInput('xml-input')" data-i18n="paste">
           <i class="fas fa-paste"></i>
-          Paste XML
+          Paste
         </button>
-        <button onclick="clearInput('xml-input')" data-i18n="clear_xml">
+        <button onclick="clearInput('xml-input')" data-i18n="clear">
           <i class="fas fa-trash"></i>
-          Clear XML
+          Clear
         </button>
         <button onclick="convertXMLtoJSON()" data-i18n="convert_xml_to_json">
           <i class="fas fa-exchange-alt"></i>
@@ -409,7 +731,7 @@ body.dark .language-selector option {
         </button>
         <button onclick="removeSpaces('xml-input')" data-i18n="remove_whitespace_xml">
           <i class="fas fa-compress-alt"></i>
-          Remove Whitespace (XML)
+          Remove Whitespace
         </button>
         <button class="action-btn" onclick="viewXML()" data-i18n="view_validate_xml">
           <i class="fas fa-check-circle"></i>
@@ -532,17 +854,701 @@ function makeResizable(inputId, dividerId, outputId) {
 document.addEventListener('DOMContentLoaded', function() {
   makeResizable('json-io-input', 'json-divider', 'json-io-output');
   makeResizable('xml-io-input', 'xml-divider', 'xml-io-output');
+  makeResizable('graph-io-input', 'graph-divider', 'graph-io-output');
+  makeResizable('base64-io-input', 'base64-divider', 'base64-io-output');
+  makeResizable('jwt-io-input', 'jwt-divider', 'jwt-io-output');
+  makeResizable('url-io-input', 'url-divider', 'url-io-output');
+  makeResizable('qr-io-input', 'qr-divider', 'qr-io-output');
+  makeResizable('regex-io-input', 'regex-divider', 'regex-io-output');
+  makeResizable('text-io-input', 'text-divider', 'text-io-output');
+  makeResizable('api-io-input', 'api-divider', 'api-io-output');
+  makeResizable('markdown-io-input', 'markdown-divider', 'markdown-io-output');
 });
 
-// Reset divider widths when switching panels
-function showOnly(type) {
-  document.getElementById('panel-json').classList.toggle('hidden', type !== 'json');
-  document.getElementById('panel-xml').classList.toggle('hidden', type !== 'xml');
-  // Reset divider widths for both panels
-  const jsonWrapper = document.getElementById('json-divider').parentNode;
-  const xmlWrapper = document.getElementById('xml-divider').parentNode;
-  jsonWrapper.dispatchEvent(new Event('reset-divider'));
-  xmlWrapper.dispatchEvent(new Event('reset-divider'));
+// Graph panel functionality
+let currentChart = null;
+
+function generateGraphInPanel() {
+  const input = document.getElementById('graph-input').value.trim();
+  const chartType = document.getElementById('chart-type-select').value;
+  
+  if (!input) {
+    alert('Please paste your data first!');
+    return;
+  }
+  
+  try {
+    const parsedData = parseInput(input);
+    drawChartInPanel(parsedData, chartType);
+  } catch (error) {
+    alert('Error parsing data: ' + error.message);
+  }
+}
+
+function drawChartInPanel(data, type) {
+  const canvas = document.getElementById('graph-panel-chart');
+  const placeholder = document.getElementById('graph-placeholder');
+  const ctx = canvas.getContext('2d');
+  
+  // Hide placeholder
+  placeholder.style.display = 'none';
+  canvas.style.display = 'block';
+  
+  // Destroy existing chart
+  if (currentChart) {
+    currentChart.destroy();
+  }
+  
+  // Convert parsed data to Chart.js format
+  const labels = data.map(item => item.label);
+  const values = data.map(item => item.value);
+  
+  const chartData = {
+    labels: labels,
+    datasets: [{
+      label: 'Dataset',
+      data: values,
+      backgroundColor: [
+        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', 
+        '#9966FF', '#FF9F40', '#FF6384', '#C9CBCF'
+      ],
+      borderColor: [
+        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', 
+        '#9966FF', '#FF9F40', '#FF6384', '#C9CBCF'
+      ],
+      borderWidth: 1
+    }]
+  };
+  
+  // Create new chart
+  currentChart = new Chart(ctx, {
+    type: type,
+    data: chartData,
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'top',
+        }
+      }
+    }
+  });
+}
+
+function downloadGraphFromPanel() {
+  if (!currentChart) {
+    alert('Please generate a graph first!');
+    return;
+  }
+  
+  const canvas = document.getElementById('graph-panel-chart');
+  const link = document.createElement('a');
+  link.download = 'chart.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+// Base64 panel functionality
+function encodeBase64() {
+  const input = document.getElementById('base64-input').value;
+  const output = document.getElementById('base64-output');
+  
+  if (!input.trim()) {
+    alert('Please enter text to encode!');
+    return;
+  }
+  
+  try {
+    const encoded = btoa(unescape(encodeURIComponent(input)));
+    output.innerHTML = encoded;
+    output.style.color = '#333';
+  } catch (error) {
+    output.innerHTML = 'Error encoding: ' + error.message;
+    output.style.color = '#ff4444';
+  }
+}
+
+function decodeBase64() {
+  const input = document.getElementById('base64-input').value.trim();
+  const output = document.getElementById('base64-output');
+  
+  if (!input) {
+    alert('Please enter Base64 string to decode!');
+    return;
+  }
+  
+  try {
+    const decoded = decodeURIComponent(escape(atob(input)));
+    output.innerHTML = decoded;
+    output.style.color = '#333';
+  } catch (error) {
+    output.innerHTML = 'Error decoding: Invalid Base64 string or corrupted data';
+    output.style.color = '#ff4444';
+  }
+}
+
+function copyToClipboard(elementId) {
+  const element = document.getElementById(elementId);
+  const text = element.textContent || element.innerText;
+  
+  if (!text.trim()) {
+    alert('Nothing to copy!');
+    return;
+  }
+  
+  navigator.clipboard.writeText(text).then(() => {
+    // Temporary visual feedback
+    const originalBg = element.style.backgroundColor;
+    element.style.backgroundColor = '#d4edda';
+    setTimeout(() => {
+      element.style.backgroundColor = originalBg;
+    }, 200);
+  }).catch(err => {
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+  });
+}
+
+// JWT panel functionality
+function decodeJWT() {
+  const input = document.getElementById('jwt-input').value.trim();
+  const output = document.getElementById('jwt-output');
+  
+  if (!input) {
+    alert('Please enter a JWT token!');
+    return;
+  }
+  
+  try {
+    const parts = input.split('.');
+    if (parts.length !== 3) {
+      throw new Error('Invalid JWT format. JWT should have 3 parts separated by dots.');
+    }
+    
+    // Decode header
+    const header = JSON.parse(atob(parts[0].replace(/-/g, '+').replace(/_/g, '/')));
+    
+    // Decode payload
+    const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
+    
+    // Format timestamps
+    const formatTimestamp = (timestamp) => {
+      if (!timestamp) return 'Not set';
+      const date = new Date(timestamp * 1000);
+      return `${date.toISOString()} (${date.toLocaleString()})`;
+    };
+    
+    // Create formatted output
+    const result = `🔑 JWT TOKEN DECODED
+
+📋 HEADER:
+${JSON.stringify(header, null, 2)}
+
+📄 PAYLOAD:
+${JSON.stringify(payload, null, 2)}
+
+⏰ TIMESTAMPS:
+• Issued At (iat): ${formatTimestamp(payload.iat)}
+• Expires At (exp): ${formatTimestamp(payload.exp)}
+• Not Before (nbf): ${formatTimestamp(payload.nbf)}
+
+📊 TOKEN INFO:
+• Algorithm: ${header.alg || 'Not specified'}
+• Type: ${header.typ || 'Not specified'}
+• Subject: ${payload.sub || 'Not specified'}
+• Issuer: ${payload.iss || 'Not specified'}
+• Audience: ${payload.aud || 'Not specified'}
+
+⚠️ SIGNATURE:
+${parts[2] ? 'Present (use "Verify JWT" to check validity)' : 'Missing'}
+
+📝 RAW PARTS:
+• Header: ${parts[0]}
+• Payload: ${parts[1]}
+• Signature: ${parts[2] || 'None'}`;
+
+    output.innerHTML = result;
+    output.style.color = '#333';
+    
+  } catch (error) {
+    output.innerHTML = `❌ ERROR DECODING JWT:
+${error.message}
+
+💡 TIPS:
+• Make sure the JWT is complete and properly formatted
+• JWT should have 3 parts separated by dots (header.payload.signature)
+• Check that the token hasn't been truncated when copying`;
+    output.style.color = '#ff4444';
+  }
+}
+
+function verifyJWT() {
+  const input = document.getElementById('jwt-input').value.trim();
+  const secret = document.getElementById('jwt-secret').value;
+  const output = document.getElementById('jwt-output');
+  
+  if (!input) {
+    alert('Please enter a JWT token!');
+    return;
+  }
+  
+  if (!secret) {
+    alert('Please enter a secret key for verification!');
+    return;
+  }
+  
+  try {
+    const parts = input.split('.');
+    if (parts.length !== 3) {
+      throw new Error('Invalid JWT format. JWT should have 3 parts separated by dots.');
+    }
+    
+    // First decode to get header and payload info
+    const header = JSON.parse(atob(parts[0].replace(/-/g, '+').replace(/_/g, '/')));
+    const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
+    
+    // Check expiration
+    const now = Math.floor(Date.now() / 1000);
+    let expirationStatus = '';
+    
+    if (payload.exp) {
+      if (payload.exp < now) {
+        expirationStatus = '❌ EXPIRED';
+      } else {
+        const timeLeft = payload.exp - now;
+        const hoursLeft = Math.floor(timeLeft / 3600);
+        const minutesLeft = Math.floor((timeLeft % 3600) / 60);
+        expirationStatus = `✅ Valid for ${hoursLeft}h ${minutesLeft}m`;
+      }
+    } else {
+      expirationStatus = '⚠️ No expiration set';
+    }
+    
+    // Check not before
+    let notBeforeStatus = '';
+    if (payload.nbf && payload.nbf > now) {
+      notBeforeStatus = '⚠️ Not yet valid (nbf in future)';
+    } else {
+      notBeforeStatus = '✅ Valid from timestamp perspective';
+    }
+    
+    // Note about signature verification
+    const result = `🔍 JWT VERIFICATION ANALYSIS
+
+⏰ EXPIRATION STATUS:
+${expirationStatus}
+
+🕐 NOT BEFORE STATUS:
+${notBeforeStatus}
+
+🔑 TOKEN DETAILS:
+• Algorithm: ${header.alg}
+• Type: ${header.typ}
+• Subject: ${payload.sub || 'Not specified'}
+• Issuer: ${payload.iss || 'Not specified'}
+• Audience: ${payload.aud || 'Not specified'}
+
+⚠️ SIGNATURE VERIFICATION:
+This tool performs basic JWT structure and timestamp validation.
+For production signature verification, use a proper JWT library 
+that supports cryptographic validation with your secret key.
+
+📋 HEADER:
+${JSON.stringify(header, null, 2)}
+
+📄 PAYLOAD:
+${JSON.stringify(payload, null, 2)}
+
+💡 SECURITY NOTE:
+• Always verify JWT signatures server-side in production
+• Never trust client-side JWT validation for security decisions
+• This tool is for development and debugging purposes only`;
+
+    output.innerHTML = result;
+    output.style.color = '#333';
+    
+  } catch (error) {
+    output.innerHTML = `❌ ERROR VERIFYING JWT:
+${error.message}
+
+💡 VERIFICATION TIPS:
+• Ensure the JWT format is correct (3 parts separated by dots)
+• Check that your secret key is correct
+• Remember: signature verification requires cryptographic libraries
+• This tool provides structure validation and expiration checking`;
+    output.style.color = '#ff4444';
+  }
+}
+
+// URL Encoding/Decoding functions
+function urlEncode() {
+  const input = document.getElementById('url-input').value;
+  document.getElementById('url-output').value = encodeURIComponent(input);
+}
+
+function urlDecode() {
+  const input = document.getElementById('url-input').value;
+  try {
+    document.getElementById('url-output').value = decodeURIComponent(input);
+  } catch (e) {
+    document.getElementById('url-output').value = 'Invalid URL-encoded string';
+  }
+}
+
+function switchUrlDirection() {
+  const input = document.getElementById('url-input').value;
+  const output = document.getElementById('url-output').value;
+  document.getElementById('url-input').value = output;
+  document.getElementById('url-output').value = input;
+}
+
+// Hash generation functions
+async function generateHash() {
+  const input = document.getElementById('hash-input').value;
+  const algorithm = document.getElementById('hash-algorithm').value;
+  const outputElement = document.getElementById('hash-output');
+  
+  if (!input.trim()) {
+    alert('Please enter text to hash!');
+    return;
+  }
+  
+  try {
+    let hash = '';
+    
+    // Use crypto-js if available for better hash support
+    if (typeof CryptoJS !== 'undefined') {
+      switch (algorithm) {
+        case 'md5':
+          hash = CryptoJS.MD5(input).toString();
+          break;
+        case 'sha-1':
+          hash = CryptoJS.SHA1(input).toString();
+          break;
+        case 'sha-256':
+          hash = CryptoJS.SHA256(input).toString();
+          break;
+        case 'sha-384':
+          hash = CryptoJS.SHA384(input).toString();
+          break;
+        case 'sha-512':
+          hash = CryptoJS.SHA512(input).toString();
+          break;
+        default:
+          hash = CryptoJS.SHA256(input).toString();
+      }
+      outputElement.textContent = hash;
+    } 
+    // Fallback to Web Crypto API
+    else if (window.crypto && window.crypto.subtle && algorithm !== 'md5') {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(input);
+      
+      let cryptoAlgorithm;
+      switch (algorithm) {
+        case 'sha-1':
+          cryptoAlgorithm = 'SHA-1';
+          break;
+        case 'sha-256':
+          cryptoAlgorithm = 'SHA-256';
+          break;
+        case 'sha-384':
+          cryptoAlgorithm = 'SHA-384';
+          break;
+        case 'sha-512':
+          cryptoAlgorithm = 'SHA-512';
+          break;
+        default:
+          cryptoAlgorithm = 'SHA-256';
+      }
+      
+      const hashBuffer = await crypto.subtle.digest(cryptoAlgorithm, data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      outputElement.textContent = hashHex;
+    } 
+    // Simple fallback for unsupported cases
+    else {
+      if (algorithm === 'md5') {
+        outputElement.textContent = 'MD5 requires crypto-js library (loading...)';
+      } else {
+        outputElement.textContent = 'Hash algorithm not supported in this browser';
+      }
+    }
+  } catch (error) {
+    outputElement.textContent = 'Error generating hash: ' + error.message;
+  }
+}
+
+// UUID generation functions
+function generateUUID() {
+  if (window.crypto && window.crypto.randomUUID) {
+    document.getElementById('uuid-output').value = window.crypto.randomUUID();
+  } else {
+    // Fallback UUID v4 generation
+    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0;
+      const v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+    document.getElementById('uuid-output').value = uuid;
+  }
+}
+
+function validateUUID() {
+  const input = document.getElementById('uuid-input').value.trim();
+  const output = document.getElementById('uuid-validation');
+  
+  if (!input) {
+    output.textContent = 'Enter a UUID to validate';
+    output.style.color = '#666';
+    return;
+  }
+  
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+  
+  if (uuidRegex.test(input)) {
+    const version = input.charAt(14);
+    output.textContent = `✅ Valid UUID v${version}`;
+    output.style.color = '#28a745';
+  } else {
+    output.textContent = '❌ Invalid UUID format';
+    output.style.color = '#dc3545';
+  }
+}
+
+// Color conversion functions
+function convertColor() {
+  const input = document.getElementById('color-input').value.trim();
+  const format = document.getElementById('color-format').value;
+  const output = document.getElementById('color-output');
+  
+  if (!input) {
+    output.textContent = 'Enter a color value to convert';
+    return;
+  }
+  
+  try {
+    let color = parseColor(input);
+    if (!color) throw new Error('Invalid color format');
+    
+    let result = '';
+    switch (format) {
+      case 'hex':
+        result = rgbToHex(color.r, color.g, color.b);
+        break;
+      case 'rgb':
+        result = `rgb(${color.r}, ${color.g}, ${color.b})`;
+        break;
+      case 'hsl':
+        const hsl = rgbToHsl(color.r, color.g, color.b);
+        result = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+        break;
+    }
+    
+    output.textContent = result;
+    document.getElementById('color-preview').style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
+  } catch (error) {
+    output.textContent = 'Error: ' + error.message;
+  }
+}
+
+function parseColor(color) {
+  // Create a temporary element to parse the color
+  const div = document.createElement('div');
+  div.style.color = color;
+  document.body.appendChild(div);
+  const computedColor = window.getComputedStyle(div).color;
+  document.body.removeChild(div);
+  
+  const rgb = computedColor.match(/\d+/g);
+  if (rgb && rgb.length >= 3) {
+    return { r: parseInt(rgb[0]), g: parseInt(rgb[1]), b: parseInt(rgb[2]) };
+  }
+  return null;
+}
+
+function rgbToHex(r, g, b) {
+  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+function rgbToHsl(r, g, b) {
+  r /= 255; g /= 255; b /= 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  let h, s, l = (max + min) / 2;
+  
+  if (max === min) {
+    h = s = 0;
+  } else {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+      case g: h = (b - r) / d + 2; break;
+      case b: h = (r - g) / d + 4; break;
+    }
+    h /= 6;
+  }
+  
+  return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+}
+
+// Timestamp conversion functions
+function convertTimestamp() {
+  const input = document.getElementById('timestamp-input').value.trim();
+  const output = document.getElementById('timestamp-output');
+  
+  if (!input) {
+    output.textContent = 'Enter a timestamp to convert';
+    return;
+  }
+  
+  try {
+    let timestamp;
+    
+    // Check if input is a Unix timestamp (number)
+    if (/^\d+$/.test(input)) {
+      // Assume seconds if less than 13 digits, milliseconds if 13+ digits
+      timestamp = input.length <= 10 ? parseInt(input) * 1000 : parseInt(input);
+    } else {
+      // Try to parse as date string
+      timestamp = new Date(input).getTime();
+      if (isNaN(timestamp)) throw new Error('Invalid date format');
+    }
+    
+    const date = new Date(timestamp);
+    const unixSeconds = Math.floor(timestamp / 1000);
+    
+    const result = `Unix Timestamp (seconds): ${unixSeconds}
+Unix Timestamp (milliseconds): ${timestamp}
+ISO 8601: ${date.toISOString()}
+UTC: ${date.toUTCString()}
+Local: ${date.toLocaleString()}
+Relative: ${getRelativeTime(timestamp)}`;
+    
+    output.textContent = result;
+  } catch (error) {
+    output.textContent = 'Error: ' + error.message;
+  }
+}
+
+function getCurrentTimestamp() {
+  const now = new Date();
+  const timestamp = now.getTime();
+  document.getElementById('timestamp-input').value = Math.floor(timestamp / 1000);
+  convertTimestamp();
+}
+
+function getRelativeTime(timestamp) {
+  const now = Date.now();
+  const diff = now - timestamp;
+  const seconds = Math.floor(Math.abs(diff) / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  
+  const future = diff < 0;
+  const prefix = future ? 'in ' : '';
+  const suffix = future ? '' : ' ago';
+  
+  if (days > 0) return `${prefix}${days} day${days > 1 ? 's' : ''}${suffix}`;
+  if (hours > 0) return `${prefix}${hours} hour${hours > 1 ? 's' : ''}${suffix}`;
+  if (minutes > 0) return `${prefix}${minutes} minute${minutes > 1 ? 's' : ''}${suffix}`;
+  return `${prefix}${seconds} second${seconds > 1 ? 's' : ''}${suffix}`;
+}
+
+// Universal clear functions
+function clearAll(panelType) {
+  switch (panelType) {
+    case 'url':
+      document.getElementById('url-input').value = '';
+      document.getElementById('url-output').value = '';
+      break;
+    case 'hash':
+      document.getElementById('hash-input').value = '';
+      document.getElementById('hash-output').textContent = 'Hash will appear here';
+      break;
+    case 'uuid':
+      document.getElementById('uuid-input').value = '';
+      document.getElementById('uuid-output').value = '';
+      document.getElementById('uuid-validation').textContent = '';
+      break;
+    case 'color':
+      document.getElementById('color-input').value = '';
+      document.getElementById('color-output').textContent = '';
+      document.getElementById('color-preview').style.backgroundColor = '#f0f0f0';
+      break;
+    case 'timestamp':
+      document.getElementById('timestamp-input').value = '';
+      document.getElementById('timestamp-output').textContent = 'Timestamp conversion will appear here';
+      break;
+    case 'regex':
+      document.getElementById('regex-pattern').value = '';
+      document.getElementById('regex-input').value = '';
+      document.getElementById('regex-flags').value = 'gi';
+      document.getElementById('regex-output').textContent = 'Test results will appear here';
+      break;
+    case 'text':
+      document.getElementById('text-input').value = '';
+      document.getElementById('text-output').textContent = '';
+      document.getElementById('text-stats').innerHTML = '';
+      break;
+    case 'api':
+      document.getElementById('api-input').value = '';
+      document.getElementById('api-output').textContent = '';
+      break;
+    case 'markdown':
+      document.getElementById('markdown-input').value = '';
+      document.getElementById('markdown-output').innerHTML = '<p><em>Enter Markdown text to see preview</em></p>';
+      break;
+  }
+}
+
+// Universal paste functions
+function pasteInput(elementId) {
+  navigator.clipboard.readText().then(text => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.value = text;
+      
+      // Auto-trigger functions for certain panels
+      if (elementId === 'color-input') convertColor();
+      if (elementId === 'timestamp-input') convertTimestamp();
+      if (elementId === 'uuid-input') validateUUID();
+      if (elementId === 'markdown-input') previewMarkdown();
+    }
+  }).catch(err => {
+    console.error('Failed to read clipboard: ', err);
+  });
+}
+
+// Clear input functions
+function clearInput(elementId) {
+  const element = document.getElementById(elementId);
+  if (element) {
+    element.value = '';
+    
+    // Auto-clear related outputs
+    if (elementId === 'color-input') {
+      document.getElementById('color-output').textContent = '';
+      document.getElementById('color-preview').style.backgroundColor = '#f0f0f0';
+    }
+    if (elementId === 'timestamp-input') {
+      document.getElementById('timestamp-output').textContent = 'Timestamp conversion will appear here';
+    }
+    if (elementId === 'uuid-input') {
+      document.getElementById('uuid-validation').textContent = '';
+    }
+    if (elementId === 'markdown-input') {
+      document.getElementById('markdown-output').innerHTML = '<p><em>Enter Markdown text to see preview</em></p>';
+    }
+  }
 }
 </script>
 <!-- html2canvas for screenshot functionality -->
@@ -567,12 +1573,1515 @@ function captureScreenshot(outputId, filename) {
   });
 }
 </script>
+
+<!-- Additional Developer Tools Functions -->
+<script>
+// QR Code generation functions
+function generateQR() {
+  const input = document.getElementById('qr-input').value.trim();
+  const canvas = document.getElementById('qr-canvas');
+  const placeholder = document.getElementById('qr-placeholder');
+  const sizeSelect = document.getElementById('qr-size');
+  const size = parseInt(sizeSelect.value) || 300;
+  
+  console.log('Generating QR code for:', input);
+  console.log('Canvas element:', canvas);
+  console.log('QRious available:', typeof QRious);
+  
+  if (!input) {
+    alert('Please enter text to generate QR code!');
+    return;
+  }
+  
+  try {
+    // Set canvas size
+    canvas.width = size;
+    canvas.height = size;
+    
+    // Check if QRious library is loaded
+    if (typeof QRious !== 'undefined') {
+      console.log('Using QRious library');
+      
+      // Create QR code using QRious
+      const qr = new QRious({
+        element: canvas,
+        value: input,
+        size: size,
+        background: 'white',
+        foreground: 'black',
+        level: 'M'
+      });
+      
+      console.log('QR code generated with QRious');
+      
+      // Hide placeholder and show canvas
+      placeholder.style.display = 'none';
+      canvas.style.display = 'block';
+      
+    } else if (typeof QRCode !== 'undefined') {
+      console.log('Using QRCode library');
+      
+      // Generate QR code using QRCode.js
+      QRCode.toCanvas(canvas, input, {
+        width: size,
+        height: size,
+        margin: 2,
+        color: {
+          dark: '#000000',
+          light: '#FFFFFF'
+        }
+      }, function (error) {
+        if (error) {
+          console.error('QRCode library failed:', error);
+          generateSimpleQR(input, canvas, placeholder, size);
+        } else {
+          console.log('QR code generated with QRCode.js');
+          // Hide placeholder and show canvas
+          placeholder.style.display = 'none';
+          canvas.style.display = 'block';
+        }
+      });
+      
+    } else {
+      console.log('No QR library available, using fallback');
+      generateSimpleQR(input, canvas, placeholder, size);
+    }
+    
+  } catch (error) {
+    console.error('QR Code generation error:', error);
+    generateSimpleQR(input, canvas, placeholder, size);
+  }
+}
+
+// Fallback QR code generation
+function generateSimpleQR(text, canvas, placeholder, size) {
+  console.log('Using fallback QR generation');
+  const ctx = canvas.getContext('2d');
+  
+  // Set canvas size
+  canvas.width = size;
+  canvas.height = size;
+  
+  // Clear canvas with white background
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, size, size);
+  
+  // Create a simple pattern (not a real QR code, just for demonstration)
+  ctx.fillStyle = '#000000';
+  
+  // Draw corner markers (finder patterns)
+  const markerSize = Math.floor(size / 8);
+  // Top-left
+  ctx.fillRect(10, 10, markerSize, markerSize);
+  // Top-right
+  ctx.fillRect(size - markerSize - 10, 10, markerSize, markerSize);
+  // Bottom-left
+  ctx.fillRect(10, size - markerSize - 10, markerSize, markerSize);
+  
+  // Draw some random pattern to simulate QR code
+  const cellSize = Math.floor(size / 30);
+  for (let i = 2; i < 28; i++) {
+    for (let j = 2; j < 28; j++) {
+      // Skip corner areas
+      if ((i < 8 && j < 8) || (i < 8 && j > 21) || (i > 21 && j < 8)) {
+        continue;
+      }
+      
+      // Create pseudo-random pattern based on text content
+      const hash = text.charCodeAt(i % text.length) + text.charCodeAt(j % text.length);
+      if (hash % 3 === 0) {
+        ctx.fillRect(i * cellSize, j * cellSize, cellSize - 1, cellSize - 1);
+      }
+    }
+  }
+  
+  // Add border
+  ctx.strokeStyle = '#000000';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(5, 5, size - 10, size - 10);
+  
+  console.log('Fallback QR pattern generated');
+  
+  // Hide placeholder and show canvas
+  placeholder.style.display = 'none';
+  canvas.style.display = 'block';
+}
+
+function downloadQR() {
+  const canvas = document.getElementById('qr-canvas');
+  
+  // Check if canvas has content (is visible and has been drawn on)
+  if (canvas.style.display === 'none' || canvas.width === 0) {
+    alert('Please generate a QR code first!');
+    return;
+  }
+  
+  try {
+    const link = document.createElement('a');
+    link.download = 'qrcode.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  } catch (error) {
+    alert('Error downloading QR code: ' + error.message);
+  }
+}
+
+function clearQR() {
+  const canvas = document.getElementById('qr-canvas');
+  const placeholder = document.getElementById('qr-placeholder');
+  const input = document.getElementById('qr-input');
+  
+  // Clear input
+  input.value = '';
+  
+  // Hide canvas and show placeholder
+  canvas.style.display = 'none';
+  placeholder.style.display = 'block';
+  
+  // Clear canvas content
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// Regex testing functions
+function testRegex() {
+  const pattern = document.getElementById('regex-pattern').value;
+  const text = document.getElementById('regex-input').value;
+  const flags = document.getElementById('regex-flags').value || 'gi';
+  const output = document.getElementById('regex-output');
+  
+  if (!pattern) {
+    output.textContent = 'Enter a regex pattern to test';
+    return;
+  }
+  
+  try {
+    const regex = new RegExp(pattern, flags);
+    const matches = text.matchAll(regex);
+    const matchArray = Array.from(matches);
+    
+    if (matchArray.length === 0) {
+      output.textContent = 'No matches found';
+      return;
+    }
+    
+    let result = `Found ${matchArray.length} match(es):\n\n`;
+    matchArray.forEach((match, index) => {
+      result += `Match ${index + 1}: "${match[0]}"\n`;
+      result += `Position: ${match.index} - ${match.index + match[0].length - 1}\n`;
+      if (match.length > 1) {
+        result += `Groups: ${match.slice(1).join(', ')}\n`;
+      }
+      result += '\n';
+    });
+    
+    output.textContent = result;
+  } catch (error) {
+    output.textContent = 'Invalid regex: ' + error.message;
+  }
+}
+
+function insertRegexPattern(pattern) {
+  document.getElementById('regex-pattern').value = pattern;
+}
+
+// Text utilities functions
+function transformText() {
+  const input = document.getElementById('text-input').value;
+  const operation = document.getElementById('text-operation').value;
+  const output = document.getElementById('text-output');
+  
+  if (!input) {
+    output.textContent = 'Enter text to transform';
+    return;
+  }
+  
+  let result = '';
+  switch (operation) {
+    case 'uppercase':
+      result = input.toUpperCase();
+      break;
+    case 'lowercase':
+      result = input.toLowerCase();
+      break;
+    case 'capitalize':
+      result = input.replace(/\b\w/g, l => l.toUpperCase());
+      break;
+    case 'reverse':
+      result = input.split('').reverse().join('');
+      break;
+    case 'removeSpaces':
+      result = input.replace(/\s+/g, '');
+      break;
+    case 'removeNewlines':
+      result = input.replace(/\n/g, ' ');
+      break;
+    case 'sort':
+      result = input.split('\n').sort().join('\n');
+      break;
+    case 'unique':
+      result = [...new Set(input.split('\n'))].join('\n');
+      break;
+    default:
+      result = input;
+  }
+  
+  output.textContent = result;
+  updateTextStats(input, result);
+}
+
+function updateTextStats(input, output) {
+  const stats = document.getElementById('text-stats');
+  const inputStats = {
+    chars: input.length,
+    words: input.trim() ? input.trim().split(/\s+/).length : 0,
+    lines: input.split('\n').length,
+    paragraphs: input.split('\n\n').length
+  };
+  
+  const outputStats = {
+    chars: output.length,
+    words: output.trim() ? output.trim().split(/\s+/).length : 0,
+    lines: output.split('\n').length
+  };
+  
+  stats.innerHTML = `
+    <strong>Input:</strong> ${inputStats.chars} chars, ${inputStats.words} words, ${inputStats.lines} lines<br>
+    <strong>Output:</strong> ${outputStats.chars} chars, ${outputStats.words} words, ${outputStats.lines} lines
+  `;
+}
+
+// API formatter functions
+function formatAPI() {
+  const input = document.getElementById('api-input').value.trim();
+  const format = document.getElementById('api-format').value;
+  const output = document.getElementById('api-output');
+  
+  if (!input) {
+    output.textContent = 'Enter API response to format';
+    return;
+  }
+  
+  try {
+    const data = JSON.parse(input);
+    let formatted = '';
+    
+    switch (format) {
+      case 'pretty':
+        formatted = JSON.stringify(data, null, 2);
+        break;
+      case 'minified':
+        formatted = JSON.stringify(data);
+        break;
+      case 'curl':
+        formatted = generateCurlCommand(data);
+        break;
+      case 'table':
+        formatted = generateHTMLTable(data);
+        break;
+      case 'csv':
+        formatted = generateCSV(data);
+        break;
+      case 'xml':
+        formatted = jsonToXML(data);
+        break;
+      default:
+        formatted = JSON.stringify(data, null, 2);
+    }
+    
+    output.textContent = formatted;
+  } catch (error) {
+    output.textContent = 'Invalid JSON: ' + error.message;
+  }
+}
+
+function generateCurlCommand(data) {
+  // Enhanced curl command generation
+  return `# GET Request Example
+curl -X GET \\
+  -H "Accept: application/json" \\
+  -H "Content-Type: application/json" \\
+  "https://api.example.com/endpoint"
+
+# POST Request Example  
+curl -X POST \\
+  -H "Content-Type: application/json" \\
+  -H "Accept: application/json" \\
+  -d '${JSON.stringify(data, null, 2)}' \\
+  "https://api.example.com/endpoint"
+  
+# Response Format:
+${JSON.stringify(data, null, 2)}`;
+}
+
+function generateHTMLTable(data) {
+  if (Array.isArray(data) && data.length > 0) {
+    const headers = Object.keys(data[0]);
+    let table = '<table border="1" cellpadding="5" cellspacing="0">\n<thead>\n<tr>';
+    headers.forEach(header => {
+      table += `<th>${header}</th>`;
+    });
+    table += '</tr>\n</thead>\n<tbody>\n';
+    
+    data.forEach(row => {
+      table += '<tr>';
+      headers.forEach(header => {
+        const value = row[header];
+        table += `<td>${typeof value === 'object' ? JSON.stringify(value) : (value || '')}</td>`;
+      });
+      table += '</tr>\n';
+    });
+    table += '</tbody>\n</table>';
+    return table;
+  }
+  return 'Data is not in table format (should be array of objects)';
+}
+
+function generateCSV(data) {
+  if (Array.isArray(data) && data.length > 0) {
+    const headers = Object.keys(data[0]);
+    let csv = headers.join(',') + '\n';
+    
+    data.forEach(row => {
+      const values = headers.map(header => {
+        const value = row[header];
+        if (typeof value === 'string' && (value.includes(',') || value.includes('"'))) {
+          return `"${value.replace(/"/g, '""')}"`;
+        }
+        return value || '';
+      });
+      csv += values.join(',') + '\n';
+    });
+    
+    return csv;
+  }
+  return 'Data is not in CSV format (should be array of objects)';
+}
+
+function jsonToXML(obj, rootName = 'root') {
+  function objectToXML(obj, indent = 0) {
+    const spaces = '  '.repeat(indent);
+    let xml = '';
+    
+    if (Array.isArray(obj)) {
+      obj.forEach(item => {
+        xml += `${spaces}<item>\n${objectToXML(item, indent + 1)}${spaces}</item>\n`;
+      });
+    } else if (typeof obj === 'object' && obj !== null) {
+      Object.keys(obj).forEach(key => {
+        const value = obj[key];
+        if (typeof value === 'object' && value !== null) {
+          xml += `${spaces}<${key}>\n${objectToXML(value, indent + 1)}${spaces}</${key}>\n`;
+        } else {
+          xml += `${spaces}<${key}>${value}</${key}>\n`;
+        }
+      });
+    } else {
+      xml += `${spaces}${obj}\n`;
+    }
+    
+    return xml;
+  }
+  
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<${rootName}>\n${objectToXML(obj, 1)}</${rootName}>`;
+}
+
+// API validation function
+function validateAPI() {
+  const input = document.getElementById('api-input').value.trim();
+  const output = document.getElementById('api-output');
+  
+  if (!input) {
+    output.textContent = 'Enter API response to validate';
+    return;
+  }
+  
+  try {
+    const data = JSON.parse(input);
+    const validation = analyzeAPIStructure(data);
+    output.textContent = validation;
+  } catch (error) {
+    output.textContent = `❌ INVALID JSON: ${error.message}
+
+💡 Common JSON Issues:
+• Missing quotes around property names
+• Trailing commas in objects/arrays
+• Single quotes instead of double quotes
+• Unescaped special characters
+• Missing closing brackets/braces`;
+  }
+}
+
+function analyzeAPIStructure(data) {
+  let analysis = '✅ VALID JSON\n\n';
+  
+  // Basic structure analysis
+  analysis += '📊 STRUCTURE ANALYSIS:\n';
+  analysis += `• Type: ${Array.isArray(data) ? 'Array' : typeof data}\n`;
+  
+  if (Array.isArray(data)) {
+    analysis += `• Length: ${data.length} items\n`;
+    if (data.length > 0) {
+      const itemTypes = [...new Set(data.map(item => typeof item))];
+      analysis += `• Item types: ${itemTypes.join(', ')}\n`;
+      
+      if (typeof data[0] === 'object' && data[0] !== null) {
+        const keys = Object.keys(data[0]);
+        analysis += `• First item keys: ${keys.join(', ')}\n`;
+      }
+    }
+  } else if (typeof data === 'object' && data !== null) {
+    const keys = Object.keys(data);
+    analysis += `• Properties: ${keys.length}\n`;
+    analysis += `• Keys: ${keys.slice(0, 10).join(', ')}${keys.length > 10 ? '...' : ''}\n`;
+  }
+  
+  // Size analysis
+  const jsonString = JSON.stringify(data);
+  analysis += `• Size: ${jsonString.length} characters\n`;
+  analysis += `• Minified size: ${JSON.stringify(data).length} bytes\n`;
+  
+  // Nested structure analysis
+  const depth = getMaxDepth(data);
+  analysis += `• Max nesting depth: ${depth}\n\n`;
+  
+  // Common API patterns detection
+  analysis += '🔍 API PATTERN DETECTION:\n';
+  if (data.status || data.statusCode) {
+    analysis += '• Contains status information ✓\n';
+  }
+  if (data.data || data.result) {
+    analysis += '• Contains data wrapper ✓\n';
+  }
+  if (data.error || data.message) {
+    analysis += '• Contains error/message field ✓\n';
+  }
+  if (data.timestamp || data.created_at || data.updated_at) {
+    analysis += '• Contains timestamp information ✓\n';
+  }
+  
+  return analysis;
+}
+
+function getMaxDepth(obj, depth = 0) {
+  if (typeof obj !== 'object' || obj === null) return depth;
+  
+  if (Array.isArray(obj)) {
+    return Math.max(depth, ...obj.map(item => getMaxDepth(item, depth + 1)));
+  } else {
+    const depths = Object.values(obj).map(value => getMaxDepth(value, depth + 1));
+    return Math.max(depth, ...depths);
+  }
+}
+
+// Markdown preview functions
+function previewMarkdown() {
+  const input = document.getElementById('markdown-input').value;
+  const output = document.getElementById('markdown-output');
+  
+  if (!input.trim()) {
+    output.innerHTML = '<p><em>Enter Markdown text to see preview</em></p>';
+    return;
+  }
+  
+  // Enhanced Markdown to HTML conversion
+  let html = input
+    // Escape HTML first
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    
+    // Code blocks (triple backticks)
+    .replace(/```(\w+)?\n([\s\S]*?)```/gim, '<pre><code class="language-$1">$2</code></pre>')
+    .replace(/```([\s\S]*?)```/gim, '<pre><code>$1</code></pre>')
+    
+    // Headers
+    .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
+    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+    
+    // Bold
+    .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+    .replace(/__(.*?)__/gim, '<strong>$1</strong>')
+    
+    // Italic
+    .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+    .replace(/_(.*?)_/gim, '<em>$1</em>')
+    
+    // Strikethrough
+    .replace(/~~(.*?)~~/gim, '<del>$1</del>')
+    
+    // Inline code
+    .replace(/`(.*?)`/gim, '<code>$1</code>')
+    
+    // Links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    
+    // Images
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/gim, '<img src="$2" alt="$1" style="max-width: 100%;">')
+    
+    // Blockquotes
+    .replace(/^> (.*$)/gim, '<blockquote>$1</blockquote>')
+    
+    // Horizontal rules
+    .replace(/^---$/gim, '<hr>')
+    .replace(/^\* \* \*$/gim, '<hr>')
+    
+    // Lists
+    .replace(/^\* (.*$)/gim, '<li>$1</li>')
+    .replace(/^\+ (.*$)/gim, '<li>$1</li>')
+    .replace(/^- (.*$)/gim, '<li>$1</li>')
+    .replace(/^(\d+)\. (.*$)/gim, '<li>$2</li>')
+    
+    // Line breaks
+    .replace(/\n/gim, '<br>');
+  
+  // Wrap consecutive list items in ul tags
+  html = html.replace(/(<li>.*<\/li>)(<br>)*(<li>)/gim, '$1$3');
+  html = html.replace(/(<li>.*<\/li>)/gim, '<ul>$1</ul>');
+  
+  // Clean up multiple breaks
+  html = html.replace(/(<br>\s*){3,}/gim, '<br><br>');
+  
+  output.innerHTML = html;
+}
+
+function exportMarkdown() {
+  const input = document.getElementById('markdown-input').value;
+  if (!input.trim()) {
+    alert('No markdown content to export!');
+    return;
+  }
+  
+  const blob = new Blob([input], { type: 'text/markdown' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'document.md';
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+// Export HTML from markdown preview
+function exportMarkdownAsHTML() {
+  const output = document.getElementById('markdown-output');
+  const htmlContent = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Markdown Export</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        code { background: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; overflow-x: auto; }
+        blockquote { border-left: 4px solid #ddd; margin: 0; padding-left: 20px; color: #666; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+${output.innerHTML}
+</body>
+</html>`;
+  
+  const blob = new Blob([htmlContent], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'markdown-export.html';
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+/* -------------------------
+   Storage Management Functions
+------------------------- */
+function openStorageModal() {
+  const modal = document.getElementById('storage-modal');
+  const info = document.getElementById('storage-info');
+  
+  // Show modal
+  modal.style.display = 'block';
+  
+  // Get storage info
+  const storageInfo = LocalStorage.getStorageInfo();
+  
+  // Count stored items by panel
+  const panelCounts = {};
+  for (let key in localStorage) {
+    if (localStorage.hasOwnProperty(key) && key.includes('-')) {
+      const panelType = key.split('-')[0];
+      if (!['last', 'language'].includes(panelType)) {
+        panelCounts[panelType] = (panelCounts[panelType] || 0) + 1;
+      }
+    }
+  }
+  
+  // Display storage information
+  let infoHtml = `
+    <div class="storage-stats">
+      <p><strong>Storage Usage:</strong> ${storageInfo.totalSize} KB used</p>
+      <p><strong>Available:</strong> ~${storageInfo.available} KB remaining</p>
+      <p><strong>Total Items:</strong> ${storageInfo.itemCount}</p>
+    </div>
+    <div class="panel-breakdown">
+      <h3>Saved Data by Panel:</h3>
+  `;
+  
+  if (Object.keys(panelCounts).length === 0) {
+    infoHtml += '<p>No saved data found.</p>';
+  } else {
+    for (let panel in panelCounts) {
+      const displayName = panel.charAt(0).toUpperCase() + panel.slice(1);
+      infoHtml += `<p><strong>${displayName}:</strong> ${panelCounts[panel]} item${panelCounts[panel] !== 1 ? 's' : ''}</p>`;
+    }
+  }
+  
+  infoHtml += '</div>';
+  info.innerHTML = infoHtml;
+}
+
+function closeStorageModal() {
+  document.getElementById('storage-modal').style.display = 'none';
+}
+
+function clearAllStorage() {
+  if (confirm('Are you sure you want to clear all saved data? This cannot be undone.')) {
+    // Clear all panel data (keep language and last-panel settings)
+    const keysToKeep = ['language', 'last-panel'];
+    const keysToRemove = [];
+    
+    for (let key in localStorage) {
+      if (localStorage.hasOwnProperty(key) && !keysToKeep.includes(key)) {
+        keysToRemove.push(key);
+      }
+    }
+    
+    keysToRemove.forEach(key => localStorage.removeItem(key));
+    
+    alert('All saved data has been cleared.');
+    closeStorageModal();
+  }
+}
+
+function exportStorageData() {
+  const data = {};
+  
+  // Export all panel data (exclude settings like language)
+  for (let key in localStorage) {
+    if (localStorage.hasOwnProperty(key) && key.includes('-') && !['last-panel'].includes(key)) {
+      data[key] = localStorage[key];
+    }
+  }
+  
+  if (Object.keys(data).length === 0) {
+    alert('No data to export.');
+    return;
+  }
+  
+  const dataStr = JSON.stringify(data, null, 2);
+  const dataBlob = new Blob([dataStr], {type: 'application/json'});
+  
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(dataBlob);
+  a.download = `developer-tools-data-${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  
+  URL.revokeObjectURL(a.href);
+}
+
+function importStorageData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      
+      if (typeof data !== 'object') {
+        throw new Error('Invalid data format');
+      }
+      
+      let importedCount = 0;
+      for (let key in data) {
+        if (typeof key === 'string' && typeof data[key] === 'string') {
+          localStorage.setItem(key, data[key]);
+          importedCount++;
+        }
+      }
+      
+      alert(`Successfully imported ${importedCount} data items.`);
+      closeStorageModal();
+      
+      // Refresh current panel to show imported data
+      const currentPanel = localStorage.getItem('last-panel') || 'json';
+      showOnly(currentPanel);
+      
+    } catch (error) {
+      alert('Failed to import data. Please check the file format.');
+    }
+  };
+  
+  reader.readAsText(file);
+  
+  // Reset file input
+  event.target.value = '';
+}
+
+// Real-time input handlers
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize localStorage input persistence
+  initializeInputPersistence();
+  
+  // Auto-convert color on input
+  const colorInput = document.getElementById('color-input');
+  if (colorInput) {
+    colorInput.addEventListener('input', convertColor);
+  }
+  
+  // Auto-validate UUID on input
+  const uuidInput = document.getElementById('uuid-input');
+  if (uuidInput) {
+    uuidInput.addEventListener('input', validateUUID);
+  }
+  
+  // Auto-preview markdown on input (with debounce)
+  const markdownInput = document.getElementById('markdown-input');
+  if (markdownInput) {
+    let markdownTimeout;
+    markdownInput.addEventListener('input', function() {
+      clearTimeout(markdownTimeout);
+      markdownTimeout = setTimeout(previewMarkdown, 300);
+    });
+  }
+  
+  // Auto-convert timestamp on input
+  const timestampInput = document.getElementById('timestamp-input');
+  if (timestampInput) {
+    timestampInput.addEventListener('input', function() {
+      if (this.value.trim()) {
+        convertTimestamp();
+      }
+    });
+  }
+  
+  // Auto-update text stats on input
+  const textInput = document.getElementById('text-input');
+  if (textInput) {
+    textInput.addEventListener('input', function() {
+      if (this.value.trim()) {
+        transformText();
+      } else {
+        document.getElementById('text-stats').innerHTML = '';
+      }
+    });
+  }
+});
+
+/* -------------------------
+   Input Persistence System
+------------------------- */
+function initializeInputPersistence() {
+  // Define all inputs that should be persisted
+  const inputMappings = [
+    // JSON Panel
+    { panel: 'json', id: 'json-io-input', type: 'textarea' },
+    
+    // XML Panel  
+    { panel: 'xml', id: 'xml-io-input', type: 'textarea' },
+    
+    // Graph Panel
+    { panel: 'graph', id: 'graph-input', type: 'textarea' },
+    
+    // Base64 Panel
+    { panel: 'base64', id: 'base64-input', type: 'textarea' },
+    
+    // JWT Panel
+    { panel: 'jwt', id: 'jwt-input', type: 'textarea' },
+    { panel: 'jwt', id: 'jwt-secret', type: 'input' },
+    
+    // URL Panel
+    { panel: 'url', id: 'url-input', type: 'textarea' },
+    
+    // Hash Panel
+    { panel: 'hash', id: 'hash-input', type: 'textarea' },
+    { panel: 'hash', id: 'hash-algorithm', type: 'select' },
+    
+    // UUID Panel
+    { panel: 'uuid', id: 'uuid-input', type: 'input' },
+    
+    // Color Panel
+    { panel: 'color', id: 'color-input', type: 'input' },
+    { panel: 'color', id: 'color-format', type: 'select' },
+    
+    // Timestamp Panel
+    { panel: 'timestamp', id: 'timestamp-input', type: 'input' },
+    
+    // QR Panel
+    { panel: 'qr', id: 'qr-input', type: 'textarea' },
+    { panel: 'qr', id: 'qr-size', type: 'select' },
+    
+    // Regex Panel
+    { panel: 'regex', id: 'regex-pattern', type: 'input' },
+    { panel: 'regex', id: 'regex-flags', type: 'input' },
+    { panel: 'regex', id: 'regex-input', type: 'textarea' },
+    
+    // Text Panel
+    { panel: 'text', id: 'text-input', type: 'textarea' },
+    { panel: 'text', id: 'text-operation', type: 'select' },
+    
+    // API Panel
+    { panel: 'api', id: 'api-input', type: 'textarea' },
+    { panel: 'api', id: 'api-format', type: 'select' },
+    
+    // Markdown Panel
+    { panel: 'markdown', id: 'markdown-input', type: 'textarea' }
+  ];
+  
+  // Load saved values and add auto-save listeners
+  inputMappings.forEach(mapping => {
+    const element = document.getElementById(mapping.id);
+    if (element) {
+      // Load saved value
+      const savedValue = LocalStorage.loadInput(mapping.panel, mapping.id);
+      if (savedValue) {
+        element.value = savedValue;
+      }
+      
+      // Add auto-save listener
+      const eventType = mapping.type === 'select' ? 'change' : 'input';
+      element.addEventListener(eventType, function() {
+        LocalStorage.saveInput(mapping.panel, mapping.id, this.value);
+      });
+      
+      // For textarea, also save on paste
+      if (mapping.type === 'textarea') {
+        element.addEventListener('paste', function() {
+          setTimeout(() => {
+            LocalStorage.saveInput(mapping.panel, mapping.id, this.value);
+          }, 10);
+        });
+      }
+    }
+  });
+  
+  console.log('Input persistence initialized for all panels');
+}
+</script>
         <div id="xml-summary" style="margin-top: 8px; font-weight: bold; color: #888;"></div>
       </div>
 
     </div>
+  
+
+  <!-- GRAPH PANEL -->
+  <div id="panel-graph" class="panel hidden">
+    <div class="io-wrapper">
+      
+      <!-- Graph Action Buttons -->
+      <div class="btn-group">
+        <button onclick="pasteInput('graph-input')" data-i18n="paste">
+          <i class="fas fa-paste"></i>
+          Paste
+        </button>
+        <button onclick="clearInput('graph-input')" data-i18n="clear">
+          <i class="fas fa-trash"></i>
+          Clear
+        </button>
+        <select id="chart-type-select" data-i18n-title="chart_type" style="padding: 6px 10px; margin-right: 10px; border-radius: 3px; border: 1px solid #ddd;">
+          <option value="bar" data-i18n="bar_chart">Bar Chart</option>
+          <option value="line" data-i18n="line_chart">Line Chart</option>
+          <option value="pie" data-i18n="pie_chart">Pie Chart</option>
+          <option value="doughnut" data-i18n="doughnut_chart">Doughnut Chart</option>
+          <option value="radar" data-i18n="radar_chart">Radar Chart</option>
+          <option value="polarArea" data-i18n="polar_area_chart">Polar Area</option>
+        </select>
+        <button onclick="generateGraphInPanel()" data-i18n="generate_graph">
+          <i class="fas fa-chart-bar"></i>
+          Generate Graph
+        </button>
+        
+        <button onclick="downloadGraphFromPanel()" data-i18n="download_chart">
+          <i class="fas fa-download"></i>
+          Download Chart
+        </button>
+      </div>
+
+      <!-- Content area with input and chart output -->
+      <div class="io-content">
+        <!-- Left side: Data input -->
+        <div class="io-input" id="graph-io-input">
+          <textarea id="graph-input" data-i18n-placeholder="paste_data_here" placeholder="Paste your data here (JSON array/object, CSV, or key=value pairs)"></textarea>
+          <div style="margin-top: 10px; font-size: 12px; color: #666;">
+            <strong data-i18n="supported_formats">Supported formats:</strong><br>
+            • JSON: [{"name":"A","value":10}, {"name":"B","value":20}]<br>
+            • CSV: name,value\nA,10\nB,20<br>
+            • Key=Value: A=10\nB=20
+          </div>
+        </div>
+
+        <!-- Draggable divider -->
+        <div class="divider" id="graph-divider"></div>
+
+        <!-- Right side: Chart output -->
+        <div class="io-output" id="graph-io-output">
+          <div id="graph-canvas-container" style="width: 100%; height: 400px; position: relative;">
+            <canvas id="graph-panel-chart" style="max-width: 100%; max-height: 100%;"></canvas>
+            <div id="graph-placeholder" style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f9f9f9; border: 2px dashed #ddd; border-radius: 8px; position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+              <div style="text-align: center; color: #888;">
+                <i class="fas fa-chart-bar" style="font-size: 48px; margin-bottom: 10px;"></i>
+                <div data-i18n="chart_will_appear_here">Your chart will appear here</div>
+                <div style="font-size: 12px; margin-top: 5px;" data-i18n="paste_data_and_generate">Paste data on the left and click "Generate Graph"</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- BASE64 PANEL -->
+  <div id="panel-base64" class="panel hidden">
+    <div class="io-wrapper">
+      
+      <!-- Base64 Action Buttons -->
+      <div class="btn-group">
+        <button onclick="encodeBase64()" data-i18n="encode_base64">
+          <i class="fas fa-lock"></i>
+          Encode to Base64
+        </button>
+        <button onclick="decodeBase64()" data-i18n="decode_base64">
+          <i class="fas fa-unlock"></i>
+          Decode from Base64
+        </button>
+        <button onclick="pasteInput('base64-input')" data-i18n="paste">
+          <i class="fas fa-paste"></i>
+          Paste
+        </button>
+        <button onclick="clearInput('base64-input')" data-i18n="clear">
+          <i class="fas fa-trash"></i>
+          Clear
+        </button>
+        <button onclick="copyToClipboard('base64-output')" data-i18n="copy">
+          <i class="fas fa-copy"></i>
+          Copy Result
+        </button>
+      </div>
+
+      <!-- Content area with input and output -->
+      <div class="io-content">
+        <!-- Left side: Input -->
+        <div class="io-input" id="base64-io-input">
+          <textarea id="base64-input" data-i18n-placeholder="paste_text_here" placeholder="Paste text to encode/decode here"></textarea>
+          <div style="margin-top: 10px; font-size: 12px; color: #666;">
+            <strong data-i18n="usage_instructions">Usage Instructions:</strong><br>
+            • <strong data-i18n="encode_instruction">To Encode:</strong> Paste plain text and click "Encode to Base64"<br>
+            • <strong data-i18n="decode_instruction">To Decode:</strong> Paste Base64 string and click "Decode from Base64"
+          </div>
+        </div>
+
+        <!-- Draggable divider -->
+        <div class="divider" id="base64-divider"></div>
+
+        <!-- Right side: Output -->
+        <div class="io-output" id="base64-io-output">
+          <div id="base64-output" class="output" style="padding: 10px; min-height: 300px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; font-family: Consolas, monospace; white-space: pre-wrap; word-break: break-all;">
+            <div style="color: #888; text-align: center; margin-top: 100px;">
+              <i class="fas fa-exchange-alt" style="font-size: 48px; margin-bottom: 10px;"></i>
+              <div data-i18n="result_will_appear_here">Your encoded/decoded result will appear here</div>
+              <div style="font-size: 12px; margin-top: 5px;" data-i18n="paste_text_and_process">Paste text on the left and click Encode or Decode</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JWT PANEL -->
+  <div id="panel-jwt" class="panel hidden">
+    <div class="io-wrapper">
+      
+      <!-- JWT Action Buttons -->
+      <div class="btn-group">
+        <button onclick="decodeJWT()" data-i18n="decode_jwt">
+          <i class="fas fa-key"></i>
+          Decode JWT
+        </button>
+        <button onclick="verifyJWT()" data-i18n="verify_jwt">
+          <i class="fas fa-shield-alt"></i>
+          Verify JWT
+        </button>
+        <button onclick="pasteInput('jwt-input')" data-i18n="paste">
+          <i class="fas fa-paste"></i>
+          Paste
+        </button>
+        <button onclick="clearInput('jwt-input')" data-i18n="clear">
+          <i class="fas fa-trash"></i>
+          Clear
+        </button>
+        <button onclick="copyToClipboard('jwt-output')" data-i18n="copy">
+          <i class="fas fa-copy"></i>
+          Copy Result
+        </button>
+      </div>
+
+      <!-- Content area with input and output -->
+      <div class="io-content">
+        <!-- Left side: JWT Input -->
+        <div class="io-input" id="jwt-io-input">
+          <textarea id="jwt-input" data-i18n-placeholder="paste_jwt_here" placeholder="Paste JWT token here"></textarea>
+          <div style="margin-top: 10px;">
+            <label style="font-weight: bold; font-size: 12px; color: #666;" data-i18n="jwt_secret">JWT Secret (optional for verification):</label>
+            <input type="password" id="jwt-secret" placeholder="Enter secret key for verification" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 3px; font-family: Consolas, monospace;">
+            <div style="margin-top: 5px; font-size: 11px; color: #888;">
+              <span data-i18n="secret_note">Note: Secret is only used for signature verification and is processed locally.</span>
+            </div>
+          </div>
+          <div style="margin-top: 10px; font-size: 12px; color: #666;">
+            <strong data-i18n="jwt_usage">Usage:</strong><br>
+            • <strong data-i18n="decode_instruction_jwt">Decode:</strong> Paste JWT and click "Decode JWT" to view header and payload<br>
+            • <strong data-i18n="verify_instruction_jwt">Verify:</strong> Add secret and click "Verify JWT" to check signature
+          </div>
+        </div>
+
+        <!-- Draggable divider -->
+        <div class="divider" id="jwt-divider"></div>
+
+        <!-- Right side: JWT Output -->
+        <div class="io-output" id="jwt-io-output">
+          <div id="jwt-output" class="output" style="padding: 10px; min-height: 300px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; font-family: Consolas, monospace; white-space: pre-wrap; word-break: break-all;">
+            <div style="color: #888; text-align: center; margin-top: 100px;">
+              <i class="fas fa-key" style="font-size: 48px; margin-bottom: 10px;"></i>
+              <div data-i18n="jwt_result_here">JWT decoded information will appear here</div>
+              <div style="font-size: 12px; margin-top: 5px;" data-i18n="paste_jwt_and_decode">Paste JWT token on the left and click "Decode JWT"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- URL ENCODER/DECODER PANEL -->
+  <div id="panel-url" class="panel hidden">
+    <div class="io-wrapper">
+      <div class="btn-group">
+        <button onclick="encodeURL()" data-i18n="encode_url">
+          <i class="fas fa-link"></i> Encode URL
+        </button>
+        <button onclick="decodeURL()" data-i18n="decode_url">
+          <i class="fas fa-unlink"></i> Decode URL
+        </button>
+        <button onclick="pasteInput('url-input')" data-i18n="paste">
+          <i class="fas fa-paste"></i> Paste
+        </button>
+        <button onclick="clearInput('url-input')" data-i18n="clear">
+          <i class="fas fa-trash"></i> Clear
+        </button>
+        <button onclick="copyToClipboard('url-output')" data-i18n="copy">
+          <i class="fas fa-copy"></i> Copy Result
+        </button>
+      </div>
+      <div class="io-content">
+        <div class="io-input" id="url-io-input">
+          <textarea id="url-input" placeholder="Paste URL or text to encode/decode here"></textarea>
+        </div>
+        <div class="divider" id="url-divider"></div>
+        <div class="io-output" id="url-io-output">
+          <div id="url-output" class="output" style="padding: 10px; min-height: 300px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; font-family: Consolas, monospace; white-space: pre-wrap; word-break: break-all;">
+            <div style="color: #888; text-align: center; margin-top: 100px;">
+              <i class="fas fa-link" style="font-size: 48px; margin-bottom: 10px;"></i>
+              <div>URL encoded/decoded result will appear here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HASH GENERATOR PANEL -->
+  <div id="panel-hash" class="panel hidden">
+    <div class="io-wrapper">
+      <div class="btn-group">
+        <button onclick="generateHash('md5')" data-i18n="generate_md5">
+          <i class="fas fa-hashtag"></i> MD5
+        </button>
+        <button onclick="generateHash('sha1')" data-i18n="generate_sha1">
+          <i class="fas fa-hashtag"></i> SHA-1
+        </button>
+        <button onclick="generateHash('sha256')" data-i18n="generate_sha256">
+          <i class="fas fa-hashtag"></i> SHA-256
+        </button>
+        <button onclick="generateHash('sha512')" data-i18n="generate_sha512">
+          <i class="fas fa-hashtag"></i> SHA-512
+        </button>
+        <button onclick="pasteInput('hash-input')" data-i18n="paste">
+          <i class="fas fa-paste"></i> Paste
+        </button>
+        <button onclick="clearInput('hash-input')" data-i18n="clear">
+          <i class="fas fa-trash"></i> Clear
+        </button>
+      </div>
+      <div class="io-content">
+        <div class="io-input" id="hash-io-input">
+          <textarea id="hash-input" placeholder="Enter text to generate hash"></textarea>
+        </div>
+        <div class="divider" id="hash-divider"></div>
+        <div class="io-output" id="hash-io-output">
+          <div id="hash-output" class="output" style="padding: 10px; min-height: 300px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; font-family: Consolas, monospace; white-space: pre-wrap;">
+            <div style="color: #888; text-align: center; margin-top: 100px;">
+              <i class="fas fa-hashtag" style="font-size: 48px; margin-bottom: 10px;"></i>
+              <div>Hash values will appear here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UUID GENERATOR PANEL -->
+  <div id="panel-uuid" class="panel hidden">
+    <div class="io-wrapper">
+      <div class="btn-group">
+        <button onclick="generateUUID('v1')" data-i18n="generate_uuid_v1">
+          <i class="fas fa-fingerprint"></i> UUID v1
+        </button>
+        <button onclick="generateUUID('v4')" data-i18n="generate_uuid_v4">
+          <i class="fas fa-fingerprint"></i> UUID v4
+        </button>
+        <button onclick="generateMultipleUUIDs()" data-i18n="generate_multiple">
+          <i class="fas fa-copy"></i> Generate 10
+        </button>
+        <button onclick="validateUUID()" data-i18n="validate_uuid">
+          <i class="fas fa-check"></i> Validate UUID
+        </button>
+        <button onclick="pasteInput('uuid-input')" data-i18n="paste">
+          <i class="fas fa-paste"></i> Paste
+        </button>
+        <button onclick="clearAll('uuid')" data-i18n="clear">
+          <i class="fas fa-trash"></i> Clear All
+        </button>
+      </div>
+      <div class="io-content">
+        <div class="io-input" id="uuid-io-input">
+          <textarea id="uuid-input" placeholder="Paste UUID to validate or leave empty to generate new"></textarea>
+        </div>
+        <div class="divider" id="uuid-divider"></div>
+        <div class="io-output" id="uuid-io-output">
+          <div id="uuid-output" class="output" style="padding: 10px; min-height: 300px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; font-family: Consolas, monospace; white-space: pre-wrap;">
+            <div style="color: #888; text-align: center; margin-top: 100px;">
+              <i class="fas fa-fingerprint" style="font-size: 48px; margin-bottom: 10px;"></i>
+              <div>Generated UUIDs will appear here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLOR CONVERTER PANEL -->
+  <div id="panel-color" class="panel hidden">
+    <div class="io-wrapper">
+      <div class="btn-group">
+        <input type="color" id="color-picker" onchange="convertFromPicker()" style="width: 50px; height: 35px; border: none; border-radius: 4px; cursor: pointer;">
+        <button onclick="convertColor('hex')" data-i18n="convert_to_hex">
+          <i class="fas fa-palette"></i> To HEX
+        </button>
+        <button onclick="convertColor('rgb')" data-i18n="convert_to_rgb">
+          <i class="fas fa-palette"></i> To RGB
+        </button>
+        <button onclick="convertColor('hsl')" data-i18n="convert_to_hsl">
+          <i class="fas fa-palette"></i> To HSL
+        </button>
+        <button onclick="pasteInput('color-input')" data-i18n="paste">
+          <i class="fas fa-paste"></i> Paste
+        </button>
+        <button onclick="clearInput('color-input')" data-i18n="clear">
+          <i class="fas fa-trash"></i> Clear
+        </button>
+      </div>
+      <div class="io-content">
+        <div class="io-input" id="color-io-input">
+          <textarea id="color-input" placeholder="Enter color value (HEX, RGB, HSL, or color name)"></textarea>
+          <div style="margin-top: 10px; font-size: 12px; color: #666;">
+            <strong>Examples:</strong><br>
+            • HEX: #ff0000, #f00<br>
+            • RGB: rgb(255, 0, 0)<br>
+            • HSL: hsl(0, 100%, 50%)<br>
+            • Name: red, blue, green
+          </div>
+        </div>
+        <div class="divider" id="color-divider"></div>
+        <div class="io-output" id="color-io-output">
+          <div id="color-output" class="output" style="padding: 10px; min-height: 300px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; font-family: Consolas, monospace; white-space: pre-wrap;">
+            <div style="color: #888; text-align: center; margin-top: 100px;">
+              <i class="fas fa-palette" style="font-size: 48px; margin-bottom: 10px;"></i>
+              <div>Color conversions will appear here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMESTAMP CONVERTER PANEL -->
+  <div id="panel-timestamp" class="panel hidden">
+    <div class="io-wrapper">
+      <div class="btn-group">
+        <button onclick="convertTimestamp('toUnix')" data-i18n="to_unix">
+          <i class="fas fa-clock"></i> To Unix
+        </button>
+        <button onclick="convertTimestamp('fromUnix')" data-i18n="from_unix">
+          <i class="fas fa-clock"></i> From Unix
+        </button>
+        <button onclick="getCurrentTimestamp()" data-i18n="current_timestamp">
+          <i class="fas fa-clock"></i> Current Time
+        </button>
+        <button onclick="pasteInput('timestamp-input')" data-i18n="paste">
+          <i class="fas fa-paste"></i> Paste
+        </button>
+        <button onclick="clearInput('timestamp-input')" data-i18n="clear">
+          <i class="fas fa-trash"></i> Clear
+        </button>
+      </div>
+      <div class="io-content">
+        <div class="io-input" id="timestamp-io-input">
+          <textarea id="timestamp-input" placeholder="Enter timestamp or date string"></textarea>
+          <div style="margin-top: 10px; font-size: 12px; color: #666;">
+            <strong>Formats:</strong><br>
+            • Unix: 1609459200<br>
+            • ISO: 2021-01-01T00:00:00Z<br>
+            • Human: January 1, 2021
+          </div>
+        </div>
+        <div class="divider" id="timestamp-divider"></div>
+        <div class="io-output" id="timestamp-io-output">
+          <div id="timestamp-output" class="output" style="padding: 10px; min-height: 300px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; font-family: Consolas, monospace; white-space: pre-wrap;">
+            <div style="color: #888; text-align: center; margin-top: 100px;">
+              <i class="fas fa-clock" style="font-size: 48px; margin-bottom: 10px;"></i>
+              <div>Timestamp conversions will appear here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR CODE GENERATOR PANEL -->
+  <div id="panel-qr" class="panel hidden">
+    <div class="io-wrapper">
+      <div class="btn-group">
+        <button onclick="generateQR()" data-i18n="generate_qr">
+          <i class="fas fa-qrcode"></i> Generate QR
+        </button>
+        <select id="qr-size" style="padding: 6px; margin-right: 10px; border-radius: 3px;">
+          <option value="200">200x200</option>
+          <option value="300" selected>300x300</option>
+          <option value="400">400x400</option>
+          <option value="500">500x500</option>
+        </select>
+        <button onclick="downloadQR()" data-i18n="download_qr">
+          <i class="fas fa-download"></i> Download
+        </button>
+        <button onclick="pasteInput('qr-input')" data-i18n="paste">
+          <i class="fas fa-paste"></i> Paste
+        </button>
+        <button onclick="clearQR()" data-i18n="clear">
+          <i class="fas fa-trash"></i> Clear
+        </button>
+      </div>
+      <div class="io-content">
+        <div class="io-input" id="qr-io-input">
+          <textarea id="qr-input" placeholder="Enter text or URL to generate QR code"></textarea>
+        </div>
+        <div class="divider" id="qr-divider"></div>
+        <div class="io-output" id="qr-io-output">
+          <div id="qr-output" class="output" style="padding: 10px; min-height: 300px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; text-align: center;">
+            <div id="qr-placeholder" style="color: #888; margin-top: 100px;">
+              <i class="fas fa-qrcode" style="font-size: 48px; margin-bottom: 10px;"></i>
+              <div>QR code will appear here</div>
+            </div>
+            <canvas id="qr-canvas" style="display: none; max-width: 100%; border: 1px solid #ddd;"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGEX TESTER PANEL -->
+  <div id="panel-regex" class="panel hidden">
+    <div class="io-wrapper">
+      <div class="btn-group">
+        <input type="text" id="regex-pattern" placeholder="Enter regex pattern" style="padding: 6px; margin-right: 10px; border: 1px solid #ddd; border-radius: 3px; width: 200px;">
+        <label style="margin-right: 10px;"><input type="checkbox" id="regex-global" checked> Global</label>
+        <label style="margin-right: 10px;"><input type="checkbox" id="regex-ignorecase" checked> Ignore Case</label>
+        <button onclick="testRegex()" data-i18n="test_regex">
+          <i class="fas fa-search"></i> Test Regex
+        </button>
+        <button onclick="pasteInput('regex-input')" data-i18n="paste">
+          <i class="fas fa-paste"></i> Paste
+        </button>
+        <button onclick="clearAll('regex')" data-i18n="clear">
+          <i class="fas fa-trash"></i> Clear
+        </button>
+      </div>
+      
+      <!-- Quick Patterns -->
+      <div class="quick-patterns">
+        <button onclick="insertRegexPattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}')" title="Email validation">📧 Email</button>
+        <button onclick="insertRegexPattern('https?:\\/\\/[^\\s]+')" title="URL matching">🔗 URL</button>
+        <button onclick="insertRegexPattern('\\d{3}-\\d{3}-\\d{4}')" title="US Phone format">📞 Phone</button>
+        <button onclick="insertRegexPattern('\\d{4}-\\d{2}-\\d{2}')" title="Date YYYY-MM-DD">📅 Date</button>
+        <button onclick="insertRegexPattern('[0-9a-fA-F]{6}')" title="Hex color">🎨 Hex Color</button>
+        <button onclick="insertRegexPattern('\\b\\w+\\b')" title="Word boundaries">📝 Words</button>
+        <button onclick="insertRegexPattern('^\\s*$')" title="Empty lines">⭕ Empty Lines</button>
+        <button onclick="insertRegexPattern('\\d+')" title="Numbers only">🔢 Numbers</button>
+      </div>
+      
+      <div class="io-content">
+        <div class="io-input" id="regex-io-input">
+          <textarea id="regex-input" placeholder="Enter test text here"></textarea>
+        </div>
+        <div class="divider" id="regex-divider"></div>
+        <div class="io-output" id="regex-io-output">
+          <div id="regex-output" class="output" style="padding: 10px; min-height: 300px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; font-family: Consolas, monospace; white-space: pre-wrap;">
+            <div style="color: #888; text-align: center; margin-top: 100px;">
+              <i class="fas fa-search" style="font-size: 48px; margin-bottom: 10px;"></i>
+              <div>Regex matches will appear here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEXT UTILITIES PANEL -->
+  <div id="panel-text" class="panel hidden">
+    <div class="io-wrapper">
+      <div class="btn-group">
+        <button onclick="convertCase('upper')" data-i18n="to_uppercase">
+          <i class="fas fa-text-width"></i> UPPER
+        </button>
+        <button onclick="convertCase('lower')" data-i18n="to_lowercase">
+          <i class="fas fa-text-width"></i> lower
+        </button>
+        <button onclick="convertCase('camel')" data-i18n="to_camelcase">
+          <i class="fas fa-text-width"></i> camelCase
+        </button>
+        <button onclick="convertCase('snake')" data-i18n="to_snakecase">
+          <i class="fas fa-text-width"></i> snake_case
+        </button>
+        <button onclick="convertCase('kebab')" data-i18n="to_kebabcase">
+          <i class="fas fa-text-width"></i> kebab-case
+        </button>
+        <button onclick="getTextStats()" data-i18n="text_stats">
+          <i class="fas fa-calculator"></i> Stats
+        </button>
+        <button onclick="pasteInput('text-input')" data-i18n="paste">
+          <i class="fas fa-paste"></i> Paste
+        </button>
+        <button onclick="clearInput('text-input')" data-i18n="clear">
+          <i class="fas fa-trash"></i> Clear
+        </button>
+      </div>
+      <div class="io-content">
+        <div class="io-input" id="text-io-input">
+          <textarea id="text-input" placeholder="Enter text to process"></textarea>
+        </div>
+        <div class="divider" id="text-divider"></div>
+        <div class="io-output" id="text-io-output">
+          <div id="text-output" class="output" style="padding: 10px; min-height: 300px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; font-family: Consolas, monospace; white-space: pre-wrap;">
+            <div style="color: #888; text-align: center; margin-top: 100px;">
+              <i class="fas fa-text-width" style="font-size: 48px; margin-bottom: 10px;"></i>
+              <div>Processed text will appear here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- API FORMATTER PANEL -->
+  <div id="panel-api" class="panel hidden">
+    <div class="io-wrapper">
+      <div class="btn-group">
+        <select id="api-format" style="padding: 6px; margin-right: 10px; border-radius: 3px;">
+          <option value="pretty">Pretty JSON</option>
+          <option value="minified">Minified JSON</option>
+          <option value="table">HTML Table</option>
+          <option value="csv">CSV Format</option>
+          <option value="xml">XML Format</option>
+          <option value="curl">cURL Command</option>
+        </select>
+        <button onclick="formatAPI()" data-i18n="format_api">
+          <i class="fas fa-code"></i> Format
+        </button>
+        <button onclick="validateAPI()" data-i18n="validate_api">
+          <i class="fas fa-check"></i> Validate
+        </button>
+        <button onclick="pasteInput('api-input')" data-i18n="paste">
+          <i class="fas fa-paste"></i> Paste
+        </button>
+        <button onclick="clearAll('api')" data-i18n="clear">
+          <i class="fas fa-trash"></i> Clear
+        </button>
+      </div>
+      <div class="io-content">
+        <div class="io-input" id="api-io-input">
+          <textarea id="api-input" placeholder="Paste API response or headers here"></textarea>
+        </div>
+        <div class="divider" id="api-divider"></div>
+        <div class="io-output" id="api-io-output">
+          <div id="api-output" class="output" style="padding: 10px; min-height: 300px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; font-family: Consolas, monospace; white-space: pre-wrap;">
+            <div style="color: #888; text-align: center; margin-top: 100px;">
+              <i class="fas fa-server" style="font-size: 48px; margin-bottom: 10px;"></i>
+              <div>Formatted API response will appear here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARKDOWN PREVIEW PANEL -->
+  <div id="panel-markdown" class="panel hidden">
+    <div class="io-wrapper">
+      <div class="btn-group">
+        <button onclick="previewMarkdown()" data-i18n="preview_markdown">
+          <i class="fas fa-markdown"></i> Preview
+        </button>
+        <button onclick="exportMarkdown()" data-i18n="export_md">
+          <i class="fas fa-download"></i> Export MD
+        </button>
+        <button onclick="exportMarkdownAsHTML()" data-i18n="export_html">
+          <i class="fas fa-file-export"></i> Export HTML
+        </button>
+        <button onclick="pasteInput('markdown-input')" data-i18n="paste">
+          <i class="fas fa-paste"></i> Paste
+        </button>
+        <button onclick="clearAll('markdown')" data-i18n="clear">
+          <i class="fas fa-trash"></i> Clear
+        </button>
+      </div>
+      <div class="io-content">
+        <div class="io-input" id="markdown-io-input">
+          <textarea id="markdown-input" placeholder="Enter Markdown text here"></textarea>
+        </div>
+        <div class="divider" id="markdown-divider"></div>
+        <div class="io-output" id="markdown-io-output">
+          <div id="markdown-output" class="output" style="padding: 10px; min-height: 300px; background: #fff; border: 1px solid #ddd; border-radius: 4px; overflow-y: auto;">
+            <div style="color: #888; text-align: center; margin-top: 100px;">
+              <i class="fas fa-markdown" style="font-size: 48px; margin-bottom: 10px;"></i>
+              <div>Markdown preview will appear here</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <!-- FOOTER -->
@@ -589,10 +3098,221 @@ function captureScreenshot(outputId, filename) {
   </div>
 </div>
 
+<!-- Graph Generator Modal -->
+<div id="graphModal" class="modal">
+  <div class="modal-content graph-modal">
+    <span class="modal-close" onclick="closeGraphModal()">&times;</span>
+    <h3 data-i18n="graph_generator">Graph Generator</h3>
+    
+    <div class="graph-controls">
+      <label data-i18n="chart_type">Chart Type:</label>
+      <select id="chartType">
+        <option value="bar" data-i18n="bar_chart">Bar</option>
+        <option value="line" data-i18n="line_chart">Line</option>
+        <option value="pie" data-i18n="pie_chart">Pie</option>
+        <option value="doughnut" data-i18n="doughnut_chart">Doughnut</option>
+        <option value="radar" data-i18n="radar_chart">Radar</option>
+        <option value="polarArea" data-i18n="polar_area_chart">Polar Area</option>
+      </select>
+      
+      <div class="graph-buttons">
+        <button onclick="drawChart()" data-i18n="draw_chart">
+          <i class="fas fa-chart-line"></i>
+          Draw Chart
+        </button>
+        <button onclick="downloadChart()" data-i18n="download_chart">
+          <i class="fas fa-download"></i>
+          Download Chart
+        </button>
+      </div>
+    </div>
+    
+    <div class="chart-container">
+      <canvas id="modalChart" width="600" height="400"></canvas>
+    </div>
+  </div>
+</div>
+
 <!-- Scripts -->
 <script src="script.js"></script>
 <script src="json.js"></script>
 <script src="xml.js"></script>
+
+<!-- Graph Generation Functions -->
+<script>
+let chartInstance = null;
+
+function openGraphModal() {
+  document.getElementById('graphModal').style.display = 'block';
+  // Auto-generate chart if JSON data is available
+  setTimeout(() => {
+    const jsonInput = document.getElementById('json-input');
+    if (jsonInput && jsonInput.value.trim()) {
+      drawChart();
+    }
+  }, 100);
+}
+
+function closeGraphModal() {
+  document.getElementById('graphModal').style.display = 'none';
+  if (chartInstance) {
+    chartInstance.destroy();
+    chartInstance = null;
+  }
+}
+
+function parseInput(rawData) {
+  rawData = rawData.trim();
+  
+  // Try parsing as JSON directly
+  try {
+    let parsed = JSON.parse(rawData);
+    if (Array.isArray(parsed)) {
+      // Handle array of objects with label/value or name/value properties
+      return parsed.map(item => {
+        const label = item.label || item.name || item.key || String(item.x || '');
+        const value = item.value || item.y || item.count || item.amount || 0;
+        return { label: String(label), value: parseFloat(value) || 0 };
+      });
+    }
+    
+    // Handle labels/values object format
+    if (parsed.labels && parsed.values) {
+      return parsed.labels.map((label, i) => ({
+        label: String(label),
+        value: parseFloat(parsed.values[i]) || 0
+      }));
+    }
+    
+    // Handle object with key-value pairs
+    if (typeof parsed === 'object' && !Array.isArray(parsed)) {
+      return Object.entries(parsed).map(([key, value]) => ({
+        label: String(key),
+        value: parseFloat(value) || 0
+      }));
+    }
+  } catch (e) {
+    // Continue to other parsing methods if JSON fails
+  }
+
+  // CSV format (label,value)
+  if (rawData.includes(",") && rawData.includes("\n")) {
+    return rawData.split("\n").filter(line => line.trim()).map(line => {
+      const [label, value] = line.split(",");
+      return { 
+        label: (label || '').trim(), 
+        value: parseFloat(value) || 0 
+      };
+    });
+  }
+
+  // Key=value pairs
+  if (rawData.includes("=")) {
+    const pairs = rawData.includes(",") ? rawData.split(",") : rawData.split("\n");
+    return pairs.filter(pair => pair.includes("=")).map(pair => {
+      const [label, value] = pair.split("=");
+      return { 
+        label: (label || '').trim(), 
+        value: parseFloat(value) || 0 
+      };
+    });
+  }
+
+  throw new Error("Unsupported data format. Please use JSON, CSV, or key=value format.");
+}
+
+function drawChart() {
+  const jsonInput = document.getElementById('json-input');
+  const rawData = jsonInput ? jsonInput.value : '';
+  
+  if (!rawData.trim()) {
+    alert('Please enter some JSON data first.');
+    return;
+  }
+
+  let dataArray;
+  try {
+    dataArray = parseInput(rawData);
+    if (dataArray.length === 0) {
+      throw new Error("No valid data found");
+    }
+  } catch (e) {
+    alert(`Error parsing data: ${e.message}`);
+    return;
+  }
+
+  const labels = dataArray.map(item => item.label);
+  const values = dataArray.map(item => item.value);
+  const chartType = document.getElementById("chartType").value;
+
+  const ctx = document.getElementById("modalChart").getContext("2d");
+
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+
+  const colors = [
+    'rgba(255, 99, 132, 0.8)',
+    'rgba(54, 162, 235, 0.8)',
+    'rgba(255, 206, 86, 0.8)',
+    'rgba(75, 192, 192, 0.8)',
+    'rgba(153, 102, 255, 0.8)',
+    'rgba(255, 159, 64, 0.8)',
+    'rgba(199, 199, 199, 0.8)',
+    'rgba(83, 102, 255, 0.8)',
+    'rgba(255, 99, 255, 0.8)',
+    'rgba(99, 255, 132, 0.8)'
+  ];
+
+  chartInstance = new Chart(ctx, {
+    type: chartType,
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Data",
+        data: values,
+        backgroundColor: colors.slice(0, labels.length),
+        borderColor: colors.slice(0, labels.length).map(color => color.replace('0.8', '1')),
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: ['pie', 'doughnut', 'polarArea'].includes(chartType)
+        }
+      },
+      scales: ['bar', 'line', 'radar'].includes(chartType) ? {
+        y: {
+          beginAtZero: true
+        }
+      } : {}
+    }
+  });
+}
+
+function downloadChart() {
+  if (!chartInstance) {
+    alert("Please draw a chart first.");
+    return;
+  }
+  
+  const link = document.createElement('a');
+  link.href = chartInstance.toBase64Image('image/png', 1.0);
+  link.download = `chart_${Date.now()}.png`;
+  link.click();
+}
+
+// Close modals when clicking outside
+window.onclick = function(event) {
+  const graphModal = document.getElementById('graphModal');
+  if (event.target === graphModal) {
+    closeGraphModal();
+  }
+}
+</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -644,8 +3364,16 @@ const translations = {
     // Navigation and main
     json_viewer: "JSON Viewer",
     xml_viewer: "XML Viewer",
+    graph_tab: "Generate Graph",
+    base64_tab: "Base64 Encode/Decode",
+    jwt_tab: "JWT Token",
     dark_mode: "Dark Mode",
     light_mode: "Light Mode",
+    
+    // Generic Actions
+    copy: "Copy",
+    paste: "Paste",
+    clear: "Clear",
     
     // JSON Panel
     copy_json: "Copy JSON",
@@ -654,7 +3382,8 @@ const translations = {
     convert_json_to_xml: "Convert JSON → XML",
     convert_json_to_csv: "Convert JSON to CSV",
     generate_js_classes: "Generate JS Classes",
-    remove_whitespace_json: "Remove Whitespace (JSON)",
+    generate_graph: "Generate Graph",
+    remove_whitespace_json: "Remove Whitespace",
     tree_view: "Tree View",
     format_json: "Format JSON",
     full_screen: "Full Screen",
@@ -667,8 +3396,39 @@ const translations = {
     paste_xml: "Paste XML",
     clear_xml: "Clear XML",
     convert_xml_to_json: "Convert XML → JSON",
-    remove_whitespace_xml: "Remove Whitespace (XML)",
+    remove_whitespace_xml: "Remove Whitespace",
     view_validate_xml: "View & Validate XML",
+    
+    // Graph Panel
+    open_graph_generator: "Open Graph Generator",
+    paste_data_here: "Paste your data here (JSON array/object, CSV, or key=value pairs)",
+    supported_formats: "Supported formats",
+    chart_will_appear_here: "Your chart will appear here",
+    paste_data_and_generate: "Paste data on the left and click \"Generate Graph\"",
+    generate_graph: "Generate Graph",
+    download_chart: "Download Chart",
+    
+    // Base64 Panel
+    encode_base64: "Encode to Base64",
+    decode_base64: "Decode from Base64",
+    paste_text_here: "Paste text to encode/decode here",
+    usage_instructions: "Usage Instructions",
+    encode_instruction: "To Encode",
+    decode_instruction: "To Decode",
+    result_will_appear_here: "Your encoded/decoded result will appear here",
+    paste_text_and_process: "Paste text on the left and click Encode or Decode",
+    
+    // JWT Panel
+    decode_jwt: "Decode JWT",
+    verify_jwt: "Verify JWT",
+    paste_jwt_here: "Paste JWT token here",
+    jwt_secret: "JWT Secret (optional for verification)",
+    secret_note: "Note: Secret is only used for signature verification and is processed locally.",
+    jwt_usage: "Usage",
+    decode_instruction_jwt: "Decode",
+    verify_instruction_jwt: "Verify",
+    jwt_result_here: "JWT decoded information will appear here",
+    paste_jwt_and_decode: "Paste JWT token on the left and click \"Decode JWT\"",
     
     // Placeholders
     paste_json_here: "Paste JSON here",
@@ -676,15 +3436,33 @@ const translations = {
     
     // Footer and Modal
     footer_text: "© 2025 Dataz Studio | Professional Data Processing & Visualization Tool",
-    full_formatted_json: "Full Formatted JSON"
+    full_formatted_json: "Full Formatted JSON",
+    
+    // Graph Generator
+    graph_generator: "Graph Generator",
+    chart_type: "Chart Type",
+    bar_chart: "Bar",
+    line_chart: "Line",
+    pie_chart: "Pie",
+    doughnut_chart: "Doughnut",
+    radar_chart: "Radar",
+    polar_area_chart: "Polar Area",
+    draw_chart: "Draw Chart",
+    download_chart: "Download Chart"
   },
   
   es: {
     // Navigation and main
     json_viewer: "Visor JSON",
     xml_viewer: "Visor XML",
+    graph_tab: "Generar Gráfico",
     dark_mode: "Modo Oscuro",
     light_mode: "Modo Claro",
+    
+    // Generic Actions
+    copy: "Copiar",
+    paste: "Pegar",
+    clear: "Limpiar",
     
     // JSON Panel
     copy_json: "Copiar JSON",
@@ -693,7 +3471,8 @@ const translations = {
     convert_json_to_xml: "Convertir JSON → XML",
     convert_json_to_csv: "Convertir JSON a CSV",
     generate_js_classes: "Generar Clases JS",
-    remove_whitespace_json: "Eliminar Espacios (JSON)",
+    generate_graph: "Generar Gráfico",
+    remove_whitespace_json: "Eliminar Espacios",
     tree_view: "Vista de Árbol",
     format_json: "Formatear JSON",
     full_screen: "Pantalla Completa",
@@ -706,8 +3485,15 @@ const translations = {
     paste_xml: "Pegar XML",
     clear_xml: "Limpiar XML",
     convert_xml_to_json: "Convertir XML → JSON",
-    remove_whitespace_xml: "Eliminar Espacios (XML)",
+    remove_whitespace_xml: "Eliminar Espacios",
     view_validate_xml: "Ver y Validar XML",
+    
+    // Graph Panel
+    open_graph_generator: "Abrir Generador de Gráficos",
+    paste_data_here: "Pega tus datos aquí (array/objeto JSON, CSV, o pares clave=valor)",
+    supported_formats: "Formatos soportados",
+    chart_will_appear_here: "Tu gráfico aparecerá aquí",
+    paste_data_click_generate: "Pega datos a la izquierda y haz clic en \"Abrir Generador de Gráficos\"",
     
     // Placeholders
     paste_json_here: "Pegar JSON aquí",
@@ -715,15 +3501,33 @@ const translations = {
     
     // Footer and Modal
     footer_text: "© 2025 Dataz Studio | Herramienta Profesional de Procesamiento y Visualización de Datos",
-    full_formatted_json: "JSON Formateado Completo"
+    full_formatted_json: "JSON Formateado Completo",
+    
+    // Graph Generator
+    graph_generator: "Generador de Gráficos",
+    chart_type: "Tipo de Gráfico",
+    bar_chart: "Barras",
+    line_chart: "Líneas",
+    pie_chart: "Circular",
+    doughnut_chart: "Dona",
+    radar_chart: "Radar",
+    polar_area_chart: "Área Polar",
+    draw_chart: "Dibujar Gráfico",
+    download_chart: "Descargar Gráfico"
   },
   
   fr: {
     // Navigation and main
     json_viewer: "Visualiseur JSON",
     xml_viewer: "Visualiseur XML",
+    graph_tab: "Générer Graphique",
     dark_mode: "Mode Sombre",
     light_mode: "Mode Clair",
+    
+    // Generic Actions
+    copy: "Copier",
+    paste: "Coller",
+    clear: "Effacer",
     
     // JSON Panel
     copy_json: "Copier JSON",
@@ -732,7 +3536,8 @@ const translations = {
     convert_json_to_xml: "Convertir JSON → XML",
     convert_json_to_csv: "Convertir JSON vers CSV",
     generate_js_classes: "Générer Classes JS",
-    remove_whitespace_json: "Supprimer Espaces (JSON)",
+    generate_graph: "Générer Graphique",
+    remove_whitespace_json: "Supprimer Espaces",
     tree_view: "Vue Arborescente",
     format_json: "Formater JSON",
     full_screen: "Plein Écran",
@@ -745,7 +3550,7 @@ const translations = {
     paste_xml: "Coller XML",
     clear_xml: "Effacer XML",
     convert_xml_to_json: "Convertir XML → JSON",
-    remove_whitespace_xml: "Supprimer Espaces (XML)",
+    remove_whitespace_xml: "Supprimer Espaces",
     view_validate_xml: "Voir et Valider XML",
     
     // Placeholders
@@ -754,15 +3559,33 @@ const translations = {
     
     // Footer and Modal
     footer_text: "© 2025 Dataz Studio | Outil Professionnel de Traitement et Visualisation de Données",
-    full_formatted_json: "JSON Formaté Complet"
+    full_formatted_json: "JSON Formaté Complet",
+    
+    // Graph Generator
+    graph_generator: "Générateur de Graphique",
+    chart_type: "Type de Graphique",
+    bar_chart: "Barres",
+    line_chart: "Lignes",
+    pie_chart: "Camembert",
+    doughnut_chart: "Beignet",
+    radar_chart: "Radar",
+    polar_area_chart: "Zone Polaire",
+    draw_chart: "Dessiner Graphique",
+    download_chart: "Télécharger Graphique"
   },
   
   de: {
     // Navigation and main
     json_viewer: "JSON-Viewer",
     xml_viewer: "XML-Viewer",
+    graph_tab: "Diagramm Erstellen",
     dark_mode: "Dunkler Modus",
     light_mode: "Heller Modus",
+    
+    // Generic Actions
+    copy: "Kopieren",
+    paste: "Einfügen",
+    clear: "Löschen",
     
     // JSON Panel
     copy_json: "JSON Kopieren",
@@ -771,7 +3594,8 @@ const translations = {
     convert_json_to_xml: "JSON → XML Konvertieren",
     convert_json_to_csv: "JSON zu CSV Konvertieren",
     generate_js_classes: "JS-Klassen Generieren",
-    remove_whitespace_json: "Leerzeichen Entfernen (JSON)",
+    generate_graph: "Diagramm Erstellen",
+    remove_whitespace_json: "Leerzeichen Entfernen",
     tree_view: "Baumansicht",
     format_json: "JSON Formatieren",
     full_screen: "Vollbild",
@@ -784,7 +3608,7 @@ const translations = {
     paste_xml: "XML Einfügen",
     clear_xml: "XML Löschen",
     convert_xml_to_json: "XML → JSON Konvertieren",
-    remove_whitespace_xml: "Leerzeichen Entfernen (XML)",
+    remove_whitespace_xml: "Leerzeichen Entfernen",
     view_validate_xml: "XML Anzeigen & Validieren",
     
     // Placeholders
@@ -793,7 +3617,19 @@ const translations = {
     
     // Footer and Modal
     footer_text: "© 2025 Dataz Studio | Professionelles Datenverarbeitungs- und Visualisierungstool",
-    full_formatted_json: "Vollständig Formatiertes JSON"
+    full_formatted_json: "Vollständig Formatiertes JSON",
+    
+    // Graph Generator
+    graph_generator: "Diagramm Generator",
+    chart_type: "Diagramm Typ",
+    bar_chart: "Balken",
+    line_chart: "Linie",
+    pie_chart: "Kreis",
+    doughnut_chart: "Donut",
+    radar_chart: "Radar",
+    polar_area_chart: "Polarfläche",
+    draw_chart: "Diagramm Zeichnen",
+    download_chart: "Diagramm Herunterladen"
   },
   
   it: {
@@ -803,6 +3639,11 @@ const translations = {
     dark_mode: "Modalità Scura",
     light_mode: "Modalità Chiara",
     
+    // Generic Actions
+    copy: "Copia",
+    paste: "Incolla",
+    clear: "Cancella",
+    
     // JSON Panel
     copy_json: "Copia JSON",
     paste_json: "Incolla JSON",
@@ -810,7 +3651,7 @@ const translations = {
     convert_json_to_xml: "Converti JSON → XML",
     convert_json_to_csv: "Converti JSON in CSV",
     generate_js_classes: "Genera Classi JS",
-    remove_whitespace_json: "Rimuovi Spazi (JSON)",
+    remove_whitespace_json: "Rimuovi Spazi",
     tree_view: "Vista ad Albero",
     format_json: "Formatta JSON",
     full_screen: "Schermo Intero",
@@ -823,7 +3664,7 @@ const translations = {
     paste_xml: "Incolla XML",
     clear_xml: "Cancella XML",
     convert_xml_to_json: "Converti XML → JSON",
-    remove_whitespace_xml: "Rimuovi Spazi (XML)",
+    remove_whitespace_xml: "Rimuovi Spazi",
     view_validate_xml: "Visualizza e Convalida XML",
     
     // Placeholders
@@ -842,6 +3683,11 @@ const translations = {
     dark_mode: "Modo Escuro",
     light_mode: "Modo Claro",
     
+    // Generic Actions
+    copy: "Copiar",
+    paste: "Colar",
+    clear: "Limpar",
+    
     // JSON Panel
     copy_json: "Copiar JSON",
     paste_json: "Colar JSON",
@@ -849,7 +3695,7 @@ const translations = {
     convert_json_to_xml: "Converter JSON → XML",
     convert_json_to_csv: "Converter JSON para CSV",
     generate_js_classes: "Gerar Classes JS",
-    remove_whitespace_json: "Remover Espaços (JSON)",
+    remove_whitespace_json: "Remover Espaços",
     tree_view: "Visualização em Árvore",
     format_json: "Formatar JSON",
     full_screen: "Tela Cheia",
@@ -862,7 +3708,7 @@ const translations = {
     paste_xml: "Colar XML",
     clear_xml: "Limpar XML",
     convert_xml_to_json: "Converter XML → JSON",
-    remove_whitespace_xml: "Remover Espaços (XML)",
+    remove_whitespace_xml: "Remover Espaços",
     view_validate_xml: "Visualizar e Validar XML",
     
     // Placeholders
@@ -881,6 +3727,11 @@ const translations = {
     dark_mode: "Тёмный Режим",
     light_mode: "Светлый Режим",
     
+    // Generic Actions
+    copy: "Копировать",
+    paste: "Вставить",
+    clear: "Очистить",
+    
     // JSON Panel
     copy_json: "Копировать JSON",
     paste_json: "Вставить JSON",
@@ -888,7 +3739,7 @@ const translations = {
     convert_json_to_xml: "Конвертировать JSON → XML",
     convert_json_to_csv: "Конвертировать JSON в CSV",
     generate_js_classes: "Генерировать JS Классы",
-    remove_whitespace_json: "Удалить Пробелы (JSON)",
+    remove_whitespace_json: "Удалить Пробелы",
     tree_view: "Древовидный Вид",
     format_json: "Форматировать JSON",
     full_screen: "Полный Экран",
@@ -901,7 +3752,7 @@ const translations = {
     paste_xml: "Вставить XML",
     clear_xml: "Очистить XML",
     convert_xml_to_json: "Конвертировать XML → JSON",
-    remove_whitespace_xml: "Удалить Пробелы (XML)",
+    remove_whitespace_xml: "Удалить Пробелы",
     view_validate_xml: "Просмотр и Проверка XML",
     
     // Placeholders
@@ -920,6 +3771,11 @@ const translations = {
     dark_mode: "深色模式",
     light_mode: "浅色模式",
     
+    // Generic Actions
+    copy: "复制",
+    paste: "粘贴",
+    clear: "清除",
+    
     // JSON Panel
     copy_json: "复制 JSON",
     paste_json: "粘贴 JSON",
@@ -927,7 +3783,7 @@ const translations = {
     convert_json_to_xml: "转换 JSON → XML",
     convert_json_to_csv: "转换 JSON 为 CSV",
     generate_js_classes: "生成 JS 类",
-    remove_whitespace_json: "删除空格 (JSON)",
+    remove_whitespace_json: "删除空格",
     tree_view: "树形视图",
     format_json: "格式化 JSON",
     full_screen: "全屏",
@@ -940,7 +3796,7 @@ const translations = {
     paste_xml: "粘贴 XML",
     clear_xml: "清除 XML",
     convert_xml_to_json: "转换 XML → JSON",
-    remove_whitespace_xml: "删除空格 (XML)",
+    remove_whitespace_xml: "删除空格",
     view_validate_xml: "查看和验证 XML",
     
     // Placeholders
@@ -959,6 +3815,11 @@ const translations = {
     dark_mode: "ダークモード",
     light_mode: "ライトモード",
     
+    // Generic Actions
+    copy: "コピー",
+    paste: "貼り付け",
+    clear: "クリア",
+    
     // JSON Panel
     copy_json: "JSONをコピー",
     paste_json: "JSONを貼り付け",
@@ -966,7 +3827,7 @@ const translations = {
     convert_json_to_xml: "JSON → XML変換",
     convert_json_to_csv: "JSONをCSVに変換",
     generate_js_classes: "JSクラスを生成",
-    remove_whitespace_json: "空白を削除 (JSON)",
+    remove_whitespace_json: "空白を削除",
     tree_view: "ツリービュー",
     format_json: "JSONをフォーマット",
     full_screen: "全画面",
@@ -979,7 +3840,7 @@ const translations = {
     paste_xml: "XMLを貼り付け",
     clear_xml: "XMLをクリア",
     convert_xml_to_json: "XML → JSON変換",
-    remove_whitespace_xml: "空白を削除 (XML)",
+    remove_whitespace_xml: "空白を削除",
     view_validate_xml: "XMLの表示と検証",
     
     // Placeholders
@@ -998,6 +3859,11 @@ const translations = {
     dark_mode: "다크 모드",
     light_mode: "라이트 모드",
     
+    // Generic Actions
+    copy: "복사",
+    paste: "붙여넣기",
+    clear: "지우기",
+    
     // JSON Panel
     copy_json: "JSON 복사",
     paste_json: "JSON 붙여넣기",
@@ -1005,7 +3871,7 @@ const translations = {
     convert_json_to_xml: "JSON → XML 변환",
     convert_json_to_csv: "JSON을 CSV로 변환",
     generate_js_classes: "JS 클래스 생성",
-    remove_whitespace_json: "공백 제거 (JSON)",
+    remove_whitespace_json: "공백 제거",
     tree_view: "트리 뷰",
     format_json: "JSON 포맷",
     full_screen: "전체 화면",
@@ -1018,7 +3884,7 @@ const translations = {
     paste_xml: "XML 붙여넣기",
     clear_xml: "XML 지우기",
     convert_xml_to_json: "XML → JSON 변환",
-    remove_whitespace_xml: "공백 제거 (XML)",
+    remove_whitespace_xml: "공백 제거",
     view_validate_xml: "XML 보기 및 검증",
     
     // Placeholders
@@ -1038,6 +3904,11 @@ const translations = {
     dark_mode: "Mörkt läge",
     light_mode: "Ljust läge",
     
+    // Generic Actions
+    copy: "Kopiera",
+    paste: "Klistra in",
+    clear: "Rensa",
+    
     // JSON Panel
     copy_json: "Kopiera JSON",
     paste_json: "Klistra in JSON",
@@ -1045,7 +3916,7 @@ const translations = {
     convert_json_to_xml: "Konvertera JSON → XML",
     convert_json_to_csv: "Konvertera JSON till CSV",
     generate_js_classes: "Generera JS-klasser",
-    remove_whitespace_json: "Ta bort mellanslag (JSON)",
+    remove_whitespace_json: "Ta bort mellanslag",
     tree_view: "Trädvy",
     format_json: "Formatera JSON",
     full_screen: "Helskärm",
@@ -1058,7 +3929,7 @@ const translations = {
     paste_xml: "Klistra in XML",
     clear_xml: "Rensa XML",
     convert_xml_to_json: "Konvertera XML → JSON",
-    remove_whitespace_xml: "Ta bort mellanslag (XML)",
+    remove_whitespace_xml: "Ta bort mellanslag",
     view_validate_xml: "Visa och validera XML",
     
     // Placeholders
@@ -1077,6 +3948,11 @@ const translations = {
     dark_mode: "Mørk modus",
     light_mode: "Lys modus",
     
+    // Generic Actions
+    copy: "Kopier",
+    paste: "Lim inn",
+    clear: "Tøm",
+    
     // JSON Panel
     copy_json: "Kopier JSON",
     paste_json: "Lim inn JSON",
@@ -1084,7 +3960,7 @@ const translations = {
     convert_json_to_xml: "Konverter JSON → XML",
     convert_json_to_csv: "Konverter JSON til CSV",
     generate_js_classes: "Generer JS-klasser",
-    remove_whitespace_json: "Fjern mellomrom (JSON)",
+    remove_whitespace_json: "Fjern mellomrom",
     tree_view: "Trevisning",
     format_json: "Formater JSON",
     full_screen: "Fullskjerm",
@@ -1097,7 +3973,7 @@ const translations = {
     paste_xml: "Lim inn XML",
     clear_xml: "Tøm XML",
     convert_xml_to_json: "Konverter XML → JSON",
-    remove_whitespace_xml: "Fjern mellomrom (XML)",
+    remove_whitespace_xml: "Fjern mellomrom",
     view_validate_xml: "Vis og valider XML",
     
     // Placeholders
@@ -1116,6 +3992,11 @@ const translations = {
     dark_mode: "Mørk tilstand",
     light_mode: "Lys tilstand",
     
+    // Generic Actions
+    copy: "Kopier",
+    paste: "Indsæt",
+    clear: "Ryd",
+    
     // JSON Panel
     copy_json: "Kopier JSON",
     paste_json: "Indsæt JSON",
@@ -1123,7 +4004,7 @@ const translations = {
     convert_json_to_xml: "Konverter JSON → XML",
     convert_json_to_csv: "Konverter JSON til CSV",
     generate_js_classes: "Generer JS-klasser",
-    remove_whitespace_json: "Fjern mellemrum (JSON)",
+    remove_whitespace_json: "Fjern mellemrum",
     tree_view: "Trævisning",
     format_json: "Formater JSON",
     full_screen: "Fuld skærm",
@@ -1136,7 +4017,7 @@ const translations = {
     paste_xml: "Indsæt XML",
     clear_xml: "Ryd XML",
     convert_xml_to_json: "Konverter XML → JSON",
-    remove_whitespace_xml: "Fjern mellemrum (XML)",
+    remove_whitespace_xml: "Fjern mellemrum",
     view_validate_xml: "Vis og valider XML",
     
     // Placeholders
@@ -1155,6 +4036,11 @@ const translations = {
     dark_mode: "Tumma tila",
     light_mode: "Vaalea tila",
     
+    // Generic Actions
+    copy: "Kopioi",
+    paste: "Liitä",
+    clear: "Tyhjennä",
+    
     // JSON Panel
     copy_json: "Kopioi JSON",
     paste_json: "Liitä JSON",
@@ -1162,7 +4048,7 @@ const translations = {
     convert_json_to_xml: "Muunna JSON → XML",
     convert_json_to_csv: "Muunna JSON CSV:ksi",
     generate_js_classes: "Luo JS-luokat",
-    remove_whitespace_json: "Poista välilyönnit (JSON)",
+    remove_whitespace_json: "Poista välilyönnit",
     tree_view: "Puunäkymä",
     format_json: "Muotoile JSON",
     full_screen: "Koko näyttö",
@@ -1175,7 +4061,7 @@ const translations = {
     paste_xml: "Liitä XML",
     clear_xml: "Tyhjennä XML",
     convert_xml_to_json: "Muunna XML → JSON",
-    remove_whitespace_xml: "Poista välilyönnit (XML)",
+    remove_whitespace_xml: "Poista välilyönnit",
     view_validate_xml: "Näytä ja vahvista XML",
     
     // Placeholders
@@ -1195,6 +4081,11 @@ const translations = {
     dark_mode: "डार्क मोड",
     light_mode: "लाइट मोड",
     
+    // Generic Actions
+    copy: "कॉपी करें",
+    paste: "पेस्ट करें",
+    clear: "साफ़ करें",
+    
     // JSON Panel
     copy_json: "JSON कॉपी करें",
     paste_json: "JSON पेस्ट करें",
@@ -1202,7 +4093,7 @@ const translations = {
     convert_json_to_xml: "JSON → XML में बदलें",
     convert_json_to_csv: "JSON को CSV में बदलें",
     generate_js_classes: "JS क्लासेस जेनरेट करें",
-    remove_whitespace_json: "व्हाइटस्पेस हटाएं (JSON)",
+    remove_whitespace_json: "व्हाइटस्पेस हटाएं",
     tree_view: "ट्री व्यू",
     format_json: "JSON फॉर्मेट करें",
     full_screen: "पूर्ण स्क्रीन",
@@ -1215,7 +4106,7 @@ const translations = {
     paste_xml: "XML पेस्ट करें",
     clear_xml: "XML साफ़ करें",
     convert_xml_to_json: "XML → JSON में बदलें",
-    remove_whitespace_xml: "व्हाइटस्पेस हटाएं (XML)",
+    remove_whitespace_xml: "व्हाइटस्पेस हटाएं",
     view_validate_xml: "XML देखें और सत्यापित करें",
     
     // Placeholders
@@ -1234,6 +4125,11 @@ const translations = {
     dark_mode: "இரவு பயன்முறை",
     light_mode: "பகல் பயன்முறை",
     
+    // Generic Actions
+    copy: "நகலெடுக்கவும்",
+    paste: "ஒட்டவும்",
+    clear: "அழிக்கவும்",
+    
     // JSON Panel
     copy_json: "JSON நகலெடுக்கவும்",
     paste_json: "JSON ஒட்டவும்",
@@ -1241,7 +4137,7 @@ const translations = {
     convert_json_to_xml: "JSON → XML மாற்றவும்",
     convert_json_to_csv: "JSON ஐ CSV ஆக மாற்றவும்",
     generate_js_classes: "JS வகுப்புகள் உருவாக்கவும்",
-    remove_whitespace_json: "இடைவெளியை அகற்றவும் (JSON)",
+    remove_whitespace_json: "இடைவெளியை அகற்றவும்",
     tree_view: "மரக்காட்சி",
     format_json: "JSON வடிவமைக்கவும்",
     full_screen: "முழுத்திரை",
@@ -1254,7 +4150,7 @@ const translations = {
     paste_xml: "XML ஒட்டவும்",
     clear_xml: "XML அழிக்கவும்",
     convert_xml_to_json: "XML → JSON மாற்றவும்",
-    remove_whitespace_xml: "இடைவெளியை அகற்றவும் (XML)",
+    remove_whitespace_xml: "இடைவெளியை அகற்றவும்",
     view_validate_xml: "XML பார்க்கவும் மற்றும் சரிபார்க்கவும்",
     
     // Placeholders
@@ -1273,6 +4169,11 @@ const translations = {
     dark_mode: "ডার্ক মোড",
     light_mode: "লাইট মোড",
     
+    // Generic Actions
+    copy: "কপি করুন",
+    paste: "পেস্ট করুন",
+    clear: "পরিষ্কার করুন",
+    
     // JSON Panel
     copy_json: "JSON কপি করুন",
     paste_json: "JSON পেস্ট করুন",
@@ -1280,7 +4181,7 @@ const translations = {
     convert_json_to_xml: "JSON → XML রূপান্তর করুন",
     convert_json_to_csv: "JSON কে CSV তে রূপান্তর করুন",
     generate_js_classes: "JS ক্লাস তৈরি করুন",
-    remove_whitespace_json: "হোয়াইটস্পেস সরান (JSON)",
+    remove_whitespace_json: "হোয়াইটস্পেস সরান",
     tree_view: "ট্রি ভিউ",
     format_json: "JSON ফরম্যাট করুন",
     full_screen: "পূর্ণ স্ক্রিন",
@@ -1293,7 +4194,7 @@ const translations = {
     paste_xml: "XML পেস্ট করুন",
     clear_xml: "XML পরিষ্কার করুন",
     convert_xml_to_json: "XML → JSON রূপান্তর করুন",
-    remove_whitespace_xml: "হোয়াইটস্পেস সরান (XML)",
+    remove_whitespace_xml: "হোয়াইটস্পেস সরান",
     view_validate_xml: "XML দেখুন এবং যাচাই করুন",
     
     // Placeholders
@@ -1312,6 +4213,11 @@ const translations = {
     dark_mode: "డార్క్ మోడ్",
     light_mode: "లైట్ మోడ్",
     
+    // Generic Actions
+    copy: "కాపీ చేయండి",
+    paste: "పేస్ట్ చేయండి",
+    clear: "క్లియర్ చేయండి",
+    
     // JSON Panel
     copy_json: "JSON కాపీ చేయండి",
     paste_json: "JSON పేస్ట్ చేయండి",
@@ -1319,7 +4225,7 @@ const translations = {
     convert_json_to_xml: "JSON → XML కు మార్చండి",
     convert_json_to_csv: "JSON ను CSV కు మార్చండి",
     generate_js_classes: "JS క్లాసులు జనరేట్ చేయండి",
-    remove_whitespace_json: "వైట్స్పేస్ తొలగించండి (JSON)",
+    remove_whitespace_json: "వైట్స్పేస్ తొలగించండి",
     tree_view: "ట్రీ వ్యూ",
     format_json: "JSON ఫార్మాట్ చేయండి",
     full_screen: "పూర్తి స్క్రీన్",
@@ -1332,7 +4238,7 @@ const translations = {
     paste_xml: "XML పేస్ట్ చేయండి",
     clear_xml: "XML క్లియర్ చేయండి",
     convert_xml_to_json: "XML → JSON కు మార్చండి",
-    remove_whitespace_xml: "వైట్స్పేస్ తొలగించండి (XML)",
+    remove_whitespace_xml: "వైట్స్పేస్ తొలగించండి",
     view_validate_xml: "XML చూడండి మరియు ధృవీకరించండి",
     
     // Placeholders

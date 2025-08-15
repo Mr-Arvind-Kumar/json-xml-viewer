@@ -1,0 +1,74 @@
+# DataZ Tools - SEO and Performance Optimizations
+
+# Enable compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Browser caching
+<IfModule mod_expires.c>
+    ExpiresActive on
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/ico "access plus 1 year"
+    ExpiresByType image/icon "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# WWW redirect (choose one based on preference)
+# Redirect non-www to www
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^dataz\.tools$ [NC]
+RewriteRule ^(.*)$ https://www.dataz.tools/$1 [R=301,L]
+
+# OR redirect www to non-www (alternative)
+# RewriteCond %{HTTP_HOST} ^www\.dataz\.tools$ [NC]
+# RewriteRule ^(.*)$ https://dataz.tools/$1 [R=301,L]
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Pretty URLs for tools (optional - if implementing routing)
+RewriteRule ^json-viewer/?$ /?tool=json [L,QSA]
+RewriteRule ^xml-viewer/?$ /?tool=xml [L,QSA]
+RewriteRule ^base64-encoder/?$ /?tool=base64 [L,QSA]
+RewriteRule ^jwt-decoder/?$ /?tool=jwt [L,QSA]
+RewriteRule ^hash-generator/?$ /?tool=hash [L,QSA]
+RewriteRule ^uuid-generator/?$ /?tool=uuid [L,QSA]
+RewriteRule ^color-converter/?$ /?tool=color [L,QSA]
+RewriteRule ^timestamp-converter/?$ /?tool=timestamp [L,QSA]
+RewriteRule ^qr-code-generator/?$ /?tool=qr [L,QSA]
+RewriteRule ^regex-tester/?$ /?tool=regex [L,QSA]
+
+# Custom error pages
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+
+# Remove trailing slash
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [R=301,L]

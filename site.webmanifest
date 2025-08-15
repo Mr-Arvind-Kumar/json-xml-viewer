@@ -1,0 +1,62 @@
+{
+  "name": "DataZ Tools - Free Developer Toolkit",
+  "short_name": "DataZ Tools",
+  "description": "Free online developer toolkit with 15+ professional tools including JSON/XML viewers, Base64 encoder, JWT decoder, hash generator, and more utilities for developers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1e1e1e",
+  "theme_color": "#2196f3",
+  "categories": ["developer", "tools", "utilities", "productivity"],
+  "lang": "en",
+  "orientation": "any",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "JSON Viewer",
+      "short_name": "JSON",
+      "description": "View and format JSON data",
+      "url": "/?tool=json",
+      "icons": [{ "src": "/json-icon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Base64 Encoder",
+      "short_name": "Base64",
+      "description": "Encode and decode Base64 data",
+      "url": "/?tool=base64",
+      "icons": [{ "src": "/base64-icon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "JWT Decoder",
+      "short_name": "JWT",
+      "description": "Decode and analyze JWT tokens", 
+      "url": "/?tool=jwt",
+      "icons": [{ "src": "/jwt-icon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Hash Generator",
+      "short_name": "Hash",
+      "description": "Generate MD5, SHA-1, SHA-256 hashes",
+      "url": "/?tool=hash", 
+      "icons": [{ "src": "/hash-icon-96x96.png", "sizes": "96x96" }]
+    }
+  ]
+}

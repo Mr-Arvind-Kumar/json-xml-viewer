@@ -284,16 +284,21 @@ footer {
   background: var(--toolbar-bg);
   padding: 8px;
   display: flex;
-  gap: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 .toolbar button {
   border-radius: 4px;
   border: none;
-  padding: 8px;
+  padding: 6px 8px;
   cursor: pointer;
   background: var(--btn-bg);
   color: var(--btn-text);
   position: relative;
+  font-size: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .toolbar button.active {
   background: var(--btn-active-bg);
@@ -321,13 +326,78 @@ footer {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 0; /* Remove gap that causes spacing */
   border-top: 2px solid var(--btn-active-bg);
   border-radius: 0 4px 4px 4px;
   background: var(--bg-color);
   margin-top: -2px; /* Connect with toolbar button border */
-  padding: 10px;
+  padding: 0; /* Remove padding that causes top spacing */
   box-shadow: 0 2px 8px var(--active-shadow), 0 0 0 1px var(--active-border);
+}
+
+/* Wrapper for panel content */
+.io-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 10px;
+  gap: 10px;
+}
+
+/* Action buttons should be at the top without extra spacing */
+.btn-group {
+  margin: 0;
+  padding: 0;
+}
+
+/* Chart type dropdown styling */
+#chart-type-select {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  padding: 6px 10px;
+  margin-right: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#chart-type-select:hover {
+  background: var(--btn-hover-bg);
+}
+
+#chart-type-select option {
+  background: var(--btn-bg);
+  color: var(--btn-text);
+}
+
+/* Graph input textarea should match JSON/XML height */
+#graph-input {
+  height: 300px;
+  min-height: 300px;
+  max-height: 500px;
+}
+
+/* Base64 input textarea should match other panels */
+#base64-input {
+  height: 300px;
+  min-height: 300px;
+  max-height: 500px;
+}
+
+/* JWT input textarea should match other panels */
+#jwt-input {
+  height: 200px;
+  min-height: 200px;
+  max-height: 400px;
+}
+
+/* JWT secret input styling */
+#jwt-secret {
+  background: var(--input-bg);
+  color: var(--input-text);
+  border: 1px solid var(--border-color);
 }
 .hidden {
   display: none !important;
@@ -350,7 +420,7 @@ textarea {
 .action-btn {
   border: none;
   border-radius: 3px;
-  padding: 8px 10px;
+  padding: 6px 8px;
   cursor: pointer;
   background: var(--btn-bg);
   color: var(--btn-text);
@@ -361,7 +431,7 @@ textarea {
 /* Button icon styling */
 .btn-group button i,
 .action-btn i {
-  margin-right: 4px;
+  margin-right: 0px;
   font-size: 12px;
 }
 
@@ -380,6 +450,13 @@ textarea {
   display: flex;
   gap: 15px;
   margin: 10px 0;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.btn-group button {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 /* ====== Output Box ====== */
@@ -563,4 +640,260 @@ body.light {
 
   /* Light mode arrow */
   --arrow-color: #333;
+}
+
+/* ====== Additional Developer Tool Styles ====== */
+
+/* Color Preview */
+#color-preview {
+  width: 50px;
+  height: 30px;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+/* UUID Validation */
+#uuid-validation {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Hash Output */
+#hash-output {
+  font-family: 'Courier New', monospace;
+  word-break: break-all;
+  background: var(--output-bg);
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  border-radius: 4px;
+  min-height: 40px;
+  color: var(--font-color);
+}
+
+/* QR Code Canvas */
+#qr-canvas {
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: white;
+  display: block;
+  margin: 10px auto;
+}
+
+/* Text Stats */
+#text-stats {
+  background: var(--output-bg);
+  border: 1px solid var(--border-color);
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--font-color);
+  margin-top: 10px;
+}
+
+/* Markdown Preview */
+#markdown-output {
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 15px;
+  background: var(--output-bg);
+  color: var(--font-color);
+  min-height: 200px;
+  overflow-y: auto;
+}
+
+#markdown-output h1, #markdown-output h2, #markdown-output h3 {
+  margin-top: 0;
+  color: var(--font-color);
+}
+
+#markdown-output code {
+  background: rgba(66, 133, 244, 0.1);
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+}
+
+#markdown-output a {
+  color: #4285f4;
+  text-decoration: none;
+}
+
+#markdown-output a:hover {
+  text-decoration: underline;
+}
+
+/* Form Controls Enhancement */
+.panel select, .panel input[type="color"] {
+  height: 36px;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--input-bg);
+  color: var(--input-text);
+  font-size: 14px;
+}
+
+.panel select:focus, .panel input[type="color"]:focus {
+  outline: none;
+  border-color: #4285f4;
+  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+}
+
+/* Quick Insert Buttons for Regex */
+.quick-patterns {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin: 5px 0;
+}
+
+.quick-patterns button {
+  background: var(--btn-bg);
+  border: 1px solid var(--border-color);
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--btn-text);
+}
+
+.quick-patterns button:hover {
+  background: var(--btn-hover-bg);
+}
+
+/* Responsive improvements for smaller screens */
+@media (max-width: 768px) {
+  .quick-patterns {
+    flex-direction: column;
+  }
+  
+  .quick-patterns button {
+    width: 100%;
+    text-align: left;
+  }
+  
+  #color-preview {
+    width: 40px;
+    height: 25px;
+  }
+}
+
+/* ====== Storage Management Styles ====== */
+
+/* Storage Button */
+.storage-btn {
+  background: var(--secondary-color, #6c757d) !important;
+  color: white !important;
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+  transition: all 0.3s ease;
+}
+
+.storage-btn:hover {
+  background: var(--btn-active-bg, #2196f3) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Storage Modal Specific Styles */
+#storage-modal .modal-content {
+  max-width: 600px;
+  min-height: 300px;
+}
+
+.storage-stats {
+  background: var(--input-bg);
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.storage-stats p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.panel-breakdown {
+  background: var(--input-bg);
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.panel-breakdown h3 {
+  margin: 0 0 10px 0;
+  color: var(--btn-active-bg, #2196f3);
+  font-size: 16px;
+}
+
+.panel-breakdown p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.storage-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+  background: #c82333;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--secondary-color, #6c757d);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--btn-active-bg, #2196f3);
+  transform: translateY(-1px);
+}
+
+/* Responsive modal adjustments */
+@media (max-width: 768px) {
+  #storage-modal .modal-content {
+    width: 95%;
+    margin: 10% auto;
+    padding: 15px;
+  }
+  
+  .storage-actions {
+    flex-direction: column;
+  }
+  
+  .storage-btn {
+    margin-left: 5px;
+    font-size: 12px;
+    padding: 6px 10px;
+  }
 }
